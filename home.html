@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisakorn Garden - Fresh-Cut Fruit You Can Trust</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link active">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1 class="hero-title">Fresh-Cut Fruit <span class="highlight">You Can Trust</span></h1>
+                    <p class="hero-description">ผลไม้สดใหม่คัดสรร จากธรรมชาติ เพื่อคนที่รักสุขภาพ ส่งตรงถึงบ้านคุณ</p>
+                    <div class="hero-buttons">
+                        <a href="products.html" class="btn btn-primary">เลือกซื้อสินค้า</a>
+                        <a href="#about" class="btn btn-secondary">เรียนรู้เพิ่มเติม</a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators">
+                        <div class="indicator">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>ปลอดภัย</span>
+                        </div>
+                        <div class="indicator">
+                            <i class="fas fa-leaf"></i>
+                            <span>ธรรมชาติ</span>
+                        </div>
+                        <div class="indicator">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>จัดส่งเร็ว</span>
+                        </div>
+                        <div class="indicator">
+                            <i class="fas fa-award"></i>
+                            <span>คุณภาพ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fresh Fruits" class="hero-img">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">สินค้าแนะนำ</h2>
+                <p class="section-subtitle">ผลไม้สดใหม่คัดพิเศษ เพื่อสุขภาพที่ดีของคุณ</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-mixed-fruit-premium.html">
+                            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                        </a>
+                        <div class="product-badge">ขายดี</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-mixed-fruit-premium.html">Mixed Fruit Box Premium</a></h3>
+                        <p class="product-description">ผลไม้รวมคัดพิเศษ สำหรับ 2-3 คน</p>
+                        <div class="product-price">
+                            <span class="current-price">฿350</span>
+                            <span class="original-price">฿450</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="mixed-fruit-premium" data-price="350">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-orange-shogun.html">
+                            <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                        </a>
+                        <div class="product-badge new">ใหม่</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-orange-shogun.html">ส้มโชกุน คัดพิเศษ</a></h3>
+                        <p class="product-description">ส้มหวานจากญี่ปุ่น 1 กิโลกรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿280</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="orange-shogun" data-price="280">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-berry-mix-organic.html">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                        </a>
+                        <div class="product-badge organic">ออร์แกนิค</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-berry-mix-organic.html">Berry Mix Organic</a></h3>
+                        <p class="product-description">เบอร์รี่รวมออร์แกนิค 500 กรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿420</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="berry-mix" data-price="420">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-tropical-paradise.html">
+                            <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tropical Fruits">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-tropical-paradise.html">Tropical Paradise Box</a></h3>
+                        <p class="product-description">ผลไม้เมืองร้อน มะม่วง มะขาม ทุเรียน</p>
+                        <div class="product-price">
+                            <span class="current-price">฿450</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="tropical-box" data-price="450">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-cta">
+                <a href="products.html" class="btn btn-outline">ดูสินค้าทั้งหมด</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ทำไมต้องเลือก Nisakorn Garden</h2>
+                <p class="section-subtitle">คุณจะได้รับผลไม้คุณภาพระดับพรีเมียม พร้อมบริการที่เหนือระดับ</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="feature-title">รับรู้</h3>
+                    <p class="feature-description">คุณค่าของผลไม้สดจากธรรมชาติที่คัดสรรมาให้</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">แคร์ดีซี่</h3>
+                    <p class="feature-description">สำหรับครอบครัวที่รักสุขภาพ เพื่อความสดใส ท้องถิ่นไทย</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h3 class="feature-title">เชื่อถือ</h3>
+                    <p class="feature-description">ความปลอดภัยในทุกครัวเรือน เพื่อความมั่นใจ มี Food Safety มาตรฐาน</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="feature-title">ดีต่อใจ</h3>
+                    <p class="feature-description">ผลิตภัณฑ์สำหรับคนใจดี ความสุข ใส่ใจในทุกรายละเอียด</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ความคิดเห็นลูกค้า</h2>
+                <p class="section-subtitle">ฟังความคิดเห็นจากลูกค้าที่มีความสุขกับผลไม้ของเรา</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"ผลไม้สดมาก หวานอร่อย ขนาดบรรจุเหมาะสำหรับครอบครัว บริการส่งเร็วมาก"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="author-avatar">
+                        <div class="author-info">
+                            <h4 class="author-name">คุณสุดา ใจดี</h4>
+                            <p class="author-title">แม่บ้าน, กรุงเทพฯ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"สั่งเป็นประจำสำหรับออฟฟิศ พนักงานชอบมาก บรรจุภัณฑ์สวย ราคาไม่แพง"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="author-avatar">
+                        <div class="author-info">
+                            <h4 class="author-name">คุณวิชัย ธุรกิจ</h4>
+                            <p class="author-title">ผู้จัดการฝ่ายบุคคล</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"ผลไม้ organic สดใหม่ ปลอดภัย เด็กกินได้ ระบบสั่งซื้อง่าย จัดส่งตรงเวลา"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="author-avatar">
+                        <div class="author-info">
+                            <h4 class="author-name">คุณนิชา สุขภาพ</h4>
+                            <p class="author-title">Freelance Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">พร้อมเริ่มต้นชีวิตแห้มสุขภาพแล้วหรือยัง?</h2>
+                <p class="cta-description">สั่งผลไม้สดใหม่คัดพิเศษ ส่งฟรีทั่วกรุงเทพฯ สำหรับออเดอร์แรก</p>
+                <div class="cta-buttons">
+                    <a href="products.html" class="btn btn-primary">เลือกซื้อเลย</a>
+                    <a href="contact.html" class="btn btn-secondary">ติดต่อสอบถาม</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                const navLinks = nav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

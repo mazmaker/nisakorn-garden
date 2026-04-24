@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การสมัครสมาชิกและสินค้าประจำ - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .subscription-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-8) var(--spacing-4);
+            margin-top: 80px;
+        }
+
+        .subscription-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .hero-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .hero-benefits {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-8);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            font-size: var(--font-size-base);
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--gray-100);
+            padding: var(--spacing-2);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: var(--spacing-4) var(--spacing-6);
+            background: none;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            transition: var(--transition-fast);
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-sm);
+            border: 3px solid transparent;
+            transition: var(--transition-fast);
+            position: relative;
+            text-align: center;
+        }
+
+        .plan-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plan-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-4);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            color: white;
+        }
+
+        .plan-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .plan-description {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .plan-price {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .price-amount {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .price-period {
+            color: var(--gray-600);
+            font-size: var(--font-size-base);
+        }
+
+        .original-price {
+            color: var(--gray-500);
+            text-decoration: line-through;
+            font-size: var(--font-size-lg);
+            margin-right: var(--spacing-2);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-3);
+            text-align: left;
+        }
+
+        .feature-check {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .plan-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-4) var(--spacing-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .plan-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .plan-btn.secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .plan-btn.secondary:hover {
+            background: var(--gray-300);
+        }
+
+        .my-subscriptions {
+            background: white;
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .subscription-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-6);
+            padding: var(--spacing-6);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-4);
+            transition: var(--transition-fast);
+        }
+
+        .subscription-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .subscription-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        .subscription-details {
+            flex: 1;
+        }
+
+        .subscription-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .subscription-schedule {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .next-delivery {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .subscription-price {
+            text-align: center;
+            margin: 0 var(--spacing-4);
+        }
+
+        .price-large {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .subscription-status {
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+        }
+
+        .status-active {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .status-paused {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .subscription-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2);
+        }
+
+        .action-btn {
+            padding: var(--spacing-2) var(--spacing-4);
+            border: 2px solid var(--gray-300);
+            background: white;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .action-btn.danger:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .create-subscription {
+            background: var(--gray-50);
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .create-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .create-description {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-6);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .create-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-4) var(--spacing-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .create-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .faq-section {
+            background: white;
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: var(--spacing-4);
+            background: none;
+            border: none;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 var(--spacing-4) var(--spacing-4);
+            color: var(--gray-600);
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero-benefits {
+                flex-direction: column;
+                gap: var(--spacing-4);
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .subscription-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .subscription-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        Nisakorn Garden
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">5</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="subscription-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" style="margin-bottom: 2rem;">
+            <a href="home.html">หน้าแรก</a> /
+            <a href="my-account.html">บัญชีของฉัน</a> /
+            <span>การสมัครสมาชิก</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="subscription-hero">
+            <h1 class="hero-title">สมัครรับผลไม้สดประจำ</h1>
+            <p class="hero-subtitle">รับผลไม้สดคุณภาพพรีเมียมส่งถึงบ้าน ในราคาพิเศษและสะดวกสบาย</p>
+
+            <div class="hero-benefits">
+                <div class="benefit">
+                    <i class="fas fa-truck"></i>
+                    <span>จัดส่งฟรีทุกครั้ง</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-percentage"></i>
+                    <span>ประหยัดได้ถึง 20%</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>เลือกวันจัดส่งได้</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-pause"></i>
+                    <span>หยุดได้ทุกเมื่อ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('plans')">แพ็คเกจสมาชิก</button>
+            <button class="tab-btn" onclick="showTab('my-subscriptions')">การสมัครของฉัน</button>
+        </div>
+
+        <!-- Plans Tab -->
+        <div id="plans" class="tab-content active">
+            <div class="plans-grid">
+                <!-- Weekly Plan -->
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <h3 class="plan-title">แพ็คเกจรายสัปดาห์</h3>
+                    <p class="plan-description">ผลไม้สดคัดพิเศษจัดส่งทุกสัปดาห์</p>
+
+                    <div class="plan-price">
+                        <span class="original-price">฿350</span>
+                        <span class="price-amount">฿299</span>
+                        <span class="price-period">/สัปดาห์</span>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check feature-check"></i> ผลไม้สด 3-4 ชนิด</li>
+                        <li><i class="fas fa-check feature-check"></i> น้ำหนักรวม 1.5 กิโลกรัม</li>
+                        <li><i class="fas fa-check feature-check"></i> คัดสรรตามฤดูกาล</li>
+                        <li><i class="fas fa-check feature-check"></i> จัดส่งฟรีทุกครั้ง</li>
+                        <li><i class="fas fa-check feature-check"></i> ยกเลิกได้ทุกเมื่อ</li>
+                    </ul>
+
+                    <button class="plan-btn" onclick="selectPlan('weekly')">เลือกแพ็คเกจนี้</button>
+                </div>
+
+                <!-- Monthly Plan -->
+                <div class="plan-card featured">
+                    <div class="featured-badge">แนะนำ</div>
+                    <div class="plan-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="plan-title">แพ็คเกจรายเดือน</h3>
+                    <p class="plan-description">แพ็คเกจยอดนิยม ผลไม้หลากหลายส่งทุกเดือน</p>
+
+                    <div class="plan-price">
+                        <span class="original-price">฿1,200</span>
+                        <span class="price-amount">฿899</span>
+                        <span class="price-period">/เดือน</span>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check feature-check"></i> ผลไม้สด 6-8 ชนิด</li>
+                        <li><i class="fas fa-check feature-check"></i> น้ำหนักรวม 5 กิโลกรัม</li>
+                        <li><i class="fas fa-check feature-check"></i> รวมผลไม้นำเข้าพิเศษ</li>
+                        <li><i class="fas fa-check feature-check"></i> จัดส่งฟรีทุกครั้ง</li>
+                        <li><i class="fas fa-check feature-check"></i> บริการลูกค้า VIP</li>
+                        <li><i class="fas fa-check feature-check"></i> ส่วนลดพิเศษ 15%</li>
+                    </ul>
+
+                    <button class="plan-btn" onclick="selectPlan('monthly')">เลือกแพ็คเกจนี้</button>
+                </div>
+
+                <!-- Custom Plan -->
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="plan-title">แพ็คเกจตามต้องการ</h3>
+                    <p class="plan-description">ปรับแต่งแพ็คเกจตามความต้องการของคุณ</p>
+
+                    <div class="plan-price">
+                        <span class="price-amount">เริ่มต้น ฿199</span>
+                        <span class="price-period">/ครั้ง</span>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check feature-check"></i> เลือกผลไม้เอง</li>
+                        <li><i class="fas fa-check feature-check"></i> เลือกความถี่การส่ง</li>
+                        <li><i class="fas fa-check feature-check"></i> ปรับแต่งปริมาณ</li>
+                        <li><i class="fas fa-check feature-check"></i> เลือกวันจัดส่ง</li>
+                        <li><i class="fas fa-check feature-check"></i> แก้ไขได้ทุกเมื่อ</li>
+                    </ul>
+
+                    <button class="plan-btn secondary" onclick="customizePlan()">ปรับแต่งแพ็คเกจ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Subscriptions Tab -->
+        <div id="my-subscriptions" class="tab-content">
+            <div class="my-subscriptions">
+                <div class="section-header">
+                    <h2 class="section-title">การสมัครปัจจุบัน</h2>
+                    <button class="create-btn" onclick="createNewSubscription()">
+                        <i class="fas fa-plus"></i> สร้างใหม่
+                    </button>
+                </div>
+
+                <!-- Active Subscription -->
+                <div class="subscription-item">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=100" alt="ฟรุตมิกซ์รายเดือน" class="subscription-image">
+                    <div class="subscription-details">
+                        <h3 class="subscription-name">ฟรุตมิกซ์รายเดือน</h3>
+                        <p class="subscription-schedule">จัดส่งทุกวันที่ 15 ของเดือน</p>
+                        <p class="next-delivery">การจัดส่งครั้งถัดไป: 15 พฤษภาคม 2024</p>
+                    </div>
+                    <div class="subscription-price">
+                        <div class="price-large">฿899</div>
+                        <div>/เดือน</div>
+                    </div>
+                    <div class="subscription-status status-active">ใช้งานอยู่</div>
+                    <div class="subscription-actions">
+                        <button class="action-btn" onclick="editSubscription('monthly')">แก้ไข</button>
+                        <button class="action-btn" onclick="pauseSubscription('monthly')">หยุดชั่วคราว</button>
+                        <button class="action-btn danger" onclick="cancelSubscription('monthly')">ยกเลิก</button>
+                    </div>
+                </div>
+
+                <!-- Paused Subscription -->
+                <div class="subscription-item">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=100" alt="มะม่วงรายสัปดาห์" class="subscription-image">
+                    <div class="subscription-details">
+                        <h3 class="subscription-name">มะม่วงรายสัปดาห์</h3>
+                        <p class="subscription-schedule">จัดส่งทุกวันจันทร์</p>
+                        <p class="next-delivery">หยุดชั่วคราวเมื่อ: 10 เมษายน 2024</p>
+                    </div>
+                    <div class="subscription-price">
+                        <div class="price-large">฿299</div>
+                        <div>/สัปดาห์</div>
+                    </div>
+                    <div class="subscription-status status-paused">หยุดชั่วคราว</div>
+                    <div class="subscription-actions">
+                        <button class="action-btn" onclick="resumeSubscription('weekly')">เปิดใช้งาน</button>
+                        <button class="action-btn" onclick="editSubscription('weekly')">แก้ไข</button>
+                        <button class="action-btn danger" onclick="cancelSubscription('weekly')">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create New Subscription -->
+            <div class="create-subscription">
+                <h2 class="create-title">สร้างการสมัครใหม่</h2>
+                <p class="create-description">
+                    เลือกผลไม้ที่ชื่นชอบและสร้างแพ็คเกจส่วนตัวของคุณ
+                    พร้อมความสะดวกในการจัดส่งตามช่วงเวลาที่เหมาะสม
+                </p>
+                <button class="create-btn" onclick="showTab('plans')">เลือกแพ็คเกจ</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">คำถามที่พบบ่อย</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>ฉันสามารถเปลี่ยนแปลงแพ็คเกจได้หรือไม่?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    ได้ค่ะ คุณสามารถเปลี่ยนแปลงแพ็คเกจ เลือกผลไม้ หรือปรับความถี่ในการจัดส่งได้ตลอดเวลา โดยการเข้าสู่บัญชีของคุณและแก้ไขในส่วนการสมัครสมาชิก
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>สามารถหยุดการสมัครชั่วคราวได้หรือไม่?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    ได้ค่ะ คุณสามารถหยุดการสมัครชั่วคราวได้นานสูงสุด 3 เดือน และสามารถเปิดใช้งานใหม่ได้ทุกเมื่อที่ต้องการ โดยไม่มีค่าบริการเพิ่มเติม
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>การจัดส่งใช้เวลานานแค่ไหน?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    เราจัดส่งสินค้าภายใน 24 ชั่วโมงหลังจากเก็บเกี่ยวผลไม้ เพื่อรับประกันความสดใหม่ การจัดส่งจะใช้เวลา 1-2 วันในกรุงเทพและปริมณฑล
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>มีการรับประกันคุณภาพหรือไม่?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    รับประกันคุณภาพความสด 100% หากสินค้าไม่ตรงมาตรฐานหรือเกิดความเสียหาย เรายินดีเปลี่ยนสินค้าใหม่หรือคืนเงินเต็มจำนวน ภายใน 3 วัน
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nisakorn Garden</h3>
+                    <p>สวนผลไม้สดใหม่ คุณภาพพรีเมียม ส่งตรงถึงมือคุณ</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>เมนูหลัก</h4>
+                    <ul>
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="contact.html">ติดต่อ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>บัญชีผู้ใช้</h4>
+                    <ul>
+                        <li><a href="my-account.html">บัญชีของฉัน</a></li>
+                        <li><a href="order-tracking.html">ติดตามคำสั่งซื้อ</a></li>
+                        <li><a href="wishlist.html">รายการที่ชื่นชอบ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ติดต่อเรา</h4>
+                    <p><i class="fas fa-phone"></i> 02-xxx-xxxx</p>
+                    <p><i class="fas fa-envelope"></i> info@nisakorngarden.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> กรุงเทพมหานคร</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab button
+            event.target.classList.add('active');
+        }
+
+        // Plan selection
+        function selectPlan(planType) {
+            const planNames = {
+                'weekly': 'แพ็คเกจรายสัปดาห์',
+                'monthly': 'แพ็คเกจรายเดือน'
+            };
+
+            alert(`คุณเลือก "${planNames[planType]}" เปิดหน้าต่างการสั่งซื้อ...`);
+            // Here you would redirect to checkout or show a modal
+        }
+
+        function customizePlan() {
+            alert('เปิดหน้าต่างปรับแต่งแพ็คเกจ...');
+        }
+
+        // Subscription management
+        function editSubscription(type) {
+            alert('เปิดหน้าต่างแก้ไขการสมัครสมาชิก...');
+        }
+
+        function pauseSubscription(type) {
+            if (confirm('คุณต้องการหยุดการสมัครชั่วคราวหรือไม่?')) {
+                alert('หยุดการสมัครชั่วคราวเรียบร้อยแล้ว');
+                // Update UI to show paused status
+            }
+        }
+
+        function resumeSubscription(type) {
+            if (confirm('คุณต้องการเปิดใช้งานการสมัครอีกครั้งหรือไม่?')) {
+                alert('เปิดใช้งานการสมัครเรียบร้อยแล้ว');
+                // Update UI to show active status
+            }
+        }
+
+        function cancelSubscription(type) {
+            if (confirm('คุณต้องการยกเลิกการสมัครหรือไม่? การดำเนินการนี้ไม่สามารถย้อนกลับได้')) {
+                alert('ยกเลิกการสมัครเรียบร้อยแล้ว');
+                // Remove subscription from UI
+            }
+        }
+
+        function createNewSubscription() {
+            showTab('plans');
+            document.querySelector('[onclick="showTab(\'plans\')"]').classList.add('active');
+            document.querySelector('[onclick="showTab(\'my-subscriptions\')"]').classList.remove('active');
+        }
+
+        // FAQ toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            answer.classList.toggle('show');
+
+            if (answer.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            // Add some animations or load user data
+            console.log('Subscription page loaded');
+        });
+    </script>
+</body>
+</html>

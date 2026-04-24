@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ส้มโชกุน คัดพิเศษ - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        <span>Nisakorn Garden</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                    <a href="b2b.html">B2B</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="home.html"><i class="fas fa-home"></i> หน้าแรก</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">สินค้า</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html?category=citrus">ส้ม-เขียวหวาน</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>ส้มโชกุน คัดพิเศษ</span>
+        </nav>
+
+        <!-- Product Detail Header -->
+        <div class="product-detail-header">
+            <div class="product-images">
+                <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ส้มโชกุน คัดพิเศษ" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ส้มโชกุน 1" class="thumbnail active" onclick="changeMainImage('https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ส้มโชกุน 2" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1547514701-42782101795e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ส้มโชกุน 3" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1547514701-42782101795e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ส้มโชกุน 4" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">ส้มโชกุน คัดพิเศษ</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-text">(4.7 จาก 156 รีวิว)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">฿280</span>
+                </div>
+
+                <div class="product-description">
+                    <p>ส้มโชกุนคัดพิเศษจากประเทศญี่ปุ่น หวานฉ่ำ เปรี้ยวน้อย เนื้อนุ่ม น้ำมาก ปลอดสารเคมี คัดสรรเฉพาะผลที่สุกงามและมีคุณภาพสูง น้ำหนัก 1 กิโลกรัม</p>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">ขนาด:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn" data-price="180">เล็ก (500g) - ฿180</button>
+                            <button class="option-btn active" data-price="280">กลาง (1kg) - ฿280</button>
+                            <button class="option-btn" data-price="520">ใหญ่ (2kg) - ฿520</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">ความสุก:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn">ดิบ (เก็บได้นาน)</button>
+                            <button class="option-btn active">พอดี (รับประทานได้ทันที)</button>
+                            <button class="option-btn">สุกมาก (หวานเต็มที่)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label class="option-label">จำนวน:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="wishlist-btn" onclick="toggleWishlist()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features" style="margin-top: 1.5rem;">
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-certificate" style="color: var(--secondary-color);"></i>
+                        <span>ส้มญี่ปุ่นแท้ คัดพิเศษ</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shipping-fast" style="color: var(--secondary-color);"></i>
+                        <span>จัดส่งฟรี สำหรับการสั่งซื้อขั้นต่ำ ฿500</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-undo" style="color: var(--secondary-color);"></i>
+                        <span>รับประกันความสด 10 วัน</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('description')">รายละเอียด</button>
+                <button class="tab-btn" onclick="showTab('nutrition')">คุณค่าทางโภชนาการ</button>
+                <button class="tab-btn" onclick="showTab('reviews')">รีวิว (156)</button>
+                <button class="tab-btn" onclick="showTab('shipping')">การจัดส่ง</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>รายละเอียดสินค้า</h3>
+                <p>ส้มโชกุน (Shogun Orange) เป็นส้มพันธุ์พิเศษจากประเทศญี่ปุ่น มีรสชาติหวานฉ่ำ เปรี้ยวน้อย เนื้อนุ่มละเอียด และมีน้ำมากกว่าส้มทั่วไป ปลูกในสภาพแวดล้อมที่เหมาะสมและใช้เทคโนโลยีขั้นสูงในการดูแล</p>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">จุดเด่นของส้มโชกุน:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>รสชาติหวานฉ่ำ เปรี้ยวน้อย</li>
+                    <li>เนื้อนุ่มละเอียด น้ำมาก</li>
+                    <li>ผิวบาง ลอกง่าย</li>
+                    <li>วิตามิน C สูง เสริมภูมิคุ้มกัน</li>
+                    <li>ปลอดสารเคมี ปลอดภัยต่อสุขภาพ</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีเลือกส้มที่ดี:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>ผิวเรียบเนียน สีส้มสดใส</li>
+                    <li>จับแล้วรู้สึกหนักมือ (มีน้ำมาก)</li>
+                    <li>ไม่มีรอยบุบหรือจุดดำ</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีการเก็บรักษา:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>เก็บในที่เย็น อุณหภูมิ 8-12 องศาเซลเซียส</li>
+                    <li>หลีกเลี่ยงแสงแดดโดยตรง</li>
+                    <li>ควรรับประทานภายใน 10-14 วันหลังได้รับสินค้า</li>
+                </ul>
+            </div>
+
+            <div id="nutrition" class="tab-content">
+                <h3>คุณค่าทางโภชนาการ (ต่อ 100 กรัม)</h3>
+                <table class="nutrition-table">
+                    <tr>
+                        <th>สารอาหาร</th>
+                        <th>ปริมาณ</th>
+                        <th>% DV</th>
+                    </tr>
+                    <tr>
+                        <td>พลังงาน</td>
+                        <td>47 kcal</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>คาร์โบไหเดรต</td>
+                        <td>11.8 g</td>
+                        <td>4%</td>
+                    </tr>
+                    <tr>
+                        <td>น้ำตาล</td>
+                        <td>9.4 g</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>โปรตีน</td>
+                        <td>0.9 g</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>ไขมัน</td>
+                        <td>0.1 g</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>ใยอาหาร</td>
+                        <td>2.4 g</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน C</td>
+                        <td>53.2 mg</td>
+                        <td>59%</td>
+                    </tr>
+                    <tr>
+                        <td>โฟลิค แอซิด</td>
+                        <td>40 µg</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>แคลเซียม</td>
+                        <td>40 mg</td>
+                        <td>4%</td>
+                    </tr>
+                    <tr>
+                        <td>โพแทสเซียม</td>
+                        <td>181 mg</td>
+                        <td>5%</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+                    <h4 style="color: #2d5a27; margin-bottom: 0.5rem;">ประโยชน์ต่อสุขภาพ:</h4>
+                    <ul style="color: #2d5a27; margin-left: 1.5rem;">
+                        <li>เสริมสร้างภูมิคุ้มกัน ด้วยวิตามิน C สูง</li>
+                        <li>ช่วยในการดูดซึมธาตุเหล็ก</li>
+                        <li>ส่งเสริมการสร้างคอลลาเจน</li>
+                        <li>ช่วยรักษาสุขภาพเหงือกและฟัน</li>
+                        <li>ต้านอนุมูลอิสระ ลดความเสี่ยงโรคหัวใจ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <h3>สรุปคะแนนรีวิว</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+                        <span style="font-size: 2rem; font-weight: bold;">4.7</span>
+                        <div>
+                            <div class="stars" style="margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>จาก 156 รีวิว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณจิราพร ส้มหวาน</div>
+                        <div class="review-date">1 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ส้มโชกุนนี้หวานมากจริงๆ เปรี้ยวน้อย น้ำเยอะมาก ลูกโต ผิวเรียบสวย ราคาเหมาะสมกับคุณภาพ จะสั่งซื้อใหม่อีกแน่นอนค่ะ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณธีรยุทธ รักส้ม</div>
+                        <div class="review-date">4 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ส้มญี่ปุ่นแท้ๆ รสชาติดีเยี่ยม หวานฉ่ำ เนื้อนุ่ม ขนาดใหญ่ตามที่สั่ง บรรจุภัณฑ์ดี ส่งมาสดใหม่มาก พอใจครับ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณสุภาพร ใสใส</div>
+                        <div class="review-date">1 สัปดาห์ที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>โดยรวมดีมาก ส้มหวาน น้ำเยอะ แต่ราคาแพงไปนิดหน่อย ถ้าจะซื้อใหม่อาจจะรอโปรโมชั่นค่ะ คุณภาพดีแน่นอน</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>ข้อมูลการจัดส่ง</h3>
+                <div style="margin-top: 1rem;">
+                    <h4>วิธีการจัดส่ง:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li><strong>แบบปกติ (2-3 วัน):</strong> ฿50 (ฟรี เมื่อซื้อครับ ฿500)</li>
+                        <li><strong>แบบเร่งด่วน (1 วัน):</strong> ฿120</li>
+                        <li><strong>รับสินค้าที่ร้าน:</strong> ฟรี</li>
+                    </ul>
+
+                    <h4>เขตการจัดส่ง:</h4>
+                    <p>กรุงเทพมหานคร และปริมณฑล รัศมี 50 กิโลเมตร</p>
+
+                    <h4>การบรรจุภัณฑ์:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>กล่องกระดาษลูกฟูกพิเศษ ป้องกันการกระแทก</li>
+                        <li>ถุงแช่เย็นเพื่อรักษาความสด</li>
+                        <li>ห่อแต่ละลูกด้วยตาข่ายโฟม</li>
+                        <li>แผ่นรองกันกระแทกภายในกล่อง</li>
+                    </ul>
+
+                    <h4>การรับประกัน:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>รับประกันความสด 10 วัน</li>
+                        <li>สามารถเปลี่ยนสินค้าได้ภายใน 5 วัน (หากสินค้าไม่สด)</li>
+                        <li>คืนเงิน 100% หากสินค้าไม่ตรงตามคำสั่งซื้อ</li>
+                        <li>มีใบรับรองจากสวนในญี่ปุ่น</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>สินค้าที่เกี่ยวข้อง</h2>
+            <div class="related-grid">
+                <div class="related-product" onclick="window.location.href='product-green-lime.html'">
+                    <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="มะนาวเขียวหวาน">
+                    <h3>มะนาวเขียวหวาน</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿220</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mixed-fruit-premium.html'">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Mixed Fruit Box Premium">
+                    <h3>Mixed Fruit Box Premium</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿350</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mango-sweet.html'">
+                    <img src="https://images.unsplash.com/photo-1553279531-a4d27ba6e392?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="มะม่วงน้ำดอกไม้">
+                    <h3>มะม่วงน้ำดอกไม้</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿380</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mango-namdokmai.html'">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=250" alt="มะม่วงน้ำดอกไม้สด">
+                    <h3>มะม่วงน้ำดอกไม้สด</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿89</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quantity Controls
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + delta);
+            input.value = newValue;
+        }
+
+        // Product Options
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.closest('.option-group');
+                group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update price if size option
+                const priceData = button.getAttribute('data-price');
+                if (priceData) {
+                    document.querySelector('.current-price').textContent = `฿${priceData}`;
+                }
+            });
+        });
+
+        // Tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const size = document.querySelector('.option-group:first-child .option-btn.active').textContent;
+            const ripeness = document.querySelector('.option-group:last-child .option-btn.active').textContent;
+            const price = document.querySelector('.current-price').textContent;
+
+            // Simulate cart addition
+            alert(`เพิ่มสินค้าลงตะกร้าแล้ว!\n\nส้มโชกุน คัดพิเศษ\nจำนวน: ${quantity} ถุง\nขนาด: ${size}\nความสุก: ${ripeness}\nราคา: ${price}`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-btn .cart-count');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + parseInt(quantity);
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            const wishlistBadge = document.querySelector('.search-btn .cart-count');
+
+            if (wishlistBtn.classList.contains('far')) {
+                wishlistBtn.classList.remove('far');
+                wishlistBtn.classList.add('fas');
+                wishlistBtn.style.color = 'var(--primary-color)';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = currentCount + 1;
+
+                alert('เพิ่มส้มโชกุน คัดพิเศษลงรายการที่ชื่นชอบแล้ว!');
+            } else {
+                wishlistBtn.classList.remove('fas');
+                wishlistBtn.classList.add('far');
+                wishlistBtn.style.color = '';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = Math.max(0, currentCount - 1);
+
+                alert('ลบออกจากรายการที่ชื่นชอบแล้ว!');
+            }
+        }
+    </script>
+</body>
+</html>

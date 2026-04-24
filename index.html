@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisakorn Garden - Role Preview</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .role-preview {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-8);
+        }
+
+        .preview-container {
+            max-width: 1200px;
+            width: 100%;
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: var(--gray-800);
+            color: var(--white);
+            padding: var(--spacing-8);
+            text-align: center;
+        }
+
+        .preview-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .preview-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--gray-300);
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+        }
+
+        .role-card {
+            padding: var(--spacing-6);
+            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            text-align: center;
+            transition: var(--transition-normal);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .role-card:hover {
+            background: var(--gray-50);
+            transform: translateY(-2px);
+        }
+
+        .role-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .role-card:nth-child(3n), .role-card:nth-child(4n) {
+            border-bottom: none;
+        }
+
+        .role-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-6);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-3xl);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .role-card:nth-child(1) .role-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .role-card:nth-child(2) .role-icon {
+            background: linear-gradient(135deg, var(--secondary-color), #2f855a);
+        }
+
+        .role-card:nth-child(3) .role-icon {
+            background: linear-gradient(135deg, var(--accent-color), #c05621);
+        }
+
+        .role-card:nth-child(4) .role-icon {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .role-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .role-description {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-6);
+            line-height: 1.6;
+        }
+
+        .role-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2);
+            margin-top: auto;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .role-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: var(--spacing-2);
+            padding: var(--spacing-2) var(--spacing-3);
+            background: var(--gray-100);
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: var(--font-size-xs);
+            transition: var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .role-link:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .role-link.primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .role-link.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-card {
+                border-right: none;
+            }
+        }
+
+        .instructions {
+            padding: var(--spacing-8);
+            background: var(--gray-50);
+            text-align: center;
+        }
+
+        .instructions h3 {
+            color: var(--gray-800);
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .instructions p {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .current-url {
+            background: var(--gray-800);
+            color: var(--accent-color);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-md);
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: var(--spacing-4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Hidden for Role Preview Page -->
+
+    <div class="role-preview">
+        <div class="preview-container">
+            <div class="preview-header">
+                <h1 class="preview-title">Nisakorn Garden E-Commerce Platform</h1>
+                <p class="preview-subtitle">เลือก User Role ที่ต้องการดู UI Mock-up</p>
+            </div>
+
+            <div class="role-grid">
+                <!-- B2C Customer -->
+                <div class="role-card" onclick="window.open('home.html', '_blank')">
+                    <div class="role-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="role-title">👥 B2C Customer</h2>
+                    <p class="role-description">ลูกค้าทั่วไป - ซื้อสินค้าปลีก, ตะกร้า, ชำระเงิน, Dashboard</p>
+                    <div class="role-links">
+                        <a href="home.html" class="role-link primary" target="_blank">
+                            <i class="fas fa-home"></i> B2C Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- B2B Customer -->
+                <div class="role-card" onclick="window.open('b2b-dashboard.html', '_blank')">
+                    <div class="role-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h2 class="role-title">🏢 B2B Customer</h2>
+                    <p class="role-description">ลูกค้าธุรกิจ - สั่งซื้อขายส่ง, เครดิต, ใบแจ้งหนี้, Analytics</p>
+                    <div class="role-links">
+                        <a href="b2b.html" class="role-link" target="_blank">
+                            <i class="fas fa-info"></i> ข้อมูลบริการ B2B
+                        </a>
+                        <a href="b2b-dashboard.html" class="role-link primary" target="_blank">
+                            <i class="fas fa-chart-bar"></i> B2B Dashboard
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Staff -->
+                <div class="role-card" onclick="window.open('staff-dashboard.html', '_blank')">
+                    <div class="role-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="role-title">👨‍💼 Staff</h2>
+                    <p class="role-description">พนักงาน - จัดการออเดอร์, สต็อก, จัดส่ง, ปฏิบัติการ</p>
+                    <div class="role-links">
+                        <a href="staff-dashboard.html" class="role-link primary" target="_blank">
+                            <i class="fas fa-tasks"></i> Staff Dashboard
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Admin -->
+                <div class="role-card" onclick="window.open('admin-dashboard.html', '_blank')">
+                    <div class="role-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2 class="role-title">👨‍💻 Admin</h2>
+                    <p class="role-description">ผู้ดูแลระบบ - Analytics, จัดการสินค้า, Users, Marketing</p>
+                    <div class="role-links">
+                        <a href="admin-dashboard.html" class="role-link primary" target="_blank">
+                            <i class="fas fa-cog"></i> Admin Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>📖 วิธีใช้งาน</h3>
+                <p>1. คลิกที่ Role Card ที่ต้องการดู หรือคลิกลิงค์เฉพาะหน้า</p>
+                <p>2. หน้าจะเปิดใน Tab ใหม่ แสดง UI Mock-up สำหรับ User Role นั้นๆ</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add click tracking
+        document.querySelectorAll('.role-link').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('Navigating to:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>

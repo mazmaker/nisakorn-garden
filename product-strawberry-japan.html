@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สตรอเบอร์รี่ญี่ปุ่น - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        <span>Nisakorn Garden</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                    <a href="b2b.html">B2B</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="home.html"><i class="fas fa-home"></i> หน้าแรก</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">สินค้า</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html?category=berry">เบอร์รี่</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>สตรอเบอร์รี่ญี่ปุ่น</span>
+        </nav>
+
+        <!-- Product Detail Header -->
+        <div class="product-detail-header">
+            <div class="product-images">
+                <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="สตรอเบอร์รี่ญี่ปุ่น" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="สตรอเบอร์รี่ 1" class="thumbnail active" onclick="changeMainImage('https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="สตรอเบอร์รี่ 2" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="สตรอเบอร์รี่ 3" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="สตรอเบอร์รี่ 4" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">สตรอเบอร์รี่ญี่ปุ่น</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text">(4.9 จาก 75 รีวิว)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">฿350</span>
+                </div>
+
+                <div class="product-description">
+                    <p>สตรอเบอร์รี่ญี่ปุ่นแท้ พันธุ์อามาโอ (Amaou) หวานหอม ฉ่ำน้ำ ผลใหญ่ เนื้อแน่น รสชาติเข้มข้น สีแดงสวยงาม น้ำหนัก 250 กรัม บรรจุในกล่องพรีเมียม</p>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">ขนาด:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn" data-price="220">เล็ก (150g) - ฿220</button>
+                            <button class="option-btn active" data-price="350">กลาง (250g) - ฿350</button>
+                            <button class="option-btn" data-price="620">ใหญ่ (500g) - ฿620</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">ชั้น:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">ชั้นเลิศ (Amaou)</button>
+                            <button class="option-btn">ชั้นดี (Tochiotome)</button>
+                            <button class="option-btn">มิกซ์ (Assorted)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label class="option-label">จำนวน:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="wishlist-btn" onclick="toggleWishlist()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features" style="margin-top: 1.5rem;">
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-certificate" style="color: var(--secondary-color);"></i>
+                        <span>สตรอเบอร์รี่ญี่ปุ่นแท้ 100%</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-snowflake" style="color: var(--secondary-color);"></i>
+                        <span>จัดส่งแช่เย็น รักษาความสด</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-clock" style="color: var(--secondary-color);"></i>
+                        <span>เก็บเกี่ยวสดใหม่ทุกวัน</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('description')">รายละเอียด</button>
+                <button class="tab-btn" onclick="showTab('nutrition')">คุณค่าทางโภชนาการ</button>
+                <button class="tab-btn" onclick="showTab('reviews')">รีวิว (75)</button>
+                <button class="tab-btn" onclick="showTab('shipping')">การจัดส่ง</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>รายละเอียดสินค้า</h3>
+                <p>สตรอเบอร์รี่ญี่ปุ่นพันธุ์อามาโอ (Amaou) เป็นสตรอเบอร์รี่พรีเมียมจากประเทศญี่ปุ่น มีรสชาติหวานหอม เนื้อแน่น ฉ่ำน้ำ ผลใหญ่ สีแดงสวยงาม เก็บเกี่ยวในช่วงฤดูกาลที่เหมาะสม</p>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">จุดเด่นของสตรอเบอร์รี่อามาโอ:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>รสชาติหวานหอม เข้มข้น ไม่เปรี้ยว</li>
+                    <li>ผลใหญ่ เนื้อแน่น ฉ่ำน้ำ</li>
+                    <li>สีแดงสดใส สวยงาม น่าทาน</li>
+                    <li>กลิ่นหอมเฉพาะตัวของสตรอเบอร์รี่แท้</li>
+                    <li>ปลูกภายใต้มาตรฐานเกษตรกรรมญี่ปุ่น</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีเลือกสตรอเบอร์รี่ที่ดี:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>ผลมีสีแดงสดใส สม่ำเสมอ</li>
+                    <li>ใบเลี้ยงสีเขียวใส ไม่เหี่ยวแห้ง</li>
+                    <li>เนื้อแน่น ไม่นิ่ม ไม่บุบ</li>
+                    <li>มีกลิ่นหอมหวาน</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีการเก็บรักษา:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>เก็บในตู้เย็น อุณหภูมิ 2-4 องศาเซลเซียส</li>
+                    <li>ไม่ควรล้างก่อนเก็บ ให้ล้างก่อนรับประทาน</li>
+                    <li>ควรรับประทานภายใน 3-5 วันหลังได้รับสินค้า</li>
+                    <li>เก็บในกล่องเดิม หรือภาชนะระบายอากาศ</li>
+                </ul>
+            </div>
+
+            <div id="nutrition" class="tab-content">
+                <h3>คุณค่าทางโภชนาการ (ต่อ 100 กรัม)</h3>
+                <table class="nutrition-table">
+                    <tr>
+                        <th>สารอาหาร</th>
+                        <th>ปริมาณ</th>
+                        <th>% DV</th>
+                    </tr>
+                    <tr>
+                        <td>พลังงาน</td>
+                        <td>33 kcal</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>คาร์โบไหเดรต</td>
+                        <td>8 g</td>
+                        <td>3%</td>
+                    </tr>
+                    <tr>
+                        <td>น้ำตาล</td>
+                        <td>6.2 g</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>โปรตีน</td>
+                        <td>0.8 g</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>ไขมัน</td>
+                        <td>0.4 g</td>
+                        <td>1%</td>
+                    </tr>
+                    <tr>
+                        <td>ใยอาหาร</td>
+                        <td>2.4 g</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน C</td>
+                        <td>89.4 mg</td>
+                        <td>99%</td>
+                    </tr>
+                    <tr>
+                        <td>โฟลิค แอซิด</td>
+                        <td>24 µg</td>
+                        <td>6%</td>
+                    </tr>
+                    <tr>
+                        <td>แมงกานีส</td>
+                        <td>0.4 mg</td>
+                        <td>17%</td>
+                    </tr>
+                    <tr>
+                        <td>โพแทสเซียม</td>
+                        <td>153 mg</td>
+                        <td>4%</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+                    <h4 style="color: #2d5a27; margin-bottom: 0.5rem;">ประโยชน์ต่อสุขภาพ:</h4>
+                    <ul style="color: #2d5a27; margin-left: 1.5rem;">
+                        <li>เสริมสร้างภูมิคุ้มกันเกือบ 100% ความต้องการวันละ</li>
+                        <li>ช่วยต้านอนุมูลอิสระ ด้วยแอนโธไซยานิน</li>
+                        <li>ส่งเสริมสุขภาพหัวใจและหลอดเลือด</li>
+                        <li>ช่วยบำรุงผิวพรรณให้สดใส</li>
+                        <li>ส่งเสริมระบบย่อยอาหาร ด้วยใยอาหาร</li>
+                        <li>ช่วยควบคุมน้ำหนัก แคลอรี่ต่ำมาก</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <h3>สรุปคะแนนรีวิว</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+                        <span style="font-size: 2rem; font-weight: bold;">4.9</span>
+                        <div>
+                            <div class="stars" style="margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>จาก 75 รีวิว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณมินิมอล สตรอเบอรี่เลิฟ</div>
+                        <div class="review-date">1 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>สตรอเบอร์รี่ญี่ปุ่นแท้ๆ หวานมากกกก ใหญ่มาก ฉ่ำน้ำ ไม่เปรี้ยวเลย กลิ่นหอมมาก ราคาแพงแต่คุ้มค่ามาก จะสั่งใหม่อีกแน่นอนค่ะ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณพรีเมียม เบอรี่เก่า</div>
+                        <div class="review-date">2 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>คุณภาพดีมากครับ ผลใหญ่ สีสวย หวานเข้มข้น เก็บเกี่ยวสดใหม่ บรรจุภัณฑ์พรีเมียม เหมาะสำหรับเป็นของขวัญ พอใจมากครับ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณสุขใส เฮลตี้ไลฟ์</div>
+                        <div class="review-date">5 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>สตรอเบอร์รี่อร่อยมากค่ะ หวานหอม ส่งมาสดใหม่มาก เก็บได้หลายวัน กินคู่กับโยเกิร์ตอร่อยมาก คุ้มค่าสำหรับคุณภาพค่ะ</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>ข้อมูลการจัดส่ง</h3>
+                <div style="margin-top: 1rem;">
+                    <h4>วิธีการจัดส่ง:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li><strong>แบบเร่งด่วนเท่านั้น (1 วัน):</strong> ฿150 (รวมค่าแช่เย็น)</li>
+                        <li><strong>รับสินค้าที่ร้าน:</strong> ฟรี</li>
+                        <li>*ไม่มีการจัดส่งแบบปกติ เนื่องจากต้องรักษาความสดของผลไม้*</li>
+                    </ul>
+
+                    <h4>เขตการจัดส่ง:</h4>
+                    <p>กรุงเทพมหานคร และปริมณฑล รัศมี 25 กิโลเมตร เท่านั้น (เนื่องจากความสดของผลไม้)</p>
+
+                    <h4>การบรรจุภัณฑ์:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>กล่องพิเศษกันกระแทก พร้อมรูระบายอากาศ</li>
+                        <li>ถุงแช่เย็นเพื่อรักษาความสด</li>
+                        <li>วางแต่ละผลในแต่ละช่องแยกกัน</li>
+                        <li>น้ำแข็งแห้งเพื่อควบคุมอุณหภูมิ</li>
+                        <li>สติกเกอร์วันที่เก็บเกี่ยว</li>
+                    </ul>
+
+                    <h4>การรับประกัน:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>รับประกันความสด 3 วัน</li>
+                        <li>สามารถเปลี่ยนสินค้าได้ภายใน 1 วัน (หากสินค้าไม่สด)</li>
+                        <li>คืนเงิน 100% หากสินค้าไม่ตรงตามคำสั่งซื้อ</li>
+                        <li>มีใบรับรองจากฟาร์มในญี่ปุ่น</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>สินค้าที่เกี่ยวข้อง</h2>
+            <div class="related-grid">
+                <div class="related-product" onclick="window.location.href='product-berry-mix-organic.html'">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Berry Mix Organic">
+                    <h3>Berry Mix Organic</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿420</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mixed-fruit-premium.html'">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Mixed Fruit Box Premium">
+                    <h3>Mixed Fruit Box Premium</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿350</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-healthy-mix.html'">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Healthy Mix Box">
+                    <h3>Healthy Mix Box</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿480</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-orange-shogun.html'">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="ส้มโชกุน คัดพิเศษ">
+                    <h3>ส้มโชกุน คัดพิเศษ</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿280</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quantity Controls
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + delta);
+            input.value = newValue;
+        }
+
+        // Product Options
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.closest('.option-group');
+                group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update price if size option
+                const priceData = button.getAttribute('data-price');
+                if (priceData) {
+                    document.querySelector('.current-price').textContent = `฿${priceData}`;
+                }
+            });
+        });
+
+        // Tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const size = document.querySelector('.option-group:first-child .option-btn.active').textContent;
+            const grade = document.querySelector('.option-group:last-child .option-btn.active').textContent;
+            const price = document.querySelector('.current-price').textContent;
+
+            // Simulate cart addition
+            alert(`เพิ่มสินค้าลงตะกร้าแล้ว!\n\nสตรอเบอร์รี่ญี่ปุ่น\nจำนวน: ${quantity} กล่อง\nขนาด: ${size}\nชั้น: ${grade}\nราคา: ${price}`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-btn .cart-count');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + parseInt(quantity);
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            const wishlistBadge = document.querySelector('.search-btn .cart-count');
+
+            if (wishlistBtn.classList.contains('far')) {
+                wishlistBtn.classList.remove('far');
+                wishlistBtn.classList.add('fas');
+                wishlistBtn.style.color = 'var(--primary-color)';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = currentCount + 1;
+
+                alert('เพิ่มสตรอเบอร์รี่ญี่ปุ่นลงรายการที่ชื่นชอบแล้ว!');
+            } else {
+                wishlistBtn.classList.remove('fas');
+                wishlistBtn.classList.add('far');
+                wishlistBtn.style.color = '';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = Math.max(0, currentCount - 1);
+
+                alert('ลบออกจากรายการที่ชื่นชอบแล้ว!');
+            }
+        }
+    </script>
+</body>
+</html>

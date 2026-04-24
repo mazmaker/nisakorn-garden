@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixed Fruit Box Premium - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-8) var(--spacing-4);
+            margin-top: 80px;
+        }
+
+        .product-detail-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-8);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .product-images {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .thumbnail-images {
+            display: flex;
+            gap: var(--spacing-2);
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition-fast);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+
+        .product-info {
+            padding: var(--spacing-6);
+        }
+
+        .product-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .current-price {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            font-size: var(--font-size-lg);
+            color: var(--gray-500);
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .rating-text {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .product-description {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .product-options {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .option-group {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .option-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: var(--spacing-2);
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: var(--spacing-2) var(--spacing-4);
+            border: 2px solid var(--gray-300);
+            background: white;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .option-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-md);
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+        }
+
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: var(--font-size-lg);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            padding: var(--spacing-4) var(--spacing-6);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .wishlist-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .wishlist-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .product-tabs {
+            margin-top: var(--spacing-8);
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .tab-btn {
+            padding: var(--spacing-4) var(--spacing-6);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            font-weight: 500;
+            color: var(--gray-600);
+            border-bottom: 2px solid transparent;
+            transition: var(--transition-fast);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nutrition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--spacing-4);
+        }
+
+        .nutrition-table th,
+        .nutrition-table td {
+            padding: var(--spacing-3);
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .nutrition-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+        }
+
+        .reviews-summary {
+            background: var(--gray-50);
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .review-item {
+            padding: var(--spacing-4);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+        }
+
+        .review-date {
+            color: var(--gray-500);
+            font-size: var(--font-size-sm);
+        }
+
+        .related-products {
+            margin-top: var(--spacing-8);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+            margin-top: var(--spacing-6);
+        }
+
+        .related-product {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-4);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+        }
+
+        .related-product:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .related-product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-3);
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-header {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .tab-buttons {
+                flex-wrap: wrap;
+                gap: var(--spacing-2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        <span>Nisakorn Garden</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                    <a href="b2b.html">B2B</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="home.html"><i class="fas fa-home"></i> หน้าแรก</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">สินค้า</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html?category=mixed">ผลไม้รวม</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Mixed Fruit Box Premium</span>
+        </nav>
+
+        <!-- Product Detail Header -->
+        <div class="product-detail-header">
+            <div class="product-images">
+                <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mixed Fruit Box Premium" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้รวม 1" class="thumbnail active" onclick="changeMainImage('https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้รวม 2" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1506906506198-2a3c67e7befc?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้รวม 3" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1506906506198-2a3c67e7befc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1591071038531-a52e5c5e7b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้รวม 4" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1591071038531-a52e5c5e7b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">Mixed Fruit Box Premium</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text">(4.9 จาก 187 รีวิว)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">฿350</span>
+                    <span class="original-price">฿450</span>
+                    <span class="discount-badge">-22%</span>
+                </div>
+
+                <div class="product-description">
+                    <p>กล่องผลไม้รวมคัดพิเศษ สำหรับ 2-3 คน ประกอบด้วยผลไม้สดใหม่หลากหลายชนิด มะม่วง ส้ม สตรอเบอร์รี่ องุ่น และลำไย คัดสรรจากสวนคุณภาพ ออร์แกนิก สะอาด ปลอดภัย</p>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">ขนาด:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn" data-price="280">เล็ก (1-2 คน) - ฿280</button>
+                            <button class="option-btn active" data-price="350">กลาง (2-3 คน) - ฿350</button>
+                            <button class="option-btn" data-price="520">ใหญ่ (4-5 คน) - ฿520</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">ประเภท:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">ผลไม้รวมมาตรฐาน</button>
+                            <button class="option-btn">ผลไม้รวมพรีเมียม</button>
+                            <button class="option-btn">ผลไม้ออร์แกนิค</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label class="option-label">จำนวน:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="wishlist-btn" onclick="toggleWishlist()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features" style="margin-top: 1.5rem;">
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-leaf" style="color: var(--secondary-color);"></i>
+                        <span>100% ออร์แกนิก ไม่ใช้สารเคมี</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shipping-fast" style="color: var(--secondary-color);"></i>
+                        <span>จัดส่งฟรี สำหรับการสั่งซื้อขั้นต่ำ ฿500</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-undo" style="color: var(--secondary-color);"></i>
+                        <span>รับประกันความสด 7 วัน</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('description')">รายละเอียด</button>
+                <button class="tab-btn" onclick="showTab('nutrition')">คุณค่าทางโภชนาการ</button>
+                <button class="tab-btn" onclick="showTab('reviews')">รีวิว (187)</button>
+                <button class="tab-btn" onclick="showTab('shipping')">การจัดส่ง</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>รายละเอียดสินค้า</h3>
+                <p>Mixed Fruit Box Premium คือกล่องผลไม้รวมคัดพิเศษที่รวมผลไม้สดใหม่คุณภาพสูงหลากหลายชนิด เหมาะสำหรับผู้ที่ต้องการรับประทานผลไม้ที่มีประโยชน์ต่อสุขภาพและมีรสชาติอร่อย</p>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">ประกอบด้วยผลไม้:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>มะม่วงน้ำดอกไม้สุก 2 ลูก</li>
+                    <li>ส้มโชกุนหวาน 3 ลูก</li>
+                    <li>สตรอเบอร์รี่ญี่ปุ่น 150 กรัม</li>
+                    <li>องุ่นเขียวไร้เมล็ด 200 กรัม</li>
+                    <li>ลำไยสดใหม่ 150 กรัม</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">จุดเด่น:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>คัดสรรผลไม้คุณภาพสูง ปลอดสารเคมี</li>
+                    <li>ผลไม้หลากหลายชนิดในกล่องเดียว</li>
+                    <li>บรรจุภัณฑ์พรีเมียม สะอาด ปลอดภัย</li>
+                    <li>ส่งตรงจากสวน รับประกันความสด</li>
+                    <li>เหมาะสำหรับเป็นของขวัญหรือรับประทานเอง</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีการเก็บรักษา:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>เก็บในตู้เย็น อุณหภูมิ 4-8 องศาเซลเซียส</li>
+                    <li>บริโภคภายใน 5-7 วันหลังได้รับสินค้า</li>
+                    <li>ล้างให้สะอาดก่อนรับประทาน</li>
+                </ul>
+            </div>
+
+            <div id="nutrition" class="tab-content">
+                <h3>คุณค่าทางโภชนาการ (ต่อกล่อง)</h3>
+                <table class="nutrition-table">
+                    <tr>
+                        <th>สารอาหาร</th>
+                        <th>ปริมาณ</th>
+                        <th>% DV</th>
+                    </tr>
+                    <tr>
+                        <td>พลังงาน</td>
+                        <td>420 kcal</td>
+                        <td>21%</td>
+                    </tr>
+                    <tr>
+                        <td>คาร์โบไหเดรต</td>
+                        <td>105 g</td>
+                        <td>35%</td>
+                    </tr>
+                    <tr>
+                        <td>น้ำตาล</td>
+                        <td>85 g</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>โปรตีน</td>
+                        <td>8 g</td>
+                        <td>16%</td>
+                    </tr>
+                    <tr>
+                        <td>ไขมัน</td>
+                        <td>3 g</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>ใยอาหาร</td>
+                        <td>18 g</td>
+                        <td>72%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน C</td>
+                        <td>285 mg</td>
+                        <td>316%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน A</td>
+                        <td>420 µg</td>
+                        <td>47%</td>
+                    </tr>
+                    <tr>
+                        <td>โฟลิค แอซิด</td>
+                        <td>180 µg</td>
+                        <td>45%</td>
+                    </tr>
+                    <tr>
+                        <td>โพแทสเซียม</td>
+                        <td>1,250 mg</td>
+                        <td>36%</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+                    <h4 style="color: #2d5a27; margin-bottom: 0.5rem;">ประโยชน์ต่อสุขภาพ:</h4>
+                    <ul style="color: #2d5a27; margin-left: 1.5rem;">
+                        <li>เสริมสร้างภูมิคุ้มกัน ด้วยวิตามิน C สูงมาก</li>
+                        <li>ช่วยบำรุงสายตา ด้วยวิตามิน A</li>
+                        <li>ส่งเสริมระบบย่อยอาหาร ด้วยใยอาหารสูง</li>
+                        <li>ช่วยควบคุมความดันโลหิต ด้วยโพแทสเซียม</li>
+                        <li>ต้านอนุมูลอิสระ ป้องกันโรคหัวใจ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <h3>สรุปคะแนนรีวิว</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+                        <span style="font-size: 2rem; font-weight: bold;">4.9</span>
+                        <div>
+                            <div class="stars" style="margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>จาก 187 รีวิว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณปนัดดา วิทยาสิทธิ์</div>
+                        <div class="review-date">2 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>กล่องผลไม้นี้ดีมากค่ะ ผลไม้สดมาก หวานอร่อย ได้ผลไม้หลายชนิดในราคาที่คุ้มค่า บรรจุภัณฑ์ดูสวยงาม เหมาะสำหรับเป็นของขวัญ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณสมศักดิ์ ใจดี</div>
+                        <div class="review-date">5 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>สั่งมาเป็นครั้งที่ 3 แล้ว คุณภาพยังคงดีเยี่ยม ผลไม้สดใหม่ทุกครั้ง การจัดส่งรวดเร็ว พนักงานบริการดีมาก จะซื้อต่อไปเรื่อยๆครับ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณมาลี สุขใส</div>
+                        <div class="review-date">1 สัปดาห์ที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ชอบมากค่ะ ได้ผลไม้หลายชนิดในกล่องเดียว ไม่ต้องไปซื้อแยกแยะ สะดวกมาก ผลไม้หวานอร่อยทุกชิ้น ราคาเหมาะสมมาก แนะนำเลยค่ะ</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>ข้อมูลการจัดส่ง</h3>
+                <div style="margin-top: 1rem;">
+                    <h4>วิธีการจัดส่ง:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li><strong>แบบปกติ (2-3 วัน):</strong> ฿50 (ฟรี เมื่อซื้อครับ ฿500)</li>
+                        <li><strong>แบบเร่งด่วน (1 วัน):</strong> ฿120</li>
+                        <li><strong>รับสินค้าที่ร้าน:</strong> ฟรี</li>
+                    </ul>
+
+                    <h4>เขตการจัดส่ง:</h4>
+                    <p>กรุงเทพมหานคร และปริมณฑล รัศมี 50 กิโลเมตร</p>
+
+                    <h4>การบรรจุภัณฑ์:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>กล่องกระดาษลูกฟูกพิเศษ ป้องกันการกระแทก</li>
+                        <li>ถุงแช่เย็นเพื่อรักษาความสด</li>
+                        <li>แยกบรรจุผลไม้แต่ละชนิด</li>
+                        <li>ฟิล์มห่อผลไม้กันความชื้น</li>
+                    </ul>
+
+                    <h4>การรับประกัน:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>รับประกันความสด 7 วัน</li>
+                        <li>สามารถเปลี่ยนสินค้าได้ภายใน 3 วัน (หากสินค้าไม่สด)</li>
+                        <li>คืนเงิน 100% หากสินค้าไม่ตรงตามคำสั่งซื้อ</li>
+                        <li>มีใบรับรองคุณภาพจากสวน</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>สินค้าที่เกี่ยวข้อง</h2>
+            <div class="related-grid">
+                <div class="related-product" onclick="window.location.href='product-berry-mix-organic.html'">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Berry Mix Organic">
+                    <h3>Berry Mix Organic</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿420</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-tropical-paradise.html'">
+                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Tropical Paradise Box">
+                    <h3>Tropical Paradise Box</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿450</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-healthy-mix.html'">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Healthy Mix Box">
+                    <h3>Healthy Mix Box</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿480</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mango-namdokmai.html'">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=250" alt="มะม่วงน้ำดอกไม้สด">
+                    <h3>มะม่วงน้ำดอกไม้สด</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿89</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quantity Controls
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + delta);
+            input.value = newValue;
+        }
+
+        // Product Options
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.closest('.option-group');
+                group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update price if size option
+                const priceData = button.getAttribute('data-price');
+                if (priceData) {
+                    document.querySelector('.current-price').textContent = `฿${priceData}`;
+                }
+            });
+        });
+
+        // Tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const size = document.querySelector('.option-group:first-child .option-btn.active').textContent;
+            const type = document.querySelector('.option-group:last-child .option-btn.active').textContent;
+            const price = document.querySelector('.current-price').textContent;
+
+            // Simulate cart addition
+            alert(`เพิ่มสินค้าลงตะกร้าแล้ว!\n\nMixed Fruit Box Premium\nจำนวน: ${quantity} กล่อง\nขนาด: ${size}\nประเภท: ${type}\nราคา: ${price}`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-btn .cart-count');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + parseInt(quantity);
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            const wishlistBadge = document.querySelector('.search-btn .cart-count');
+
+            if (wishlistBtn.classList.contains('far')) {
+                wishlistBtn.classList.remove('far');
+                wishlistBtn.classList.add('fas');
+                wishlistBtn.style.color = 'var(--primary-color)';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = currentCount + 1;
+
+                alert('เพิ่ม Mixed Fruit Box Premium ลงรายการที่ชื่นชอบแล้ว!');
+            } else {
+                wishlistBtn.classList.remove('fas');
+                wishlistBtn.classList.add('far');
+                wishlistBtn.style.color = '';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = Math.max(0, currentCount - 1);
+
+                alert('ลบออกจากรายการที่ชื่นชอบแล้ว!');
+            }
+        }
+    </script>
+</body>
+</html>

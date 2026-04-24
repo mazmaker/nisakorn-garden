@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บัญชีของฉัน - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .account-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-8) var(--spacing-4);
+            margin-top: 80px;
+        }
+
+        .account-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            color: white;
+            margin-bottom: var(--spacing-8);
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto var(--spacing-4);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-3xl);
+            color: var(--primary-color);
+        }
+
+        .user-name {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .user-email {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .member-status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+        }
+
+        .account-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .account-sidebar {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            height: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            text-decoration: none;
+            color: var(--gray-700);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-fast);
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--gray-100);
+        }
+
+        .sidebar-menu a.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .account-main {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-3) var(--spacing-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+            padding: var(--spacing-3) var(--spacing-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-300);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-6);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .orders-grid {
+            display: grid;
+            gap: var(--spacing-4);
+        }
+
+        .order-card {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            transition: var(--transition-fast);
+        }
+
+        .order-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .order-number {
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .order-status {
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .status-delivered {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .status-shipping {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .status-pending {
+            background: var(--gray-400);
+            color: white;
+        }
+
+        .order-items {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .item-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .order-total {
+            text-align: right;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .address-card {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            position: relative;
+        }
+
+        .address-card.default {
+            border-color: var(--primary-color);
+        }
+
+        .default-badge {
+            position: absolute;
+            top: var(--spacing-3);
+            right: var(--spacing-3);
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+
+        .loyalty-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: var(--spacing-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-label {
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin: var(--spacing-4) 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+
+        .tier-info {
+            background: var(--gray-50);
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-6);
+        }
+
+        @media (max-width: 768px) {
+            .account-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .loyalty-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        Nisakorn Garden
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon active">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">5</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="account-container">
+        <!-- Account Header -->
+        <div class="account-header">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1 class="user-name">สมชาย ใจดี</h1>
+            <p class="user-email">somchai@email.com</p>
+            <div class="member-status">
+                <i class="fas fa-crown"></i>
+                <span>สมาชิก Gold</span>
+            </div>
+        </div>
+
+        <div class="account-content">
+            <!-- Sidebar -->
+            <aside class="account-sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="menu-item active" data-section="profile">
+                        <i class="fas fa-user"></i> โปรไฟล์
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="orders">
+                        <i class="fas fa-box"></i> คำสั่งซื้อ
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="addresses">
+                        <i class="fas fa-map-marker-alt"></i> ที่อยู่
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="payment">
+                        <i class="fas fa-credit-card"></i> การชำระเงิน
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="loyalty">
+                        <i class="fas fa-star"></i> โปรแกรมสมาชิก
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="subscriptions">
+                        <i class="fas fa-sync-alt"></i> การสมัครสมาชิก
+                    </a></li>
+                    <li><a href="wishlist.html" class="menu-item">
+                        <i class="fas fa-heart"></i> รายการที่ชื่นชอบ
+                    </a></li>
+                    <li><a href="order-tracking.html" class="menu-item">
+                        <i class="fas fa-truck"></i> ติดตามการจัดส่ง
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="settings">
+                        <i class="fas fa-cog"></i> การตั้งค่า
+                    </a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="account-main">
+                <!-- Profile Section -->
+                <section id="profile" class="section active">
+                    <div class="section-header">
+                        <h2 class="section-title">โปรไฟล์</h2>
+                        <button class="btn-primary">บันทึก</button>
+                    </div>
+
+                    <form class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">ชื่อ</label>
+                            <input type="text" class="form-input" value="สมชาย">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">นามสกุล</label>
+                            <input type="text" class="form-input" value="ใจดี">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">อีเมล</label>
+                            <input type="email" class="form-input" value="somchai@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">เบอร์โทรศัพท์</label>
+                            <input type="tel" class="form-input" value="089-123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">วันเกิด</label>
+                            <input type="date" class="form-input" value="1990-05-15">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">เพศ</label>
+                            <select class="form-input">
+                                <option>ชาย</option>
+                                <option>หญิง</option>
+                                <option>ไม่ระบุ</option>
+                            </select>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">ประวัติการสั่งซื้อ</h2>
+                        <button class="btn-secondary">ดูทั้งหมด</button>
+                    </div>
+
+                    <div class="orders-grid">
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">คำสั่งซื้อ #NG-2024-001</div>
+                                    <div style="color: var(--gray-600); font-size: var(--font-size-sm);">20 เมษายน 2024</div>
+                                </div>
+                                <div class="order-status status-delivered">จัดส่งแล้ว</div>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=50" alt="มะม่วง" class="item-image">
+                                    <div>
+                                        <div>มะม่วงน้ำดอกไม้สด x2</div>
+                                        <div style="color: var(--gray-600); font-size: var(--font-size-sm);">฿89 x 2</div>
+                                    </div>
+                                </div>
+                                <div class="order-item">
+                                    <img src="https://images.unsplash.com/photo-1605027863904-68e1e67c7c6c?w=50" alt="มะม่วง" class="item-image">
+                                    <div>
+                                        <div>มะม่วงโอเค x1</div>
+                                        <div style="color: var(--gray-600); font-size: var(--font-size-sm);">฿65 x 1</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-total">รวม ฿243</div>
+                        </div>
+
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">คำสั่งซื้อ #NG-2024-002</div>
+                                    <div style="color: var(--gray-600); font-size: var(--font-size-sm);">22 เมษายน 2024</div>
+                                </div>
+                                <div class="order-status status-shipping">กำลังจัดส่ง</div>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <img src="https://images.unsplash.com/photo-1520342868574-5fa3804e551c?w=50" alt="ส้ม" class="item-image">
+                                    <div>
+                                        <div>ส้มสายน้ำผึ้ง x5</div>
+                                        <div style="color: var(--gray-600); font-size: var(--font-size-sm);">฿25 x 5</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-total">รวม ฿125</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Addresses Section -->
+                <section id="addresses" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">ที่อยู่</h2>
+                        <button class="btn-primary">เพิ่มที่อยู่ใหม่</button>
+                    </div>
+
+                    <div class="address-grid">
+                        <div class="address-card default">
+                            <div class="default-badge">ค่าเริ่มต้น</div>
+                            <h4>ที่อยู่บ้าน</h4>
+                            <p>สมชาย ใจดี</p>
+                            <p>123/45 ซอยสุขุมวิท 24</p>
+                            <p>แขวงคลองเตย เขตคลองเตย</p>
+                            <p>กรุงเทพมหานคร 10110</p>
+                            <p>เบอร์โทร: 089-123-4567</p>
+                            <div style="margin-top: var(--spacing-4);">
+                                <button class="btn-secondary">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ลบ</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <h4>ที่อยู่ที่ทำงาน</h4>
+                            <p>บริษัท ABC จำกัด</p>
+                            <p>999 อาคารใหม่</p>
+                            <p>ชั้น 15 ถนนสีลม</p>
+                            <p>แขวงสีลม เขตบางรัก</p>
+                            <p>กรุงเทพมหานคร 10500</p>
+                            <p>เบอร์โทร: 089-123-4567</p>
+                            <div style="margin-top: var(--spacing-4);">
+                                <button class="btn-secondary">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ลบ</button>
+                                <button class="btn-primary" style="margin-left: var(--spacing-2);">ตั้งเป็นค่าเริ่มต้น</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Payment Section -->
+                <section id="payment" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">วิธีการชำระเงิน</h2>
+                        <button class="btn-primary">เพิ่มบัตรใหม่</button>
+                    </div>
+
+                    <div class="address-grid">
+                        <div class="address-card default">
+                            <div class="default-badge">ค่าเริ่มต้น</div>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-3);">
+                                <i class="fab fa-cc-visa" style="font-size: var(--font-size-2xl); color: #1A1F71;"></i>
+                                <div>
+                                    <h4>Visa</h4>
+                                    <p style="color: var(--gray-600);">•••• •••• •••• 4321</p>
+                                </div>
+                            </div>
+                            <p>หมดอายุ: 12/26</p>
+                            <div style="margin-top: var(--spacing-4);">
+                                <button class="btn-secondary">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ลบ</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-3);">
+                                <i class="fab fa-cc-mastercard" style="font-size: var(--font-size-2xl); color: #EB001B;"></i>
+                                <div>
+                                    <h4>MasterCard</h4>
+                                    <p style="color: var(--gray-600);">•••• •••• •••• 7890</p>
+                                </div>
+                            </div>
+                            <p>หมดอายุ: 08/25</p>
+                            <div style="margin-top: var(--spacing-4);">
+                                <button class="btn-secondary">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ลบ</button>
+                                <button class="btn-primary" style="margin-left: var(--spacing-2);">ตั้งเป็นค่าเริ่มต้น</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Loyalty Section -->
+                <section id="loyalty" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">โปรแกรมสมาชิก</h2>
+                    </div>
+
+                    <div class="loyalty-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">1,250</div>
+                            <div class="stat-label">คะแนนสะสม</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">Gold</div>
+                            <div class="stat-label">สถานะสมาชิก</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">การสั่งซื้อ</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">฿12,580</div>
+                            <div class="stat-label">ยอดซื้อรวม</div>
+                        </div>
+                    </div>
+
+                    <div class="tier-info">
+                        <h3>ระดับ Gold Member</h3>
+                        <p>คุณได้รับส่วนลด 10% สำหรับทุกการสั่งซื้อ และจัดส่งฟรีตลอด</p>
+                        <div style="margin-top: var(--spacing-4);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-2);">
+                                <span>ความคืบหน้าสู่ระดับ Platinum</span>
+                                <span>1,250 / 2,000 คะแนน</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 62.5%;"></div>
+                            </div>
+                            <p style="color: var(--gray-600); font-size: var(--font-size-sm);">เหลือ 750 คะแนนจึงจะเป็น Platinum Member</p>
+                        </div>
+                    </div>
+
+                    <h3>สิทธิประโยชน์ปัจจุบัน</h3>
+                    <div style="margin-top: var(--spacing-4);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                            <span>ส่วนลด 10% สำหรับทุกการสั่งซื้อ</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                            <span>จัดส่งฟรีไม่จำกัดจำนวนครั้ง</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                            <span>สิทธิ์เข้าถึงสินค้าใหม่ก่อนใคร</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3);">
+                            <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i>
+                            <span>ของขวัญวันเกิดพิเศษ</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Subscriptions Section -->
+                <section id="subscriptions" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">การสมัครสมาชิก</h2>
+                        <button class="btn-primary">สร้างการสมัครใหม่</button>
+                    </div>
+
+                    <div class="orders-grid">
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">Fruit Box รายเดือน</div>
+                                    <div style="color: var(--gray-600); font-size: var(--font-size-sm);">ส่งทุกวันที่ 15 ของเดือน</div>
+                                </div>
+                                <div class="order-status" style="background: var(--secondary-color);">ใช้งานอยู่</div>
+                            </div>
+                            <div style="margin-bottom: var(--spacing-4);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-2);">
+                                    <span>ราคา:</span>
+                                    <span>฿899/เดือน</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-2);">
+                                    <span>การส่งครั้งถัดไป:</span>
+                                    <span>15 พฤษภาคม 2024</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>จำนวนส่ง:</span>
+                                    <span>8 ครั้ง</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn-secondary">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">หยุดชั่วคราว</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ยกเลิก</button>
+                            </div>
+                        </div>
+
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <div class="order-number">มะม่วงรายสัปดาห์</div>
+                                    <div style="color: var(--gray-600); font-size: var(--font-size-sm);">ส่งทุกวันจันทร์</div>
+                                </div>
+                                <div class="order-status status-pending">หยุดชั่วคราว</div>
+                            </div>
+                            <div style="margin-bottom: var(--spacing-4);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-2);">
+                                    <span>ราคา:</span>
+                                    <span>฿299/สัปดาห์</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-2);">
+                                    <span>หยุดเมื่อ:</span>
+                                    <span>10 เมษายน 2024</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>จำนวนส่ง:</span>
+                                    <span>12 ครั้ง</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn-primary">เปิดใช้งาน</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">แก้ไข</button>
+                                <button class="btn-secondary" style="margin-left: var(--spacing-2);">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">การตั้งค่า</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <h3>การแจ้งเตือน</h3>
+                        </div>
+                        <div class="form-group full-width" style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-4); background: var(--gray-50); border-radius: var(--radius-lg);">
+                            <div>
+                                <h4>อีเมลโปรโมชั่น</h4>
+                                <p style="color: var(--gray-600); font-size: var(--font-size-sm);">รับข่าวสารและโปรโมชั่นพิเศษ</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="form-group full-width" style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-4); background: var(--gray-50); border-radius: var(--radius-lg);">
+                            <div>
+                                <h4>แจ้งเตือนคำสั่งซื้อ</h4>
+                                <p style="color: var(--gray-600); font-size: var(--font-size-sm);">แจ้งเตือนสถานะคำสั่งซื้อ</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-top: var(--spacing-6);">
+                            <h3>ความปลอดภัย</h3>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn-secondary">เปลี่ยนรหัสผ่าน</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn-secondary">การยืนยันแบบ 2 ขั้นตอน</button>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-top: var(--spacing-6); padding-top: var(--spacing-6); border-top: 2px solid var(--gray-200);">
+                            <button class="btn-secondary" style="background: var(--primary-color); color: white;">ออกจากระบบ</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nisakorn Garden</h3>
+                    <p>สวนผลไม้สดใหม่ คุณภาพพรีเมียม ส่งตรงถึงมือคุณ</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>เมนูหลัก</h4>
+                    <ul>
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="contact.html">ติดต่อ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>บัญชีผู้ใช้</h4>
+                    <ul>
+                        <li><a href="my-account.html">บัญชีของฉัน</a></li>
+                        <li><a href="order-tracking.html">ติดตามคำสั่งซื้อ</a></li>
+                        <li><a href="wishlist.html">รายการที่ชื่นชอบ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ติดต่อเรา</h4>
+                    <p><i class="fas fa-phone"></i> 02-xxx-xxxx</p>
+                    <p><i class="fas fa-envelope"></i> info@nisakorngarden.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> กรุงเทพมหานคร</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+
+    <script>
+        // Menu Navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const sectionId = item.dataset.section;
+                if (!sectionId) return;
+
+                // Update active menu item
+                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                item.classList.add('active');
+
+                // Show selected section
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Mock functions for interactive elements
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.textContent.includes('บันทึก')) {
+                    alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+                } else if (btn.textContent.includes('เพิ่ม')) {
+                    alert('เปิดหน้าต่างเพิ่มข้อมูลใหม่');
+                } else if (btn.textContent.includes('แก้ไข')) {
+                    alert('เปิดหน้าต่างแก้ไขข้อมูล');
+                } else if (btn.textContent.includes('ลบ')) {
+                    if (confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')) {
+                        alert('ลบข้อมูลเรียบร้อยแล้ว');
+                    }
+                } else if (btn.textContent.includes('ออกจากระบบ')) {
+                    if (confirm('คุณต้องการออกจากระบบหรือไม่?')) {
+                        alert('ออกจากระบบเรียบร้อยแล้ว');
+                        window.location.href = 'home.html';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

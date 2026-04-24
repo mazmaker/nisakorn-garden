@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ดเจ้าหน้าที่ - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Staff Dashboard Styles */
+        .staff-hero {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #dd7a1c 100%);
+            padding: 120px 0 60px;
+        }
+
+        .staff-welcome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+        }
+
+        .staff-info h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .staff-subtitle {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .staff-id {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        .shift-info {
+            text-align: right;
+        }
+
+        .shift-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+            display: inline-block;
+        }
+
+        .shift-time {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+
+        .staff-main {
+            padding: var(--spacing-16) 0;
+            background: var(--gray-50);
+        }
+
+        .staff-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .staff-sidebar {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .staff-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-3);
+            font-size: var(--font-size-2xl);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .staff-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .staff-nav-item {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .staff-nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--gray-700);
+            transition: var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .staff-nav-link:hover,
+        .staff-nav-link.active {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .staff-content {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            min-height: 600px;
+        }
+
+        .staff-section {
+            display: none;
+            padding: var(--spacing-8);
+        }
+
+        .staff-section.active {
+            display: block;
+        }
+
+        .urgent-alerts {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .staff-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .staff-stat-card {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .staff-stat-card.urgent {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .staff-stat-card.warning {
+            border-color: var(--accent-color);
+            background: #fffbeb;
+        }
+
+        .staff-stat-card.success {
+            border-color: var(--secondary-color);
+            background: #f0fff4;
+        }
+
+        .staff-stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            margin: 0 auto var(--spacing-3);
+        }
+
+        .staff-stat-card.urgent .stat-icon {
+            background: #fecaca;
+            color: #ef4444;
+        }
+
+        .staff-stat-card.warning .stat-icon {
+            background: #fed7aa;
+            color: var(--accent-color);
+        }
+
+        .staff-stat-card.success .stat-icon {
+            background: #bbf7d0;
+            color: var(--secondary-color);
+        }
+
+        .orders-queue {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .queue-header {
+            background: var(--gray-50);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .tab-btn {
+            padding: var(--spacing-2) var(--spacing-4);
+            border: none;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .order-item {
+            padding: var(--spacing-4) var(--spacing-6);
+            border-bottom: 1px solid var(--gray-200);
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
+            gap: var(--spacing-4);
+            align-items: center;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item.priority-urgent {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .order-item.priority-high {
+            background: #fffbeb;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .priority-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-full);
+        }
+
+        .priority-urgent .priority-indicator {
+            background: #ef4444;
+        }
+
+        .priority-high .priority-indicator {
+            background: var(--accent-color);
+        }
+
+        .priority-normal .priority-indicator {
+            background: var(--secondary-color);
+        }
+
+        .order-details {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .order-image {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .order-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .order-info h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .order-meta {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .action-btn {
+            padding: var(--spacing-2) var(--spacing-3);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
+        }
+
+        .btn-start {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-complete {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-hold {
+            background: var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .inventory-item {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            transition: var(--transition-fast);
+        }
+
+        .inventory-item.low-stock {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .inventory-item.out-of-stock {
+            border-color: var(--gray-400);
+            background: var(--gray-50);
+            opacity: 0.7;
+        }
+
+        .inventory-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .inventory-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .inventory-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stock-level {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .stock-count {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+        }
+
+        .stock-count.low {
+            color: #ef4444;
+        }
+
+        .stock-count.medium {
+            color: var(--accent-color);
+        }
+
+        .stock-count.high {
+            color: var(--secondary-color);
+        }
+
+        .stock-unit {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .stock-actions {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .shipping-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .shipping-table th,
+        .shipping-table td {
+            padding: var(--spacing-4);
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .shipping-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .shipping-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .shipping-status {
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-preparing {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .status-ready {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .status-shipped {
+            background: #3b82f6;
+            color: var(--white);
+        }
+
+        .status-delivered {
+            background: var(--gray-400);
+            color: var(--white);
+        }
+
+        .quick-update-form {
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-4);
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .form-input,
+        .form-select {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        @media (max-width: 968px) {
+            .staff-container {
+                grid-template-columns: 1fr;
+            }
+
+            .staff-sidebar {
+                position: static;
+            }
+
+            .staff-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--spacing-2);
+            }
+
+            .staff-nav-item {
+                margin-bottom: 0;
+            }
+
+            .staff-welcome {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .order-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+            }
+
+            .action-buttons {
+                justify-self: stretch;
+            }
+
+            .staff-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .inventory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .staff-section {
+                padding: var(--spacing-4);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                        <span style="font-size: var(--font-size-sm); color: var(--accent-color); background: var(--gray-100); padding: 2px 8px; border-radius: var(--radius-md); margin-left: var(--spacing-2);">STAFF</span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <div class="user-menu">
+                        <span class="user-name">สมชาย (เจ้าหน้าที่)</span>
+                        <div class="user-dropdown">
+                            <a href="staff-dashboard.html" class="active">แดชบอร์ดเจ้าหน้าที่</a>
+                            <a href="staff-profile.html">โปรไฟล์</a>
+                            <a href="staff-schedule.html">ตารางงาน</a>
+                            <a href="#" onclick="logout()">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Staff Hero -->
+    <section class="staff-hero">
+        <div class="container">
+            <div class="staff-welcome">
+                <div class="staff-info">
+                    <h1>สวัสดี, สมชาย วิจิตร</h1>
+                    <div class="staff-subtitle">เจ้าหน้าที่คลังสินค้าและจัดส่ง</div>
+                    <div class="staff-id">รหัสพนักงาน: STF001</div>
+                </div>
+                <div class="shift-info">
+                    <div class="shift-badge">
+                        <i class="fas fa-clock"></i> กะเช้า (08:00-17:00)
+                    </div>
+                    <div class="shift-time">เข้างานเมื่อ: 08:15 น.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staff Main -->
+    <section class="staff-main">
+        <div class="container">
+            <div class="staff-container">
+                <!-- Staff Sidebar -->
+                <aside class="staff-sidebar">
+                    <div style="text-align: center; margin-bottom: var(--spacing-6); padding-bottom: var(--spacing-4); border-bottom: 2px solid var(--gray-100);">
+                        <div class="staff-avatar">SC</div>
+                        <div>
+                            <div style="font-weight: 600;">สมชาย วิจิตร</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--gray-600);">พนักงานคลังสินค้า</div>
+                        </div>
+                    </div>
+
+                    <nav>
+                        <ul class="staff-nav">
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link active" data-section="overview">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    ภาพรวม
+                                </a>
+                            </li>
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link" data-section="orders">
+                                    <i class="fas fa-clipboard-list nav-icon"></i>
+                                    คิวการสั่งซื้อ
+                                </a>
+                            </li>
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link" data-section="inventory">
+                                    <i class="fas fa-boxes nav-icon"></i>
+                                    คลังสินค้า
+                                </a>
+                            </li>
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link" data-section="shipping">
+                                    <i class="fas fa-truck nav-icon"></i>
+                                    จัดส่งสินค้า
+                                </a>
+                            </li>
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link" data-section="reports">
+                                    <i class="fas fa-chart-bar nav-icon"></i>
+                                    รายงานงาน
+                                </a>
+                            </li>
+                            <li class="staff-nav-item">
+                                <a href="javascript:void(0)" class="staff-nav-link" data-section="tools">
+                                    <i class="fas fa-tools nav-icon"></i>
+                                    เครื่องมือ
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Staff Content -->
+                <main class="staff-content">
+                    <!-- Overview Section -->
+                    <div id="overview" class="staff-section active">
+                        <div class="section-header">
+                            <h2 class="section-title">ภาพรวมงานวันนี้</h2>
+                            <p class="section-subtitle">สถานะงานและข้อมูลสำคัญ</p>
+                        </div>
+
+                        <!-- Urgent Alerts -->
+                        <div class="urgent-alerts">
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div>
+                                <strong>เตือน!</strong> มี 3 ออเดอร์ด่วนที่ต้องจัดเตรียมภายใน 1 ชั่วโมง | สินค้า "ส้มโชกุน" เหลือน้อย (12 กล่อง)
+                            </div>
+                        </div>
+
+                        <!-- Staff Stats -->
+                        <div class="staff-stats">
+                            <div class="staff-stat-card urgent">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">ออเดอร์ด่วน</div>
+                            </div>
+
+                            <div class="staff-stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">ออเดอร์รอดำเนินการ</div>
+                            </div>
+
+                            <div class="staff-stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-value">35</div>
+                                <div class="stat-label">ออเดอร์เสร็จสิ้น</div>
+                            </div>
+
+                            <div class="staff-stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">สินค้าเหลือน้อย</div>
+                            </div>
+                        </div>
+
+                        <!-- Priority Orders -->
+                        <div class="orders-queue">
+                            <div class="queue-header">
+                                <h3>ออเดอร์ลำดับความสำคัญสูง</h3>
+                                <a href="javascript:void(0)" class="view-all-link" data-section="orders">ดูทั้งหมด</a>
+                            </div>
+
+                            <div class="order-item priority-urgent">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120001 - Mixed Fruit Box Premium</h4>
+                                        <div class="order-meta">ลูกค้า: สุดา ใจดี | Express Delivery | 2 กล่อง</div>
+                                    </div>
+                                </div>
+                                <div style="color: #ef4444; font-weight: 600;">30 นาที</div>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-play"></i> เริ่ม
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="order-item priority-high">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120002 - ส้มโชกุน คัดพิเศษ</h4>
+                                        <div class="order-meta">ลูกค้า: วิชัย ธุรกิจ | B2B | 50 กล่อง</div>
+                                    </div>
+                                </div>
+                                <div style="color: var(--accent-color); font-weight: 600;">1 ชม.</div>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-play"></i> เริ่ม
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="order-item priority-normal">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120003 - Berry Mix Organic</h4>
+                                        <div class="order-meta">ลูกค้า: นิชา สุขภาพ | Standard Delivery | 1 กล่อง</div>
+                                    </div>
+                                </div>
+                                <div style="color: var(--secondary-color); font-weight: 600;">2 ชม.</div>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-play"></i> เริ่ม
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div id="orders" class="staff-section">
+                        <div class="section-header">
+                            <h2 class="section-title">คิวการสั่งซื้อ</h2>
+                            <p class="section-subtitle">จัดการและติดตามสถานะออเดอร์</p>
+                        </div>
+
+                        <div class="orders-queue">
+                            <div class="queue-header">
+                                <div class="filter-tabs">
+                                    <button class="tab-btn active">ทั้งหมด (32)</button>
+                                    <button class="tab-btn">ด่วน (8)</button>
+                                    <button class="tab-btn">กำลังดำเนินการ (5)</button>
+                                    <button class="tab-btn">เสร็จสิ้น (19)</button>
+                                </div>
+                                <div>
+                                    <select style="padding: var(--spacing-2) var(--spacing-3); border: 1px solid var(--gray-200); border-radius: var(--radius-md);">
+                                        <option>เรียงตามเวลา</option>
+                                        <option>เรียงตามลำดับความสำคัญ</option>
+                                        <option>เรียงตามประเภทลูกค้า</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Order Items -->
+                            <div class="order-item priority-urgent">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120001 - Mixed Fruit Box Premium</h4>
+                                        <div class="order-meta">สุดา ใจดี | Express (30 นาที) | 2 กล่อง | ฿700</div>
+                                    </div>
+                                </div>
+                                <span class="shipping-status status-preparing">กำลังเตรียม</span>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-complete">
+                                        <i class="fas fa-check"></i> เสร็จ
+                                    </button>
+                                    <button class="action-btn btn-hold">
+                                        <i class="fas fa-pause"></i> พัก
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="order-item priority-high">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG-B2B-20240120002 - ส้มโชกุน คัดพิเศษ</h4>
+                                        <div class="order-meta">บริษัท ABC จำกัด | B2B | 50 กล่อง | ฿11,900</div>
+                                    </div>
+                                </div>
+                                <span class="shipping-status status-ready">พร้อมจัดส่ง</span>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-truck"></i> จัดส่ง
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="order-item priority-normal">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120003 - Berry Mix Organic</h4>
+                                        <div class="order-meta">นิชา สุขภาพ | Standard | 1 กล่อง | ฿420</div>
+                                    </div>
+                                </div>
+                                <span class="shipping-status status-shipped">จัดส่งแล้ว</span>
+                                <div class="action-buttons">
+                                    <button class="action-btn" disabled>
+                                        <i class="fas fa-check"></i> เสร็จสิ้น
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="order-item priority-normal">
+                                <div class="priority-indicator"></div>
+                                <div class="order-details">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tropical Box">
+                                    </div>
+                                    <div class="order-info">
+                                        <h4>NG20240120004 - Tropical Paradise Box</h4>
+                                        <div class="order-meta">ภานุ ผลไม้ | Standard | 3 กล่อง | ฿1,350</div>
+                                    </div>
+                                </div>
+                                <span class="shipping-status status-preparing">รอดำเนินการ</span>
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-play"></i> เริ่ม
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Section -->
+                    <div id="inventory" class="staff-section">
+                        <div class="section-header">
+                            <h2 class="section-title">คลังสินค้า</h2>
+                            <p class="section-subtitle">ติดตามสต็อกและจัดการคลังสินค้า</p>
+                        </div>
+
+                        <!-- Quick Update Form -->
+                        <div class="quick-update-form">
+                            <h3 style="margin-bottom: var(--spacing-4);">อัพเดทสต็อกด่วน</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">เลือกสินค้า</label>
+                                    <select class="form-select">
+                                        <option value="">เลือกสินค้า...</option>
+                                        <option value="mixed-fruit">Mixed Fruit Box Premium</option>
+                                        <option value="orange">ส้มโชกุน คัดพิเศษ</option>
+                                        <option value="berry">Berry Mix Organic</option>
+                                        <option value="tropical">Tropical Paradise Box</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">การดำเนินการ</label>
+                                    <select class="form-select">
+                                        <option value="add">เพิ่มสต็อก</option>
+                                        <option value="remove">ลดสต็อก</option>
+                                        <option value="set">กำหนดสต็อก</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">จำนวน</label>
+                                    <input type="number" class="form-input" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button class="btn btn-primary" style="padding: var(--spacing-3) var(--spacing-6);">
+                                        <i class="fas fa-save"></i> อัพเดท
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inventory Grid -->
+                        <div class="inventory-grid">
+                            <div class="inventory-item">
+                                <div class="inventory-header">
+                                    <div class="inventory-image">
+                                        <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                    </div>
+                                    <div>
+                                        <h4>Mixed Fruit Box Premium</h4>
+                                        <div style="font-size: var(--font-size-sm); color: var(--gray-600);">SKU: MFB-001</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-level">
+                                    <div>
+                                        <div class="stock-count high">156</div>
+                                        <div class="stock-unit">กล่อง</div>
+                                    </div>
+                                    <div style="text-align: right; font-size: var(--font-size-sm); color: var(--gray-600);">
+                                        <div>ขั้นต่ำ: 50</div>
+                                        <div>สูงสุด: 200</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-actions">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-plus"></i> เพิ่ม
+                                    </button>
+                                    <button class="action-btn btn-hold">
+                                        <i class="fas fa-minus"></i> ลด
+                                    </button>
+                                    <button class="action-btn">
+                                        <i class="fas fa-edit"></i> แก้ไข
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="inventory-item low-stock">
+                                <div class="inventory-header">
+                                    <div class="inventory-image">
+                                        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                    </div>
+                                    <div>
+                                        <h4>ส้มโชกุน คัดพิเศษ</h4>
+                                        <div style="font-size: var(--font-size-sm); color: var(--gray-600);">SKU: OSK-002</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-level">
+                                    <div>
+                                        <div class="stock-count low">12</div>
+                                        <div class="stock-unit">กล่อง</div>
+                                    </div>
+                                    <div style="text-align: right; font-size: var(--font-size-sm); color: #ef4444;">
+                                        <div><strong>เหลือน้อย!</strong></div>
+                                        <div>ขั้นต่ำ: 30</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-actions">
+                                    <button class="action-btn" style="background: #ef4444; color: white;">
+                                        <i class="fas fa-exclamation-triangle"></i> เติมสต็อก
+                                    </button>
+                                    <button class="action-btn">
+                                        <i class="fas fa-phone"></i> แจ้งผู้จัดหา
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="inventory-item">
+                                <div class="inventory-header">
+                                    <div class="inventory-image">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                                    </div>
+                                    <div>
+                                        <h4>Berry Mix Organic</h4>
+                                        <div style="font-size: var(--font-size-sm); color: var(--gray-600);">SKU: BMO-003</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-level">
+                                    <div>
+                                        <div class="stock-count medium">45</div>
+                                        <div class="stock-unit">กล่อง</div>
+                                    </div>
+                                    <div style="text-align: right; font-size: var(--font-size-sm); color: var(--gray-600);">
+                                        <div>ขั้นต่ำ: 25</div>
+                                        <div>สูงสุด: 100</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-actions">
+                                    <button class="action-btn btn-start">
+                                        <i class="fas fa-plus"></i> เพิ่ม
+                                    </button>
+                                    <button class="action-btn btn-hold">
+                                        <i class="fas fa-minus"></i> ลด
+                                    </button>
+                                    <button class="action-btn">
+                                        <i class="fas fa-edit"></i> แก้ไข
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="inventory-item out-of-stock">
+                                <div class="inventory-header">
+                                    <div class="inventory-image">
+                                        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dragon Fruit">
+                                    </div>
+                                    <div>
+                                        <h4>แก้วมังกร คัดพิเศษ</h4>
+                                        <div style="font-size: var(--font-size-sm); color: var(--gray-600);">SKU: DRG-004</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-level">
+                                    <div>
+                                        <div class="stock-count" style="color: var(--gray-400);">0</div>
+                                        <div class="stock-unit">กล่อง</div>
+                                    </div>
+                                    <div style="text-align: right; font-size: var(--font-size-sm); color: var(--gray-400);">
+                                        <div><strong>หมดสต็อก</strong></div>
+                                        <div>สั่งใหม่เมื่อ: 19 ม.ค.</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-actions">
+                                    <button class="action-btn" disabled>
+                                        <i class="fas fa-clock"></i> รอสินค้า
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Section -->
+                    <div id="shipping" class="staff-section">
+                        <div class="section-header">
+                            <h2 class="section-title">จัดส่งสินค้า</h2>
+                            <p class="section-subtitle">ติดตามและจัดการการจัดส่ง</p>
+                        </div>
+
+                        <table class="shipping-table">
+                            <thead>
+                                <tr>
+                                    <th>เลขที่ออเดอร์</th>
+                                    <th>ลูกค้า</th>
+                                    <th>ที่อยู่จัดส่ง</th>
+                                    <th>ประเภทการจัดส่ง</th>
+                                    <th>สถานะ</th>
+                                    <th>พนักงานขับรถ</th>
+                                    <th>การดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>NG20240120001</strong></td>
+                                    <td>สุดา ใจดี</td>
+                                    <td>คลองตัน, กทม.</td>
+                                    <td>Express (30 นาที)</td>
+                                    <td><span class="shipping-status status-ready">พร้อมจัดส่ง</span></td>
+                                    <td>สมศักดิ์ (รถ 01)</td>
+                                    <td>
+                                        <button class="action-btn btn-start">
+                                            <i class="fas fa-truck"></i> จัดส่ง
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG20240120002</strong></td>
+                                    <td>บริษัท ABC จำกัด</td>
+                                    <td>สีลม, กทม.</td>
+                                    <td>Standard B2B</td>
+                                    <td><span class="shipping-status status-shipped">กำลังจัดส่ง</span></td>
+                                    <td>วิชัย (รถ 02)</td>
+                                    <td>
+                                        <button class="action-btn">
+                                            <i class="fas fa-map-marker-alt"></i> ติดตาม
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG20240120003</strong></td>
+                                    <td>นิชา สุขภาพ</td>
+                                    <td>สุขุมวิท, กทม.</td>
+                                    <td>Standard</td>
+                                    <td><span class="shipping-status status-delivered">จัดส่งแล้ว</span></td>
+                                    <td>สมชาย (รถ 03)</td>
+                                    <td>
+                                        <button class="action-btn">
+                                            <i class="fas fa-check"></i> เสร็จสิ้น
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG20240120004</strong></td>
+                                    <td>ภานุ ผลไม้</td>
+                                    <td>ราชดำเนิน, กทม.</td>
+                                    <td>Standard</td>
+                                    <td><span class="shipping-status status-preparing">เตรียมสินค้า</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <button class="action-btn" disabled>
+                                            <i class="fas fa-clock"></i> รอสินค้า
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Reports Section -->
+                    <div id="reports" class="staff-section">
+                        <div class="section-header">
+                            <h2 class="section-title">รายงานงานประจำวัน</h2>
+                            <p class="section-subtitle">สรุปผลงานและข้อมูลสำคัญ</p>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div class="staff-stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-value">35</div>
+                                <div class="stat-label">ออเดอร์เสร็จสิ้น</div>
+                            </div>
+
+                            <div class="staff-stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-value">12 นาที</div>
+                                <div class="stat-label">เวลาเฉลี่ย/ออเดอร์</div>
+                            </div>
+
+                            <div class="staff-stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="stat-value">98%</div>
+                                <div class="stat-label">การจัดส่งตรงเวลา</div>
+                            </div>
+
+                            <div class="staff-stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">คะแนนประสิทธิภาพ</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--spacing-6); display: flex; gap: var(--spacing-4);">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-download"></i> ดาวน์โหลดรายงานวันนี้
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-print"></i> พิมพ์รายงาน
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tools Section -->
+                    <div id="tools" class="staff-section">
+                        <div class="section-header">
+                            <h2 class="section-title">เครื่องมือและสแกนเนอร์</h2>
+                            <p class="section-subtitle">เครื่องมือสำหรับการทำงาน</p>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-6);">
+                            <div class="inventory-item">
+                                <div style="text-align: center; padding: var(--spacing-4);">
+                                    <div style="width: 80px; height: 80px; background: var(--accent-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-3); font-size: var(--font-size-3xl); color: white;">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                    <h3>สแกน QR Code</h3>
+                                    <p style="color: var(--gray-600); margin-bottom: var(--spacing-4);">สแกนรหัส QR ของสินค้าหรือออเดอร์</p>
+                                    <button class="btn btn-primary" onclick="openQRScanner()">
+                                        <i class="fas fa-camera"></i> เปิดสแกนเนอร์
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="inventory-item">
+                                <div style="text-align: center; padding: var(--spacing-4);">
+                                    <div style="width: 80px; height: 80px; background: var(--secondary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-3); font-size: var(--font-size-3xl); color: white;">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h3>ค้นหาสินค้า</h3>
+                                    <div style="margin-bottom: var(--spacing-4);">
+                                        <input type="text" placeholder="ป้อน SKU หรือชื่อสินค้า" style="width: 100%; padding: var(--spacing-2) var(--spacing-3); border: 1px solid var(--gray-200); border-radius: var(--radius-md); margin-bottom: var(--spacing-2);">
+                                        <button class="btn btn-secondary" style="width: 100%;">
+                                            <i class="fas fa-search"></i> ค้นหา
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="inventory-item">
+                                <div style="text-align: center; padding: var(--spacing-4);">
+                                    <div style="width: 80px; height: 80px; background: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-3); font-size: var(--font-size-3xl); color: white;">
+                                        <i class="fas fa-print"></i>
+                                    </div>
+                                    <h3>พิมพ์ฉลาก</h3>
+                                    <p style="color: var(--gray-600); margin-bottom: var(--spacing-4);">พิมพ์ฉลากสินค้าและที่อยู่จัดส่ง</p>
+                                    <button class="btn" style="background: var(--primary-color); color: white; width: 100%;">
+                                        <i class="fas fa-print"></i> พิมพ์ฉลาก
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-4);">
+                            <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                            <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--white);">Nisakorn Garden</span>
+                        </div>
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">พนักงาน</h3>
+                    <ul class="footer-links">
+                        <li><a href="staff-dashboard.html">แดชบอร์ดเจ้าหน้าที่</a></li>
+                        <li><a href="#">คู่มือการทำงาน</a></li>
+                        <li><a href="#">ตารางเวลาทำงาน</a></li>
+                        <li><a href="#">ติดต่อผู้จัดการ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567 ต่อ 201 (คลังสินค้า)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>warehouse@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Staff Dashboard functionality
+        function showStaffSection(sectionId, clickedElement) {
+            console.log('Switching to section:', sectionId); // Debug log
+
+            // Hide all sections
+            const sections = document.querySelectorAll('.staff-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.staff-nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.style.display = 'block';
+                console.log('Section activated:', sectionId); // Debug log
+            } else {
+                console.error('Section not found:', sectionId); // Debug log
+            }
+
+            // Add active class to clicked nav link
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+                console.log('Nav link activated'); // Debug log
+            }
+        }
+
+        function openQRScanner() {
+            // Simulate QR scanner
+            alert('เปิดกล้องสแกน QR Code\n(ในระบบจริงจะเชื่อมต่อกับกล้อง)');
+        }
+
+        // Initialize staff dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Staff Dashboard loading...'); // Debug log
+
+            // Setup navigation links
+            const navLinks = document.querySelectorAll('.staff-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    console.log('Nav link clicked:', sectionId); // Debug log
+                    showStaffSection(sectionId, this);
+                });
+            });
+
+            // Setup view all links
+            const viewAllLinks = document.querySelectorAll('.view-all-link');
+            viewAllLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    const targetNavLink = document.querySelector(`.staff-nav-link[data-section="${sectionId}"]`);
+                    showStaffSection(sectionId, targetNavLink);
+                });
+            });
+
+            // Update cart count
+            updateCartUI();
+
+            // Order action buttons
+            const actionBtns = document.querySelectorAll('.action-btn');
+            actionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.textContent.includes('เริ่ม')) {
+                        this.textContent = 'กำลังดำเนินการ...';
+                        this.style.background = '#ed8936';
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check"></i> เสร็จ';
+                            this.className = 'action-btn btn-complete';
+                        }, 2000);
+                    } else if (this.textContent.includes('เสร็จ')) {
+                        this.innerHTML = '<i class="fas fa-check"></i> เสร็จสิ้น';
+                        this.disabled = true;
+                        this.style.background = '#a0aec0';
+
+                        // Update the order status
+                        const statusElement = this.closest('.order-item').querySelector('.shipping-status');
+                        if (statusElement) {
+                            statusElement.textContent = 'เสร็จสิ้น';
+                            statusElement.className = 'shipping-status status-delivered';
+                        }
+                    }
+                });
+            });
+
+            // Filter tabs functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    tabBtns.forEach(tab => tab.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Inventory stock actions
+            const stockActions = document.querySelectorAll('.inventory-item .action-btn');
+            stockActions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.textContent.includes('เติมสต็อก')) {
+                        const newStock = prompt('ป้อนจำนวนสต็อกที่ต้องการเพิ่ม:');
+                        if (newStock && !isNaN(newStock)) {
+                            const stockElement = this.closest('.inventory-item').querySelector('.stock-count');
+                            const currentStock = parseInt(stockElement.textContent);
+                            const updatedStock = currentStock + parseInt(newStock);
+
+                            stockElement.textContent = updatedStock;
+                            stockElement.className = 'stock-count high';
+
+                            // Remove low stock warning
+                            this.closest('.inventory-item').classList.remove('low-stock');
+
+                            alert(`อัพเดทสต็อกสำเร็จ! สต็อกปัจจุบัน: ${updatedStock} กล่อง`);
+                        }
+                    } else if (this.textContent.includes('แจ้งผู้จัดหา')) {
+                        alert('ส่งอีเมลแจ้งผู้จัดหาเรียบร้อย!');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

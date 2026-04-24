@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตะกร้าสินค้า - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Cart Page Specific Styles */
+        .cart-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .cart-hero h1 {
+            color: var(--white);
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .cart-hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--font-size-lg);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cart-main {
+            padding: var(--spacing-16) 0;
+            background: var(--gray-50);
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: var(--spacing-8);
+        }
+
+        .cart-items {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: var(--spacing-4);
+            padding: var(--spacing-4);
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: var(--spacing-6);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: var(--spacing-4);
+            padding: var(--spacing-6);
+            border-bottom: 1px solid var(--gray-200);
+            align-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .cart-item:hover {
+            background: var(--gray-50);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--gray-300);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .qty-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .quantity {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .item-total {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: var(--spacing-2);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .remove-btn:hover {
+            color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .cart-summary {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-summary h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-6);
+            text-align: center;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-4);
+            color: var(--gray-600);
+        }
+
+        .summary-row.total {
+            border-top: 2px solid var(--gray-200);
+            padding-top: var(--spacing-4);
+            margin-top: var(--spacing-6);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .free-shipping-notice {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: var(--spacing-2) var(--spacing-3);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            text-align: center;
+            margin: var(--spacing-3) 0;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            margin-top: var(--spacing-6);
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-6);
+            color: var(--gray-600);
+        }
+
+        .empty-cart h3 {
+            margin-bottom: var(--spacing-4);
+            color: var(--gray-700);
+        }
+
+        .empty-cart p {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .continue-shopping {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-8);
+        }
+
+        .coupon-section {
+            border-top: 1px solid var(--gray-200);
+            padding-top: var(--spacing-4);
+            margin-top: var(--spacing-4);
+        }
+
+        .coupon-input {
+            display: flex;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .coupon-input input {
+            flex: 1;
+            padding: var(--spacing-2) var(--spacing-3);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+        }
+
+        .coupon-input button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .coupon-input button:hover {
+            background: #38a169;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: relative;
+                top: auto;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-header {
+                display: none;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+                text-align: left;
+            }
+
+            .item-info {
+                order: 1;
+            }
+
+            .item-price {
+                order: 2;
+                text-align: left;
+            }
+
+            .quantity-controls {
+                order: 3;
+                justify-content: flex-start;
+            }
+
+            .item-total {
+                order: 4;
+            }
+
+            .remove-btn {
+                order: 5;
+                align-self: flex-start;
+                position: absolute;
+                top: var(--spacing-3);
+                right: var(--spacing-3);
+            }
+
+            .cart-item {
+                position: relative;
+                padding-top: var(--spacing-10);
+            }
+
+            .item-details h3 {
+                margin-bottom: var(--spacing-2);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quantity-controls {
+                justify-content: space-between;
+            }
+
+            .item-info {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .item-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="my-account.html" class="user-icon"><i class="fas fa-user"></i></a>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Hero Section -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1><i class="fas fa-shopping-cart"></i> ตะกร้าสินค้า</h1>
+            <p>ตรวจสอบรายการสินค้าของคุณก่อนดำเนินการชำระเงิน</p>
+        </div>
+    </section>
+
+    <!-- Cart Main Content -->
+    <main class="cart-main">
+        <div class="container">
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div>สินค้า</div>
+                        <div>ราคา</div>
+                        <div>จำนวน</div>
+                        <div>รวม</div>
+                        <div></div>
+                    </div>
+
+                    <div id="cartItems">
+                        <!-- Cart items will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Continue Shopping -->
+                    <div class="continue-shopping">
+                        <a href="products.html" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i> เลือกซื้อสินค้าเพิ่ม
+                        </a>
+                        <button onclick="clearCart()" class="btn" style="background: var(--gray-500); color: white;">
+                            <i class="fas fa-trash"></i> ลบสินค้าทั้งหมด
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary" id="cartSummary">
+                    <!-- Summary will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Recommended Products -->
+    <section class="recommended-products" style="padding: var(--spacing-16) 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">สินค้าแนะนำ</h2>
+                <p class="section-subtitle">สินค้าอื่นๆ ที่อาจชื่นชอบ</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dragon Fruit">
+                        <div class="product-badge new">ใหม่</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">แก้วมังกรแดง</h3>
+                        <p class="product-description">แก้วมังกรหวานฉ่ำ 2 ผล</p>
+                        <div class="product-price">
+                            <span class="current-price">฿150</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="dragon-fruit" data-price="150">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Kiwi">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">กีวี่นิวซีแลนด์</h3>
+                        <p class="product-description">กีวี่หวานเปรื้อย 6 ผล</p>
+                        <div class="product-price">
+                            <span class="current-price">฿180</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="kiwi-nz" data-price="180">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Avocado">
+                        <div class="product-badge organic">ออร์แกนิค</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">อะโวคาโดออร์แกนิค</h3>
+                        <p class="product-description">อะโวคาโดสุก 3 ผล</p>
+                        <div class="product-price">
+                            <span class="current-price">฿120</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="avocado-organic" data-price="120">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-4);">
+                            <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                            <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--white);">Nisakorn Garden</span>
+                        </div>
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize cart page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCartItems();
+        });
+    </script>
+</body>
+</html>

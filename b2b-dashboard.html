@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ด B2B - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* B2B Dashboard Styles */
+        .b2b-hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #38a169 100%);
+            padding: 120px 0 60px;
+        }
+
+        .b2b-welcome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+        }
+
+        .company-info h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .company-subtitle {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .company-id {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        .account-tier {
+            text-align: right;
+        }
+
+        .tier-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-2);
+            display: inline-block;
+        }
+
+        .credit-info {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+
+        .b2b-main {
+            padding: var(--spacing-16) 0;
+            background: var(--gray-50);
+        }
+
+        .b2b-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .b2b-sidebar {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .company-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-3);
+            font-size: var(--font-size-2xl);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .company-name {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .company-type {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .b2b-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-group-title {
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: var(--spacing-6) var(--spacing-4) var(--spacing-3) var(--spacing-4);
+            padding-bottom: var(--spacing-2);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .nav-group-title:first-child {
+            margin-top: var(--spacing-4);
+        }
+
+        .b2b-nav-item {
+            margin-bottom: var(--spacing-1);
+        }
+
+        .b2b-nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--gray-700);
+            transition: var(--transition-fast);
+            font-weight: 500;
+            position: relative;
+            margin: 0 var(--spacing-2);
+        }
+
+        .b2b-nav-link:hover {
+            background: var(--gray-100);
+            color: var(--gray-900);
+            transform: translateX(4px);
+        }
+
+        .b2b-nav-link.active {
+            background: linear-gradient(135deg, var(--secondary-color), #38a169);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-text {
+            flex: 1;
+        }
+
+        .nav-badge, .nav-count {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            margin-left: auto;
+        }
+
+        .nav-badge {
+            background: rgba(34, 197, 94, 0.2);
+            color: #16a34a;
+        }
+
+        .nav-count {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .nav-count.new {
+            background: var(--primary-color);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-count.pending {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .b2b-nav-link.active .nav-badge,
+        .b2b-nav-link.active .nav-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Quick Order Styles */
+        .quick-order-form {
+            background: var(--white);
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .search-product {
+            display: flex;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .product-search {
+            flex: 1;
+            padding: var(--spacing-3);
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+        }
+
+        .search-btn {
+            padding: var(--spacing-3) var(--spacing-4);
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+        }
+
+        .quick-order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+        }
+
+        .quick-product-card {
+            background: var(--gray-50);
+            padding: var(--spacing-4);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .quick-product-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .quick-product-card h4 {
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .quick-product-card .price {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+
+        .quantity-control button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--gray-300);
+            background: white;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+
+        .quantity-control input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-1);
+        }
+
+        /* Recurring Orders Styles */
+        .recurring-orders-list {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .recurring-order-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .recurring-order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-info {
+            flex: 1;
+        }
+
+        .order-info h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .order-info p {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .order-value {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-right: var(--spacing-4);
+        }
+
+        .order-actions {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .btn-secondary {
+            padding: var(--spacing-2) var(--spacing-4);
+            border: 2px solid var(--gray-300);
+            background: white;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-primary {
+            padding: var(--spacing-3) var(--spacing-6);
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .btn-primary:hover {
+            background: #38a169;
+        }
+
+        /* Inventory Styles */
+        .inventory-alerts {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .alert-card {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-4);
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+        }
+
+        .alert-card.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Payment Summary Styles */
+        .payment-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .payment-stat {
+            background: var(--white);
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .payment-stat h4 {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-2);
+        }
+
+        /* Team Styles */
+        .team-members {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .member-card {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .member-card:last-child {
+            border-bottom: none;
+        }
+
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: var(--spacing-4);
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-info h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .member-info p {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .member-role {
+            background: var(--gray-100);
+            padding: var(--spacing-2) var(--spacing-3);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            color: var(--gray-700);
+        }
+
+        /* Notification Styles */
+        .notification-settings {
+            background: var(--white);
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .notification-item {
+            padding: var(--spacing-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-item label {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            cursor: pointer;
+        }
+
+        .notification-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--secondary-color);
+        }
+
+        .b2b-content {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            min-height: 600px;
+        }
+
+        .b2b-section {
+            display: none;
+            padding: var(--spacing-8);
+        }
+
+        .b2b-section.active {
+            display: block;
+        }
+
+        .b2b-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .b2b-stat-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            transition: var(--transition-fast);
+        }
+
+        .b2b-stat-card:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-light);
+            color: var(--secondary-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+        }
+
+        .stat-trend {
+            font-size: var(--font-size-sm);
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-base);
+            color: var(--gray-600);
+        }
+
+        .quick-orders {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .orders-header {
+            background: var(--gray-50);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .bulk-order-form {
+            padding: var(--spacing-6);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .form-input,
+        .form-select {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .add-to-bulk-btn {
+            padding: var(--spacing-3) var(--spacing-4);
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .add-to-bulk-btn:hover {
+            background: #38a169;
+        }
+
+        .bulk-order-list {
+            border-top: 2px solid var(--gray-100);
+            padding: var(--spacing-6);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .bulk-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-3);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .bulk-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .bulk-item-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .bulk-item-image {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .bulk-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bulk-item-details h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .bulk-item-meta {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .bulk-item-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+        }
+
+        .qty-btn {
+            padding: var(--spacing-1) var(--spacing-2);
+            border: none;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .qty-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            font-weight: 600;
+        }
+
+        .remove-item-btn {
+            color: var(--primary-color);
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: var(--spacing-1);
+        }
+
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .tier-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .tier-card.recommended {
+            border-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #38a169 100%);
+            color: var(--white);
+        }
+
+        .tier-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tier-name {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .tier-requirements {
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-4);
+            opacity: 0.8;
+        }
+
+        .tier-benefits {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .tier-benefits li {
+            padding: var(--spacing-2) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .tier-benefits i {
+            color: var(--secondary-color);
+        }
+
+        .tier-card.recommended .tier-benefits i {
+            color: var(--white);
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            padding: var(--spacing-4);
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .invoice-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .invoice-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .invoice-status {
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-paid {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .status-pending {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .status-overdue {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .action-btn {
+            padding: var(--spacing-1) var(--spacing-3);
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .action-btn:hover {
+            background: var(--gray-100);
+        }
+
+        .credit-limit-card {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #38a169 100%);
+            color: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .credit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .credit-amount {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .credit-progress {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .credit-fill {
+            background: var(--white);
+            height: 100%;
+            width: 75%;
+            transition: var(--transition-slow);
+        }
+
+        @media (max-width: 968px) {
+            .b2b-container {
+                grid-template-columns: 1fr;
+            }
+
+            .b2b-sidebar {
+                position: static;
+            }
+
+            .sidebar-header {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-4);
+                text-align: left;
+            }
+
+            .company-avatar {
+                width: 60px;
+                height: 60px;
+                margin: 0;
+            }
+
+            .b2b-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--spacing-2);
+            }
+
+            .b2b-nav-item {
+                margin-bottom: 0;
+            }
+
+            .b2b-welcome {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bulk-order-form {
+                grid-template-columns: 1fr;
+            }
+
+            .b2b-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .b2b-section {
+                padding: var(--spacing-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                        <span style="font-size: var(--font-size-sm); color: var(--white); background: #3b82f6; padding: 2px 8px; border-radius: var(--radius-md); margin-left: var(--spacing-2);">B2B</span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link active">B2B</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <div class="user-menu">
+                        <span class="user-name">บริษัท ABC จำกัด</span>
+                        <div class="user-dropdown">
+                            <a href="b2b-dashboard.html" class="active">แดชบอร์ด B2B</a>
+                            <a href="b2b-orders.html">คำสั่งซื้อ</a>
+                            <a href="b2b-invoices.html">ใบแจ้งหนี้</a>
+                            <a href="b2b-profile.html">โปรไฟล์บริษัท</a>
+                            <a href="#" onclick="logout()">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- B2B Hero -->
+    <section class="b2b-hero">
+        <div class="container">
+            <div class="b2b-welcome">
+                <div class="company-info">
+                    <h1>บริษัท ABC จำกัด</h1>
+                    <div class="company-subtitle">ร้านค้าปลีก - ผลไม้และอาหารสุขภาพ</div>
+                    <div class="company-id">รหัสลูกค้า: B2B001234</div>
+                </div>
+                <div class="account-tier">
+                    <div class="tier-badge">
+                        <i class="fas fa-gem"></i> Premium Partner
+                    </div>
+                    <div class="credit-info">วงเงินคงเหลือ: ฿250,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Main -->
+    <section class="b2b-main">
+        <div class="container">
+            <div class="b2b-container">
+                <!-- B2B Sidebar -->
+                <aside class="b2b-sidebar">
+                    <div class="sidebar-header">
+                        <div class="company-avatar">ABC</div>
+                        <div>
+                            <div class="company-name">บริษัท ABC จำกัด</div>
+                            <div class="company-type">Premium Partner</div>
+                        </div>
+                    </div>
+
+                    <nav>
+                        <ul class="b2b-nav">
+                            <li class="nav-group-title">หลัก</li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link active" onclick="showB2BSection('overview')">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    <span class="nav-text">ภาพรวม</span>
+                                    <span class="nav-badge">อัปเดต</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('quick-order')">
+                                    <i class="fas fa-bolt nav-icon"></i>
+                                    <span class="nav-text">สั่งซื้อด่วน</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-group-title">การสั่งซื้อ</li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('bulk-order')">
+                                    <i class="fas fa-boxes nav-icon"></i>
+                                    <span class="nav-text">สั่งซื้อขายส่ง</span>
+                                    <span class="nav-count">12</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('recurring-orders')">
+                                    <i class="fas fa-sync-alt nav-icon"></i>
+                                    <span class="nav-text">ออเดอร์ประจำ</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('pricing')">
+                                    <i class="fas fa-tags nav-icon"></i>
+                                    <span class="nav-text">ราคาขายส่ง</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-group-title">การจัดการ</li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('orders')">
+                                    <i class="fas fa-clipboard-list nav-icon"></i>
+                                    <span class="nav-text">คำสั่งซื้อ</span>
+                                    <span class="nav-count new">3</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('inventory')">
+                                    <i class="fas fa-warehouse nav-icon"></i>
+                                    <span class="nav-text">คลังสินค้า</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('invoices')">
+                                    <i class="fas fa-file-invoice nav-icon"></i>
+                                    <span class="nav-text">ใบแจ้งหนี้</span>
+                                    <span class="nav-count pending">5</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-group-title">การเงิน</li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('credit')">
+                                    <i class="fas fa-credit-card nav-icon"></i>
+                                    <span class="nav-text">วงเงินเครดิต</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('payments')">
+                                    <i class="fas fa-money-bill-wave nav-icon"></i>
+                                    <span class="nav-text">ประวัติการชำระ</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('reports')">
+                                    <i class="fas fa-chart-bar nav-icon"></i>
+                                    <span class="nav-text">รายงาน</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-group-title">ตั้งค่า</li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('profile')">
+                                    <i class="fas fa-building nav-icon"></i>
+                                    <span class="nav-text">โปรไฟล์บริษัท</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('team')">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <span class="nav-text">จัดการทีม</span>
+                                </a>
+                            </li>
+                            <li class="b2b-nav-item">
+                                <a href="#" class="b2b-nav-link" onclick="showB2BSection('notifications')">
+                                    <i class="fas fa-bell nav-icon"></i>
+                                    <span class="nav-text">การแจ้งเตือน</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- B2B Content -->
+                <main class="b2b-content">
+                    <!-- Quick Order Section -->
+                    <div id="quick-order" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">สั่งซื้อด่วน</h2>
+                            <p class="section-subtitle">สั่งซื้อสินค้าที่ต้องการได้อย่างรวดเร็ว</p>
+                        </div>
+
+                        <div class="quick-order-form">
+                            <div class="search-product">
+                                <input type="text" placeholder="ค้นหาสินค้า..." class="product-search">
+                                <button class="search-btn"><i class="fas fa-search"></i></button>
+                            </div>
+
+                            <div class="quick-order-grid">
+                                <div class="quick-product-card">
+                                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=100" alt="มะม่วง">
+                                    <h4>มะม่วงน้ำดอกไม้</h4>
+                                    <div class="price">฿65/กิโล</div>
+                                    <div class="quantity-control">
+                                        <button>-</button>
+                                        <input type="number" value="0" min="0">
+                                        <button>+</button>
+                                    </div>
+                                </div>
+                                <div class="quick-product-card">
+                                    <img src="https://images.unsplash.com/photo-1520342868574-5fa3804e551c?w=100" alt="ส้ม">
+                                    <h4>ส้มสายน้ำผึ้ง</h4>
+                                    <div class="price">฿35/กิโล</div>
+                                    <div class="quantity-control">
+                                        <button>-</button>
+                                        <input type="number" value="0" min="0">
+                                        <button>+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn-primary" style="margin-top: var(--spacing-6);">เพิ่มลงตะกร้า</button>
+                        </div>
+                    </div>
+
+                    <!-- Recurring Orders Section -->
+                    <div id="recurring-orders" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ออเดอร์ประจำ</h2>
+                            <p class="section-subtitle">จัดการออเดอร์ที่สั่งซื้อประจำ</p>
+                        </div>
+
+                        <div class="recurring-orders-list">
+                            <div class="recurring-order-item">
+                                <div class="order-info">
+                                    <h4>ผลไม้รวมรายสัปดาห์</h4>
+                                    <p>จัดส่งทุกวันจันทร์</p>
+                                </div>
+                                <div class="order-value">฿2,500/สัปดาห์</div>
+                                <div class="order-actions">
+                                    <button class="btn-secondary">แก้ไข</button>
+                                    <button class="btn-secondary">หยุด</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Section -->
+                    <div id="inventory" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">คลังสินค้า</h2>
+                            <p class="section-subtitle">ตรวจสอบสต๊อกและสินค้าคงคลัง</p>
+                        </div>
+
+                        <div class="inventory-alerts">
+                            <div class="alert-card warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>สินค้า 3 รายการกำลังจะหมด</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payments Section -->
+                    <div id="payments" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ประวัติการชำระเงิน</h2>
+                            <p class="section-subtitle">ประวัติการชำระเงินและธุรกรรม</p>
+                        </div>
+
+                        <div class="payment-summary">
+                            <div class="payment-stat">
+                                <h4>ยอดชำระเดือนนี้</h4>
+                                <div class="stat-value">฿125,400</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Section -->
+                    <div id="team" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">จัดการทีม</h2>
+                            <p class="section-subtitle">จัดการสมาชิกทีมและสิทธิ์การเข้าถึง</p>
+                        </div>
+
+                        <div class="team-members">
+                            <div class="member-card">
+                                <div class="member-avatar">J</div>
+                                <div class="member-info">
+                                    <h4>นาย จอห์น สมิธ</h4>
+                                    <p>ผู้จัดการ</p>
+                                </div>
+                                <div class="member-role">ผู้ดูแลระบบ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div id="notifications" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">การแจ้งเตือน</h2>
+                            <p class="section-subtitle">ตั้งค่าการแจ้งเตือนต่างๆ</p>
+                        </div>
+
+                        <div class="notification-settings">
+                            <div class="notification-item">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>แจ้งเตือนเมื่อมีออเดอร์ใหม่</span>
+                                </label>
+                            </div>
+                            <div class="notification-item">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>แจ้งเตือนเมื่อใกล้ครบกำหนดชำระ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div id="overview" class="b2b-section active">
+                        <div class="section-header">
+                            <h2 class="section-title">ภาพรวมธุรกิจ</h2>
+                            <p class="section-subtitle">สรุปข้อมูลและกิจกรรมทางธุรกิจของคุณ</p>
+                        </div>
+
+                        <!-- B2B Stats -->
+                        <div class="b2b-stats">
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="stat-trend">+12% จากเดือนที่แล้ว</div>
+                                </div>
+                                <div class="stat-value">฿185,420</div>
+                                <div class="stat-label">ยอดสั่งซื้อเดือนนี้</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                    <div class="stat-trend">28 ออเดอร์</div>
+                                </div>
+                                <div class="stat-value">1,245</div>
+                                <div class="stat-label">กล่องที่สั่งซื้อ</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-percentage"></i>
+                                    </div>
+                                    <div class="stat-trend">ส่วนลดเฉลี่ย</div>
+                                </div>
+                                <div class="stat-value">15%</div>
+                                <div class="stat-label">ราคาขายส่ง</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="stat-trend">ใช้ไป 75%</div>
+                                </div>
+                                <div class="stat-value">฿250,000</div>
+                                <div class="stat-label">วงเงินเครดิต</div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Orders Table -->
+                        <div style="margin-bottom: var(--spacing-6);">
+                            <h3 style="margin-bottom: var(--spacing-4);">คำสั่งซื้อล่าสุด</h3>
+                            <table class="invoice-table">
+                                <thead>
+                                    <tr>
+                                        <th>เลขที่คำสั่งซื้อ</th>
+                                        <th>วันที่</th>
+                                        <th>สินค้า</th>
+                                        <th>จำนวน</th>
+                                        <th>ยอดรวม</th>
+                                        <th>สถานะ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>NG-B2B-240120-001</strong></td>
+                                        <td>20 ม.ค. 2024</td>
+                                        <td>Mixed Fruit Box Premium</td>
+                                        <td>50 กล่อง</td>
+                                        <td><strong>฿15,000</strong></td>
+                                        <td><span class="invoice-status status-paid">จัดส่งแล้ว</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>NG-B2B-240119-002</strong></td>
+                                        <td>19 ม.ค. 2024</td>
+                                        <td>ส้มโชกุน คัดพิเศษ</td>
+                                        <td>30 กล่อง</td>
+                                        <td><strong>฿7,140</strong></td>
+                                        <td><span class="invoice-status status-pending">กำลังเตรียม</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>NG-B2B-240118-003</strong></td>
+                                        <td>18 ม.ค. 2024</td>
+                                        <td>Berry Mix Organic</td>
+                                        <td>25 กล่อง</td>
+                                        <td><strong>฿8,925</strong></td>
+                                        <td><span class="invoice-status status-paid">จัดส่งแล้ว</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Order Section -->
+                    <div id="bulk-order" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">สั่งซื้อขายส่ง</h2>
+                            <p class="section-subtitle">เลือกสินค้าและจำนวนสำหรับการสั่งซื้อขายส่ง</p>
+                        </div>
+
+                        <div class="quick-orders">
+                            <div class="orders-header">
+                                <h3>เพิ่มสินค้าในคำสั่งซื้อ</h3>
+                                <button class="btn btn-primary" onclick="submitBulkOrder()">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    ส่งคำสั่งซื้อ (5 รายการ)
+                                </button>
+                            </div>
+
+                            <div class="bulk-order-form">
+                                <div class="form-group">
+                                    <label class="form-label">เลือกสินค้า</label>
+                                    <select class="form-select" id="bulkProduct">
+                                        <option value="">เลือกสินค้า...</option>
+                                        <option value="mixed-fruit-premium">Mixed Fruit Box Premium (฿300/กล่อง)</option>
+                                        <option value="orange-shogun">ส้มโชกุน คัดพิเศษ (฿238/กล่อง)</option>
+                                        <option value="berry-mix">Berry Mix Organic (฿357/กล่อง)</option>
+                                        <option value="tropical-box">Tropical Paradise Box (฿383/กล่อง)</option>
+                                        <option value="apple-nz">แอปเปิ้ลนิวซีแลนด์ (฿272/กล่อง)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">จำนวน (กล่อง)</label>
+                                    <input type="number" class="form-input" id="bulkQuantity" placeholder="0" min="10" max="1000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">หมายเหตุ</label>
+                                    <input type="text" class="form-input" id="bulkNote" placeholder="หมายเหตุ (ไม่บังคับ)">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button class="add-to-bulk-btn" onclick="addToBulkOrder()">
+                                        <i class="fas fa-plus"></i>
+                                        เพิ่มในรายการ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bulk-order-list" id="bulkOrderList">
+                                <div class="bulk-item">
+                                    <div class="bulk-item-info">
+                                        <div class="bulk-item-image">
+                                            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                        </div>
+                                        <div class="bulk-item-details">
+                                            <h4>Mixed Fruit Box Premium</h4>
+                                            <div class="bulk-item-meta">฿300/กล่อง × 50 กล่อง = ฿15,000</div>
+                                        </div>
+                                    </div>
+                                    <div class="bulk-item-actions">
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn">-</button>
+                                            <input type="number" class="qty-input" value="50" min="10">
+                                            <button class="qty-btn">+</button>
+                                        </div>
+                                        <button class="remove-item-btn">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="bulk-item">
+                                    <div class="bulk-item-info">
+                                        <div class="bulk-item-image">
+                                            <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                        </div>
+                                        <div class="bulk-item-details">
+                                            <h4>ส้มโชกุน คัดพิเศษ</h4>
+                                            <div class="bulk-item-meta">฿238/กล่อง × 30 กล่อง = ฿7,140</div>
+                                        </div>
+                                    </div>
+                                    <div class="bulk-item-actions">
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn">-</button>
+                                            <input type="number" class="qty-input" value="30" min="10">
+                                            <button class="qty-btn">+</button>
+                                        </div>
+                                        <button class="remove-item-btn">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Section -->
+                    <div id="pricing" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ราคาขายส่ง</h2>
+                            <p class="section-subtitle">ระดับราคาและสิทธิประโยชน์สำหรับลูกค้าขายส่ง</p>
+                        </div>
+
+                        <div class="pricing-tiers">
+                            <div class="tier-card">
+                                <div class="tier-name">Basic Partner</div>
+                                <div class="tier-requirements">ออเดอร์ขั้นต่ำ 10,000 บาท/เดือน</div>
+                                <ul class="tier-benefits">
+                                    <li><i class="fas fa-check"></i> ส่วนลด 10% จากราคาปกติ</li>
+                                    <li><i class="fas fa-check"></i> จัดส่งฟรี เมื่อซื้อครบ 5,000 บาท</li>
+                                    <li><i class="fas fa-check"></i> วงเงินเครดิต 50,000 บาท</li>
+                                    <li><i class="fas fa-check"></i> บริการขายตาม PO</li>
+                                </ul>
+                            </div>
+
+                            <div class="tier-card recommended">
+                                <div class="tier-name">Premium Partner</div>
+                                <div class="tier-requirements">ออเดอร์ขั้นต่ำ 50,000 บาท/เดือน</div>
+                                <ul class="tier-benefits">
+                                    <li><i class="fas fa-check"></i> ส่วนลด 15% จากราคาปกติ</li>
+                                    <li><i class="fas fa-check"></i> จัดส่งฟรีทุกออเดอร์</li>
+                                    <li><i class="fas fa-check"></i> วงเงินเครดิต 250,000 บาท</li>
+                                    <li><i class="fas fa-check"></i> Account Manager เฉพาะ</li>
+                                    <li><i class="fas fa-check"></i> ราคาพิเศษสินค้าใหม่</li>
+                                </ul>
+                            </div>
+
+                            <div class="tier-card">
+                                <div class="tier-name">Enterprise Partner</div>
+                                <div class="tier-requirements">ออเดอร์ขั้นต่ำ 200,000 บาท/เดือน</div>
+                                <ul class="tier-benefits">
+                                    <li><i class="fas fa-check"></i> ส่วนลด 20% จากราคาปกติ</li>
+                                    <li><i class="fas fa-check"></i> บริการ Express Delivery</li>
+                                    <li><i class="fas fa-check"></i> วงเงินเครดิต 1,000,000 บาท</li>
+                                    <li><i class="fas fa-check"></i> สินค้า Custom Made</li>
+                                    <li><i class="fas fa-check"></i> รายงานธุรกิจรายเดือน</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div id="orders" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">คำสั่งซื้อขายส่ง</h2>
+                            <p class="section-subtitle">ประวัติและสถานะคำสั่งซื้อทั้งหมด</p>
+                        </div>
+
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>เลขที่คำสั่งซื้อ</th>
+                                    <th>วันที่สั่ง</th>
+                                    <th>รายการสินค้า</th>
+                                    <th>จำนวนรวม</th>
+                                    <th>ยอดรวม</th>
+                                    <th>สถานะ</th>
+                                    <th>การดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>NG-B2B-240120-001</strong></td>
+                                    <td>20 ม.ค. 2024</td>
+                                    <td>Mixed Fruit Box (50), Orange (20)</td>
+                                    <td>70 กล่อง</td>
+                                    <td><strong>฿19,760</strong></td>
+                                    <td><span class="invoice-status status-paid">จัดส่งแล้ว</span></td>
+                                    <td>
+                                        <button class="action-btn">ดูใบเสร็จ</button>
+                                        <button class="action-btn">ติดตาม</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG-B2B-240119-002</strong></td>
+                                    <td>19 ม.ค. 2024</td>
+                                    <td>ส้มโชกุน (30), Berry Mix (15)</td>
+                                    <td>45 กล่อง</td>
+                                    <td><strong>฿12,495</strong></td>
+                                    <td><span class="invoice-status status-pending">กำลังเตรียม</span></td>
+                                    <td>
+                                        <button class="action-btn">แก้ไข</button>
+                                        <button class="action-btn">ยกเลิก</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG-B2B-240118-003</strong></td>
+                                    <td>18 ม.ค. 2024</td>
+                                    <td>Tropical Box (25), Apple (40)</td>
+                                    <td>65 กล่อง</td>
+                                    <td><strong>฿20,455</strong></td>
+                                    <td><span class="invoice-status status-paid">จัดส่งแล้ว</span></td>
+                                    <td>
+                                        <button class="action-btn">ดูใบเสร็จ</button>
+                                        <button class="action-btn">สั่งซ้ำ</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NG-B2B-240115-004</strong></td>
+                                    <td>15 ม.ค. 2024</td>
+                                    <td>Mixed Fruit Box (100)</td>
+                                    <td>100 กล่อง</td>
+                                    <td><strong>฿30,000</strong></td>
+                                    <td><span class="invoice-status status-paid">จัดส่งแล้ว</span></td>
+                                    <td>
+                                        <button class="action-btn">ดูใบเสร็จ</button>
+                                        <button class="action-btn">สั่งซ้ำ</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Invoices Section -->
+                    <div id="invoices" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ใบแจ้งหนี้</h2>
+                            <p class="section-subtitle">จัดการใบแจ้งหนี้และการชำระเงิน</p>
+                        </div>
+
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>เลขที่ใบแจ้งหนี้</th>
+                                    <th>วันที่ออก</th>
+                                    <th>กำหนดชำระ</th>
+                                    <th>จำนวนเงิน</th>
+                                    <th>สถานะ</th>
+                                    <th>การดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>INV-2024-0120-001</strong></td>
+                                    <td>20 ม.ค. 2024</td>
+                                    <td>3 ก.พ. 2024</td>
+                                    <td><strong>฿19,760</strong></td>
+                                    <td><span class="invoice-status status-paid">ชำระแล้ว</span></td>
+                                    <td>
+                                        <button class="action-btn">ดาวน์โหลด PDF</button>
+                                        <button class="action-btn">ส่งอีเมล</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>INV-2024-0119-002</strong></td>
+                                    <td>19 ม.ค. 2024</td>
+                                    <td>2 ก.พ. 2024</td>
+                                    <td><strong>฿12,495</strong></td>
+                                    <td><span class="invoice-status status-pending">รอชำระ</span></td>
+                                    <td>
+                                        <button class="action-btn">ชำระเงิน</button>
+                                        <button class="action-btn">ดาวน์โหลด PDF</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>INV-2024-0115-003</strong></td>
+                                    <td>15 ม.ค. 2024</td>
+                                    <td>29 ม.ค. 2024</td>
+                                    <td><strong>฿30,000</strong></td>
+                                    <td><span class="invoice-status status-overdue">เกินกำหนด</span></td>
+                                    <td>
+                                        <button class="action-btn">ชำระด่วน</button>
+                                        <button class="action-btn">ติดต่อ</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Credit Section -->
+                    <div id="credit" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">วงเงินเครดิต</h2>
+                            <p class="section-subtitle">ติดตามการใช้วงเงินและประวัติการชำระ</p>
+                        </div>
+
+                        <div class="credit-limit-card">
+                            <div class="credit-header">
+                                <h3>วงเงินเครดิต Premium Partner</h3>
+                                <div class="tier-badge">ระดับ 2</div>
+                            </div>
+                            <div class="credit-amount">฿250,000</div>
+                            <div class="credit-progress">
+                                <div class="credit-fill"></div>
+                            </div>
+                            <div class="progress-text">
+                                ใช้ไป ฿187,500 • คงเหลือ ฿62,500
+                            </div>
+                        </div>
+
+                        <div class="b2b-stats">
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="stat-trend">ระดับปัจจุบัน</div>
+                                </div>
+                                <div class="stat-value">Premium</div>
+                                <div class="stat-label">การจัดอันดับเครดิต</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="stat-trend">เฉลี่ย 12 วัน</div>
+                                </div>
+                                <div class="stat-value">97%</div>
+                                <div class="stat-label">อัตราการชำระตรงเวลา</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-trend">30 วัน</div>
+                                </div>
+                                <div class="stat-value">14</div>
+                                <div class="stat-label">ระยะเวลาชำระเฉลี่ย (วัน)</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                    <div class="stat-trend">พิจารณาอัพเกรด</div>
+                                </div>
+                                <div class="stat-value">฿500K</div>
+                                <div class="stat-label">วงเงินถัดไป</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reports Section -->
+                    <div id="reports" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">รายงานการขาย</h2>
+                            <p class="section-subtitle">วิเคราะห์ข้อมูลการซื้อและแนวโน้มธุรกิจ</p>
+                        </div>
+
+                        <div class="b2b-stats">
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="stat-trend">+25% YoY</div>
+                                </div>
+                                <div class="stat-value">฿1.2M</div>
+                                <div class="stat-label">ยอดขายปีนี้</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="stat-trend">Mixed Fruit Box</div>
+                                </div>
+                                <div class="stat-value">45%</div>
+                                <div class="stat-label">สินค้าขายดีที่สุด</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="stat-trend">ต่อเดือน</div>
+                                </div>
+                                <div class="stat-value">2.3</div>
+                                <div class="stat-label">ความถี่ในการสั่งซื้อ</div>
+                            </div>
+
+                            <div class="b2b-stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="stat-trend">Top 5%</div>
+                                </div>
+                                <div class="stat-value">A+</div>
+                                <div class="stat-label">เกรดลูกค้า</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: var(--spacing-4); margin-bottom: var(--spacing-6);">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-download"></i>
+                                ดาวน์โหลดรายงานเดือนนี้
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-chart-bar"></i>
+                                ดูรายงานแบบละเอียด
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div id="profile" class="b2b-section">
+                        <div class="section-header">
+                            <h2 class="section-title">โปรไฟล์บริษัท</h2>
+                            <p class="section-subtitle">จัดการข้อมูลบริษัทและการติดต่อ</p>
+                        </div>
+
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label class="form-label">ชื่อบริษัท</label>
+                                <input type="text" class="form-input" value="บริษัท ABC จำกัด">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">เลขประจำตัวผู้เสียภาษี</label>
+                                <input type="text" class="form-input" value="0123456789012">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ประเภทธุรกิจ</label>
+                                <select class="form-select">
+                                    <option>ร้านค้าปลีก</option>
+                                    <option>ร้านอาหาร</option>
+                                    <option>โรงแรม</option>
+                                    <option>โรงเรียน</option>
+                                    <option>อื่นๆ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ผู้ติดต่อหลัก</label>
+                                <input type="text" class="form-input" value="คุณวิชัย ธุรกิจ">
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">ที่อยู่บริษัท</label>
+                                <input type="text" class="form-input" value="123/45 ถนนสีลม แขวงสุริยวงศ์ เขตบางรัก กทม. 10500">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">โทรศัพท์</label>
+                                <input type="tel" class="form-input" value="02-234-5678">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">อีเมล</label>
+                                <input type="email" class="form-input" value="contact@abccompany.com">
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกการเปลี่ยนแปลง
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-4);">
+                            <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                            <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--white);">Nisakorn Garden</span>
+                        </div>
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ B2B</h3>
+                    <ul class="footer-links">
+                        <li><a href="b2b.html">เข้าร่วมโครงการ B2B</a></li>
+                        <li><a href="b2b-dashboard.html">แดชบอร์ด B2B</a></li>
+                        <li><a href="#">ราคาขายส่ง</a></li>
+                        <li><a href="#">เงื่อนไขการชำระ</a></li>
+                        <li><a href="#">ติดต่อ Account Manager</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>b2b@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // B2B Dashboard functionality
+        function showB2BSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.b2b-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.b2b-nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        function addToBulkOrder() {
+            const product = document.getElementById('bulkProduct').value;
+            const quantity = document.getElementById('bulkQuantity').value;
+            const note = document.getElementById('bulkNote').value;
+
+            if (!product || !quantity || quantity < 10) {
+                alert('กรุณาเลือกสินค้าและระบุจำนวนขั้นต่ำ 10 กล่อง');
+                return;
+            }
+
+            // Simulate adding to bulk order
+            alert(`เพิ่ม ${quantity} กล่อง ของ ${product} ในรายการสำเร็จ`);
+
+            // Reset form
+            document.getElementById('bulkProduct').value = '';
+            document.getElementById('bulkQuantity').value = '';
+            document.getElementById('bulkNote').value = '';
+        }
+
+        function submitBulkOrder() {
+            if (confirm('คุณต้องการส่งคำสั่งซื้อขายส่งนี้ใช่หรือไม่?')) {
+                alert('ส่งคำสั่งซื้อเรียบร้อย! เราจะติดต่อกลับภายใน 1 ชั่วโมง');
+            }
+        }
+
+        // Initialize B2B dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count
+            updateCartUI();
+
+            // Bulk order quantity controls
+            const qtyBtns = document.querySelectorAll('.qty-btn');
+            qtyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const isDecrease = this.textContent === '-';
+                    const input = isDecrease ? this.nextElementSibling : this.previousElementSibling;
+                    const currentValue = parseInt(input.value);
+
+                    if (isDecrease && currentValue > 10) {
+                        input.value = currentValue - 1;
+                    } else if (!isDecrease) {
+                        input.value = currentValue + 1;
+                    }
+
+                    // Update total price (simulate)
+                    const pricePerUnit = 300; // Simulate price
+                    const total = input.value * pricePerUnit;
+                    const metaElement = input.closest('.bulk-item').querySelector('.bulk-item-meta');
+                    metaElement.textContent = `฿${pricePerUnit}/กล่อง × ${input.value} กล่อง = ฿${total.toLocaleString()}`;
+                });
+            });
+
+            // Remove item buttons
+            const removeButtons = document.querySelectorAll('.remove-item-btn');
+            removeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')) {
+                        this.closest('.bulk-item').remove();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

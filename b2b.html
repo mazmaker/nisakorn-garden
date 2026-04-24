@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บริการธุรกิจ B2B - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link active">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="b2b-dashboard.html" class="b2b-login-btn">
+                        <i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ B2B
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- B2B Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1 class="hero-title">บริการ <span class="highlight">ธุรกิจ B2B</span></h1>
+                    <p class="hero-description">โซลูชั่นครบวงจรสำหรับธุรกิจ ร้านอาหาร โรงแรม และบริษัทต่างๆ ด้วยราคาขายส่งพิเศษ</p>
+                    <div class="hero-buttons">
+                        <a href="#contact-b2b" class="btn btn-primary">ติดต่อขายส่ง</a>
+                        <a href="#services" class="btn btn-secondary">ดูบริการ</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fresh Fruits" class="hero-img">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- B2B Services -->
+    <section id="services" style="padding: var(--spacing-20) 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">บริการสำหรับธุรกิจ</h2>
+                <p class="section-subtitle">เราให้บริการครบครันสำหรับทุกประเภทธุรกิจ ด้วยคุณภาพและราคาที่เหมาะสม</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="feature-title">ร้านอาหาร & คาเฟ่</h3>
+                    <p class="feature-description">จัดส่งผลไม้สดใหม่สำหรับร้านอาหาร คาเฟ่ และเบเกอรี่ พร้อมราคาขายส่งพิเศษ</p>
+                    <ul style="list-style: none; padding: 0; margin-top: var(--spacing-4); color: var(--gray-600);">
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> จัดส่งประจำวัน</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ราคาขายส่งพิเศษ</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> วงเงินเครดิต 30-60 วัน</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: var(--secondary-color); color: var(--white);">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="feature-title">โรงแรม & รีสอร์ท</h3>
+                    <p class="feature-description">บริการผลไม้สำหรับโรงแรมและรีสอร์ท รวมถึงบุฟเฟ่ต์และการตกแต่งโต๊ะอาหาร</p>
+                    <ul style="list-style: none; padding: 0; margin-top: var(--spacing-4); color: var(--gray-600);">
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ผลไม้ตกแต่ง</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> บริการ Catering</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ปริมาณขั้นต่ำยืดหยุ่น</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: var(--accent-color); color: var(--white);">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="feature-title">บริษัท & ออฟฟิศ</h3>
+                    <p class="feature-description">ผลไม้สำหรับออฟฟิศและงานเลี้ยงบริษัท เสริมสุขภาพพนักงานและลูกค้า</p>
+                    <ul style="list-style: none; padding: 0; margin-top: var(--spacing-4); color: var(--gray-600);">
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> จัดส่งรายสัปดาห์</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> Package สำหรับงานเลี้ยง</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ใบกำกับภาษีครบถ้วน</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: var(--primary-dark); color: var(--white);">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="feature-title">ผู้ค้าปลีก</h3>
+                    <p class="feature-description">สำหรับร้านค้า ตลาดสด และผู้จำหน่ายรายย่อย ด้วยระบบการสั่งซื้อที่สะดวก</p>
+                    <ul style="list-style: none; padding: 0; margin-top: var(--spacing-4); color: var(--gray-600);">
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> MOQ ขั้นต่ำยืดหยุ่น</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ส่วนลดตามปริมาณ</li>
+                        <li><i class="fas fa-check" style="color: var(--secondary-color); margin-right: var(--spacing-2);"></i> ระบบ Pre-order</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section style="padding: var(--spacing-20) 0; background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">แผนราคาขายส่ง</h2>
+                <p class="section-subtitle">เลือกแผนที่เหมาะสมกับธุรกิจของคุณ ยิ่งสั่งมาก ยิ่งประหยัด</p>
+            </div>
+
+            <div class="pricing-tiers-grid">
+                <!-- Bronze Tier -->
+                <div class="pricing-tier-card">
+                    <div class="tier-icon" style="background: #CD7F32;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="tier-name">Bronze</h3>
+                    <p class="tier-description">สำหรับธุรกิจขนาดเล็ก</p>
+                    <div class="tier-discount">5-15%</div>
+                    <p class="tier-discount-note">ส่วนลดจากราคาปลีก</p>
+
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> ขั้นต่ำ 10,000 บาท/เดือน</li>
+                        <li><i class="fas fa-check"></i> เครดิต 15 วัน</li>
+                        <li><i class="fas fa-check"></i> จัดส่งฟรี กทม.</li>
+                        <li><i class="fas fa-check"></i> Support ช่วงเวลาทำการ</li>
+                    </ul>
+
+                    <button class="btn btn-outline" style="width: 100%;">สมัครแผน Bronze</button>
+                </div>
+
+                <!-- Silver Tier -->
+                <div class="pricing-tier-card featured">
+                    <div class="tier-badge">ยอดนิยม</div>
+
+                    <div class="tier-icon" style="background: #C0C0C0;">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="tier-name">Silver</h3>
+                    <p class="tier-description">สำหรับธุรกิจขนาดกลาง</p>
+                    <div class="tier-discount">15-25%</div>
+                    <p class="tier-discount-note">ส่วนลดจากราคาปลีก</p>
+
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> ขั้นต่ำ 50,000 บาท/เดือน</li>
+                        <li><i class="fas fa-check"></i> เครดิต 30 วัน</li>
+                        <li><i class="fas fa-check"></i> จัดส่งฟรีทั่วประเทศ</li>
+                        <li><i class="fas fa-check"></i> Account Manager เฉพาะ</li>
+                        <li><i class="fas fa-check"></i> Priority Support 24/7</li>
+                    </ul>
+
+                    <button class="btn btn-primary" style="width: 100%;">สมัครแผน Silver</button>
+                </div>
+
+                <!-- Gold Tier -->
+                <div class="pricing-tier-card">
+                    <div class="tier-icon" style="background: #FFD700; color: var(--gray-800);">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="tier-name">Gold</h3>
+                    <p class="tier-description">สำหรับธุรกิจขนาดใหญ่</p>
+                    <div class="tier-discount">25-40%</div>
+                    <p class="tier-discount-note">ส่วนลดจากราคาปลีก</p>
+
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> ขั้นต่ำ 200,000 บาท/เดือน</li>
+                        <li><i class="fas fa-check"></i> เครดิต 60 วัน</li>
+                        <li><i class="fas fa-check"></i> จัดส่งฟรี + Express</li>
+                        <li><i class="fas fa-check"></i> Dedicated Team</li>
+                        <li><i class="fas fa-check"></i> Custom Solutions</li>
+                        <li><i class="fas fa-check"></i> VIP Support</li>
+                    </ul>
+
+                    <button class="btn" style="width: 100%; background: var(--accent-color); color: var(--white);">สมัครแผน Gold</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Features -->
+    <section style="padding: var(--spacing-20) 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ข้อดีของการเป็นพาร์ทเนอร์</h2>
+                <p class="section-subtitle">เหตุผลที่ธุรกิจกว่า 500+ แห่งเชื่อใจและเลือกใช้บริการของเรา</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="benefit-title">ราคาขายส่งพิเศษ</h3>
+                    <p class="benefit-description">ได้รับราคาขายส่งที่ดีที่สุด พร้อมส่วนลดเพิ่มตามปริมาณการสั่งซื้อ</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon" style="background: var(--secondary-color);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="benefit-title">จัดส่งตรงเวลา</h3>
+                    <p class="benefit-description">บริการจัดส่งที่เชื่อถือได้ ตรงเวลา พร้อมระบบติดตามสถานะแบบเรียลไทม์</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon" style="background: var(--accent-color);">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="benefit-title">เครดิตการค้า</h3>
+                    <p class="benefit-description">วงเงินเครดิตยืดหยุ่น 15-60 วัน ช่วยให้ธุรกิจมี Cash Flow ที่ดีขึ้น</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon" style="background: var(--primary-dark);">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="benefit-title">บริการหลังการขาย</h3>
+                    <p class="benefit-description">ทีมงานมืออาชีพให้การดูแลและแก้ไขปัญหา 24/7 พร้อมให้คำปรึกษา</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact B2B Section -->
+    <section id="contact-b2b" style="padding: var(--spacing-20) 0; background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">สนใจเป็นพาร์ทเนอร์ธุรกิจ?</h2>
+                <p class="section-subtitle">ติดต่อทีมขายเพื่อขอรับใบเสนอราคาและคำปรึกษาฟรี</p>
+            </div>
+
+            <div class="b2b-contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 style="font-size: var(--font-size-xl); font-weight: 600; margin-bottom: var(--spacing-6);">ขอใบเสนอราคา</h3>
+
+                    <form style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                            <input type="text" placeholder="ชื่อ" required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                            <input type="text" placeholder="นามสกุล" required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                        </div>
+
+                        <input type="text" placeholder="ชื่อบริษัท" required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                            <input type="email" placeholder="อีเมล" required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                            <input type="tel" placeholder="เบอร์โทร" required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                        </div>
+
+                        <select required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                            <option value="">ประเภทธุรกิจ</option>
+                            <option value="restaurant">ร้านอาหาร</option>
+                            <option value="cafe">คาเฟ่</option>
+                            <option value="hotel">โรงแรม</option>
+                            <option value="corporate">บริษัท/ออฟฟิศ</option>
+                            <option value="retail">ร้านค้าปลีก</option>
+                            <option value="other">อื่นๆ</option>
+                        </select>
+
+                        <select required style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md);">
+                            <option value="">ปริมาณที่ต้องการ/เดือน</option>
+                            <option value="10000-50000">10,000 - 50,000 บาท</option>
+                            <option value="50000-100000">50,000 - 100,000 บาท</option>
+                            <option value="100000-500000">100,000 - 500,000 บาท</option>
+                            <option value="500000+">มากกว่า 500,000 บาท</option>
+                        </select>
+
+                        <textarea rows="4" placeholder="ข้อความเพิ่มเติม..." style="padding: var(--spacing-3); border: 2px solid var(--gray-200); border-radius: var(--radius-md); resize: vertical;"></textarea>
+
+                        <button type="submit" class="btn btn-primary" style="padding: var(--spacing-4); font-size: var(--font-size-lg);">
+                            <i class="fas fa-paper-plane"></i> ส่งข้อมูล
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <h3 style="font-size: var(--font-size-xl); font-weight: 600; margin-bottom: var(--spacing-6);">ติดต่อทีมขาย B2B</h3>
+
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-6);">
+                        <div class="contact-method">
+                            <div class="contact-icon" style="background: var(--primary-color);">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>โทรศัพท์</h4>
+                                <p>02-123-4567 ต่อ 101 (ขาย B2B)</p>
+                                <p>089-123-4567 (ฉุกเฉิน)</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon" style="background: var(--secondary-color);">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>อีเมล</h4>
+                                <p>b2b@nisakorngarden.com</p>
+                                <p>sales@nisakorngarden.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon" style="background: var(--accent-color);">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>เวลาทำการ</h4>
+                                <p>จันทร์-ศุกร์: 07:00-19:00</p>
+                                <p>เสาร์: 08:00-17:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div style="margin-top: var(--spacing-8); display: flex; gap: var(--spacing-4);">
+                        <a href="tel:021234567" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> โทรเลย
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fab fa-line"></i> Line Official
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                const navLinks = nav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

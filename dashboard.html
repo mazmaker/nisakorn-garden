@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ด - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dashboard Styles */
+        .dashboard-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+        }
+
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+        }
+
+        .welcome-content h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .welcome-content p {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+        }
+
+        .user-level {
+            text-align: right;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .points-info {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+
+        .dashboard-main {
+            padding: var(--spacing-16) 0;
+            background: var(--gray-50);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .dashboard-sidebar {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--gray-700);
+            transition: var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .dashboard-content {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            min-height: 600px;
+        }
+
+        .content-section {
+            display: none;
+            padding: var(--spacing-8);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .section-subtitle {
+            color: var(--gray-600);
+            font-size: var(--font-size-base);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            margin: 0 auto var(--spacing-3);
+        }
+
+        .stat-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .recent-orders {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 2px solid var(--gray-100);
+        }
+
+        .orders-header {
+            background: var(--gray-50);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .orders-header h3 {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .view-all-btn {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+        }
+
+        .order-item {
+            padding: var(--spacing-4) var(--spacing-6);
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .order-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .order-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .order-details h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .order-meta {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .order-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .status-badge {
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-delivered {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .status-processing {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .status-shipped {
+            background: #3b82f6;
+            color: var(--white);
+        }
+
+        .order-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .profile-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-6);
+            max-width: 800px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .form-input {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn {
+            padding: var(--spacing-3) var(--spacing-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-300);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .action-card {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            text-align: center;
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            margin: 0 auto var(--spacing-3);
+        }
+
+        .action-title {
+            font-weight: 600;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .action-desc {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .loyalty-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .loyalty-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .loyalty-level {
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .points-balance {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .progress-fill {
+            background: var(--white);
+            height: 100%;
+            width: 65%;
+            transition: var(--transition-slow);
+        }
+
+        .progress-text {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .wishlist-item {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition-fast);
+        }
+
+        .wishlist-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .wishlist-image {
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .wishlist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wishlist-info {
+            padding: var(--spacing-4);
+        }
+
+        .wishlist-name {
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .wishlist-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        @media (max-width: 968px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--spacing-2);
+            }
+
+            .nav-item {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+
+            .profile-form {
+                grid-template-columns: 1fr;
+            }
+
+            .content-section {
+                padding: var(--spacing-4);
+            }
+
+            .stats-grid,
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden Logo" class="logo">
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <span class="user-name">สวัสดี, สุดา</span>
+                        <div class="user-dropdown">
+                            <a href="dashboard.html" class="active">แดชบอร์ด</a>
+                            <a href="orders.html">คำสั่งซื้อ</a>
+                            <a href="profile.html">โปรไฟล์</a>
+                            <a href="wishlist.html">สินค้าที่ถูกใจ</a>
+                            <a href="#" onclick="logout()">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Hero -->
+    <section class="dashboard-hero">
+        <div class="container">
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h1>สวัสดี, สุดา ใจดี</h1>
+                    <p>ยินดีต้อนรับสู่แดชบอร์ดส่วนตัวของคุณ</p>
+                </div>
+                <div class="user-level">
+                    <div class="level-badge">
+                        <i class="fas fa-crown"></i> สมาชิก Gold
+                    </div>
+                    <div class="points-info">คะแนนสะสม: 2,450 แต้ม</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Main -->
+    <section class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-container">
+                <!-- Sidebar Navigation -->
+                <aside class="dashboard-sidebar">
+                    <nav>
+                        <ul class="sidebar-nav">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" onclick="showSection('overview')">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    ภาพรวม
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" onclick="showSection('orders')">
+                                    <i class="fas fa-shopping-bag nav-icon"></i>
+                                    คำสั่งซื้อ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" onclick="showSection('wishlist')">
+                                    <i class="fas fa-heart nav-icon"></i>
+                                    สินค้าที่ถูกใจ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" onclick="showSection('loyalty')">
+                                    <i class="fas fa-gift nav-icon"></i>
+                                    โปรแกรมสะสมแต้ม
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" onclick="showSection('profile')">
+                                    <i class="fas fa-user nav-icon"></i>
+                                    โปรไฟล์
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" onclick="showSection('settings')">
+                                    <i class="fas fa-cog nav-icon"></i>
+                                    ตั้งค่า
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="dashboard-content">
+                    <!-- Overview Section -->
+                    <div id="overview" class="content-section active">
+                        <div class="section-header">
+                            <h2 class="section-title">ภาพรวม</h2>
+                            <p class="section-subtitle">สรุปกิจกรรมและข้อมูลสำคัญของคุณ</p>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </div>
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">คำสั่งซื้อทั้งหมด</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">สินค้าที่ถูกใจ</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <div class="stat-value">2,450</div>
+                                <div class="stat-label">แต้มสะสม</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="stat-value">฿12,650</div>
+                                <div class="stat-label">ยอดซื้อสะสม</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <a href="products.html" class="action-card">
+                                <div class="action-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="action-title">สั่งซื้อสินค้า</div>
+                                <div class="action-desc">เลือกซื้อผลไม้สดใหม่</div>
+                            </a>
+                            <a href="#" class="action-card" onclick="showSection('orders')">
+                                <div class="action-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="action-title">ติดตามคำสั่งซื้อ</div>
+                                <div class="action-desc">ตรวจสอบสถานะการจัดส่ง</div>
+                            </a>
+                            <a href="#" class="action-card" onclick="showSection('wishlist')">
+                                <div class="action-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="action-title">รายการโปรด</div>
+                                <div class="action-desc">สินค้าที่คุณสนใจ</div>
+                            </a>
+                            <a href="contact.html" class="action-card">
+                                <div class="action-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="action-title">ติดต่อสอบถาม</div>
+                                <div class="action-desc">ช่วยเหลือและสนับสนุน</div>
+                            </a>
+                        </div>
+
+                        <!-- Recent Orders -->
+                        <div class="recent-orders">
+                            <div class="orders-header">
+                                <h3>คำสั่งซื้อล่าสุด</h3>
+                                <a href="#" class="view-all-btn" onclick="showSection('orders')">ดูทั้งหมด</a>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>Mixed Fruit Box Premium</h4>
+                                        <div class="order-meta">คำสั่งซื้อ #NG20240120001</div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-delivered">จัดส่งแล้ว</span>
+                                    <span class="order-price">฿350</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>ส้มโชกุน คัดพิเศษ</h4>
+                                        <div class="order-meta">คำสั่งซื้อ #NG20240119001</div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-shipped">กำลังจัดส่ง</span>
+                                    <span class="order-price">฿280</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>Berry Mix Organic</h4>
+                                        <div class="order-meta">คำสั่งซื้อ #NG20240118001</div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-processing">เตรียมสินค้า</span>
+                                    <span class="order-price">฿420</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div id="orders" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">คำสั่งซื้อของฉัน</h2>
+                            <p class="section-subtitle">ติดตามสถานะและประวัติการสั่งซื้อ</p>
+                        </div>
+
+                        <div class="recent-orders">
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>Mixed Fruit Box Premium (x2)</h4>
+                                        <div class="order-meta">
+                                            คำสั่งซื้อ #NG20240120001 • 20 ม.ค. 2024<br>
+                                            จัดส่งที่: 123 ถนนสุขุมวิท แขวงคลองตัน กทม.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-delivered">จัดส่งแล้ว</span>
+                                    <span class="order-price">฿700</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>ส้มโชกุน คัดพิเศษ (x1)</h4>
+                                        <div class="order-meta">
+                                            คำสั่งซื้อ #NG20240119001 • 19 ม.ค. 2024<br>
+                                            ผู้ขนส่ง: Kerry Express • เลขพัสดุ: KE1234567890
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-shipped">กำลังจัดส่ง</span>
+                                    <span class="order-price">฿280</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-image">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                                    </div>
+                                    <div class="order-details">
+                                        <h4>Berry Mix Organic (x1)</h4>
+                                        <div class="order-meta">
+                                            คำสั่งซื้อ #NG20240118001 • 18 ม.ค. 2024<br>
+                                            เตรียมสินค้าภายใน 2-4 ชั่วโมง
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge status-processing">เตรียมสินค้า</span>
+                                    <span class="order-price">฿420</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Section -->
+                    <div id="wishlist" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">สินค้าที่ถูกใจ</h2>
+                            <p class="section-subtitle">สินค้าที่คุณสนใจและต้องการซื้อ</p>
+                        </div>
+
+                        <div class="wishlist-grid">
+                            <div class="wishlist-item">
+                                <div class="wishlist-image">
+                                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tropical Fruits">
+                                </div>
+                                <div class="wishlist-info">
+                                    <div class="wishlist-name">Tropical Paradise Box</div>
+                                    <div class="wishlist-price">฿450</div>
+                                    <div class="wishlist-actions">
+                                        <button class="btn btn-primary" style="flex: 1;">
+                                            <i class="fas fa-cart-plus"></i>
+                                            เพิ่มในตะกร้า
+                                        </button>
+                                        <button class="btn btn-secondary">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wishlist-item">
+                                <div class="wishlist-image">
+                                    <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Apple Box">
+                                </div>
+                                <div class="wishlist-info">
+                                    <div class="wishlist-name">แอปเปิ้ลนิวซีแลนด์</div>
+                                    <div class="wishlist-price">฿320</div>
+                                    <div class="wishlist-actions">
+                                        <button class="btn btn-primary" style="flex: 1;">
+                                            <i class="fas fa-cart-plus"></i>
+                                            เพิ่มในตะกร้า
+                                        </button>
+                                        <button class="btn btn-secondary">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wishlist-item">
+                                <div class="wishlist-image">
+                                    <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dragon Fruit">
+                                </div>
+                                <div class="wishlist-info">
+                                    <div class="wishlist-name">แก้วมังกร คัดพิเศษ</div>
+                                    <div class="wishlist-price">฿180</div>
+                                    <div class="wishlist-actions">
+                                        <button class="btn btn-primary" style="flex: 1;">
+                                            <i class="fas fa-cart-plus"></i>
+                                            เพิ่มในตะกร้า
+                                        </button>
+                                        <button class="btn btn-secondary">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loyalty Section -->
+                    <div id="loyalty" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">โปรแกรมสะสมแต้ม</h2>
+                            <p class="section-subtitle">สะสมแต้มและรับสิทธิพิเศษมากมาย</p>
+                        </div>
+
+                        <div class="loyalty-card">
+                            <div class="loyalty-header">
+                                <h3>สมาชิก Gold</h3>
+                                <div class="loyalty-level">ระดับ 3</div>
+                            </div>
+                            <div class="points-balance">2,450 แต้ม</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">
+                                อีก 1,550 แต้ม ถึงระดับ Platinum
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-value">2,450</div>
+                                <div class="stat-label">แต้มคงเหลือ</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="stat-value">180</div>
+                                <div class="stat-label">แต้มใช้ไปแล้ว</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="stat-value">15%</div>
+                                <div class="stat-label">ส่วนลดสมาชิก</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="stat-value">ฟรี</div>
+                                <div class="stat-label">ค่าจัดส่ง</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div id="profile" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ข้อมูลส่วนตัว</h2>
+                            <p class="section-subtitle">จัดการข้อมูลบัญชีและที่อยู่ของคุณ</p>
+                        </div>
+
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">ชื่อ</label>
+                                <input type="text" id="firstName" class="form-input" value="สุดา">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">นามสกุล</label>
+                                <input type="text" id="lastName" class="form-input" value="ใจดี">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">อีเมล</label>
+                                <input type="email" id="email" class="form-input" value="suda@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                                <input type="tel" id="phone" class="form-input" value="081-234-5678">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="address" class="form-label">ที่อยู่</label>
+                                <input type="text" id="address" class="form-input" value="123 ถนนสุขุมวิท แขวงคลองตัน เขตคลองเตย กทม. 10110">
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกการเปลี่ยนแปลง
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div id="settings" class="content-section">
+                        <div class="section-header">
+                            <h2 class="section-title">ตั้งค่าบัญชี</h2>
+                            <p class="section-subtitle">กำหนดการแจ้งเตือนและความปลอดภัยบัญชี</p>
+                        </div>
+
+                        <div style="max-width: 600px;">
+                            <div class="form-group">
+                                <label class="form-label">การแจ้งเตือน</label>
+                                <div style="display: flex; flex-direction: column; gap: var(--spacing-3);">
+                                    <label style="display: flex; align-items: center; gap: var(--spacing-2);">
+                                        <input type="checkbox" checked>
+                                        <span>แจ้งเตือนการสั่งซื้อ</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: var(--spacing-2);">
+                                        <input type="checkbox" checked>
+                                        <span>แจ้งเตือนโปรโมชัน</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: var(--spacing-2);">
+                                        <input type="checkbox">
+                                        <span>แจ้งเตือนสินค้าใหม่</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">เปลี่ยนรหัสผ่าน</label>
+                                <div style="display: flex; flex-direction: column; gap: var(--spacing-3);">
+                                    <input type="password" class="form-input" placeholder="รหัสผ่านปัจจุบัน">
+                                    <input type="password" class="form-input" placeholder="รหัสผ่านใหม่">
+                                    <input type="password" class="form-input" placeholder="ยืนยันรหัสผ่านใหม่">
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: var(--spacing-3);">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกการตั้งค่า
+                                </button>
+                                <button type="button" class="btn btn-secondary">
+                                    ยกเลิก
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Dashboard functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count
+            updateCartUI();
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

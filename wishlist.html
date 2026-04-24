@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการที่ชื่นชอบ - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-8) var(--spacing-4);
+            margin-top: 80px;
+        }
+
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .wishlist-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .wishlist-subtitle {
+            color: var(--gray-600);
+            font-size: var(--font-size-lg);
+        }
+
+        .wishlist-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+            padding: var(--spacing-4);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+        }
+
+        .wishlist-count {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: var(--spacing-3);
+        }
+
+        .btn-clear {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-4);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .btn-clear:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-share {
+            background: var(--gray-200);
+            color: var(--gray-700);
+            padding: var(--spacing-2) var(--spacing-4);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .btn-share:hover {
+            background: var(--gray-300);
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .wishlist-item {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .wishlist-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: var(--spacing-3);
+            right: var(--spacing-3);
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .remove-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .product-name {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .current-price {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            font-size: var(--font-size-base);
+            color: var(--gray-500);
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .rating-text {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .product-actions {
+            display: flex;
+            gap: var(--spacing-3);
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-3) var(--spacing-4);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-view {
+            background: var(--gray-200);
+            color: var(--gray-700);
+            padding: var(--spacing-3) var(--spacing-4);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .btn-view:hover {
+            background: var(--gray-300);
+        }
+
+        .stock-status {
+            display: inline-block;
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .in-stock {
+            background: rgba(72, 187, 120, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .out-stock {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .low-stock {
+            background: rgba(237, 137, 54, 0.1);
+            color: var(--accent-color);
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: var(--spacing-8) var(--spacing-4);
+            color: var(--gray-600);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--gray-400);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .empty-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .empty-text {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .btn-browse {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-4) var(--spacing-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-browse:hover {
+            background: var(--primary-dark);
+        }
+
+        .recently-viewed {
+            margin-top: var(--spacing-8);
+            padding-top: var(--spacing-8);
+            border-top: 2px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .recently-viewed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-4);
+        }
+
+        .recently-viewed-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-4);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .recently-viewed-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .recently-viewed-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .recently-viewed-item h4 {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .recently-viewed-item .price {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .wishlist-controls {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+
+            .wishlist-actions {
+                justify-content: center;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .recently-viewed-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn active">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="wishlist-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" style="margin-bottom: 2rem;">
+            <a href="home.html">หน้าแรก</a> /
+            <a href="my-account.html">บัญชีของฉัน</a> /
+            <span>รายการที่ชื่นชอบ</span>
+        </nav>
+
+        <!-- Wishlist Header -->
+        <div class="wishlist-header">
+            <h1 class="wishlist-title">รายการที่ชื่นชอบ</h1>
+            <p class="wishlist-subtitle">สินค้าที่คุณบันทึกไว้สำหรับการสั่งซื้อในอนาคต</p>
+        </div>
+
+        <!-- Wishlist Controls -->
+        <div class="wishlist-controls">
+            <div class="wishlist-count">รายการทั้งหมด 5 รายการ</div>
+            <div class="wishlist-actions">
+                <button class="btn-share">
+                    <i class="fas fa-share-alt"></i> แชร์รายการ
+                </button>
+                <button class="btn-clear" onclick="clearWishlist()">
+                    <i class="fas fa-trash"></i> ล้างทั้งหมด
+                </button>
+            </div>
+        </div>
+
+        <!-- Wishlist Items -->
+        <div class="wishlist-grid" id="wishlistGrid">
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="removeFromWishlist(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=300" alt="มะม่วงน้ำดอกไม้สด" class="product-image">
+                <h3 class="product-name">มะม่วงน้ำดอกไม้สด</h3>
+                <div class="stock-status in-stock">มีสินค้า</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-text">(4.8)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">฿89</span>
+                    <span class="original-price">฿120</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" onclick="addToCart('มะม่วงน้ำดอกไม้สด')">
+                        <i class="fas fa-cart-plus"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="btn-view" onclick="viewProduct('product-detail.html')">ดู</button>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="removeFromWishlist(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1605027863904-68e1e67c7c6c?w=300" alt="มะม่วงโอเค" class="product-image">
+                <h3 class="product-name">มะม่วงโอเค</h3>
+                <div class="stock-status in-stock">มีสินค้า</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-text">(4.2)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">฿65</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" onclick="addToCart('มะม่วงโอเค')">
+                        <i class="fas fa-cart-plus"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="btn-view" onclick="viewProduct('product-detail.html')">ดู</button>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="removeFromWishlist(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1520342868574-5fa3804e551c?w=300" alt="ส้มสายน้ำผึ้ง" class="product-image">
+                <h3 class="product-name">ส้มสายน้ำผึ้ง</h3>
+                <div class="stock-status low-stock">เหลือน้อย</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text">(4.9)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">฿25</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" onclick="addToCart('ส้มสายน้ำผึ้ง')">
+                        <i class="fas fa-cart-plus"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="btn-view" onclick="viewProduct('product-detail.html')">ดู</button>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="removeFromWishlist(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1587393855524-087f83d95bc9?w=300" alt="กล้วยหอมทอง" class="product-image">
+                <h3 class="product-name">กล้วยหอมทอง</h3>
+                <div class="stock-status out-stock">หมดสต๊อก</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-text">(4.1)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">฿45</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" disabled style="opacity: 0.6; cursor: not-allowed;">
+                        <i class="fas fa-exclamation-triangle"></i> หมดสต๊อก
+                    </button>
+                    <button class="btn-view" onclick="viewProduct('product-detail.html')">ดู</button>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="removeFromWishlist(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300" alt="ฟรุตมิกซ์" class="product-image">
+                <h3 class="product-name">ฟรุตมิกซ์พรีเมียม</h3>
+                <div class="stock-status in-stock">มีสินค้า</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text">(5.0)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">฿299</span>
+                    <span class="original-price">฿350</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" onclick="addToCart('ฟรุตมิกซ์พรีเมียม')">
+                        <i class="fas fa-cart-plus"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="btn-view" onclick="viewProduct('product-detail.html')">ดู</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Wishlist State (Hidden by default) -->
+        <div class="empty-wishlist" id="emptyWishlist" style="display: none;">
+            <div class="empty-icon">
+                <i class="fas fa-heart-broken"></i>
+            </div>
+            <h2 class="empty-title">รายการโปรดว่างเปล่า</h2>
+            <p class="empty-text">คุณยังไม่มีสินค้าในรายการโปรด<br>เริ่มเลือกสินค้าที่ชื่นชอบกันเลย!</p>
+            <a href="products.html" class="btn-browse">
+                <i class="fas fa-shopping-bag"></i> เลือกซื้อสินค้า
+            </a>
+        </div>
+
+        <!-- Recently Viewed -->
+        <section class="recently-viewed">
+            <h2 class="section-title">สินค้าที่ดูล่าสุด</h2>
+            <div class="recently-viewed-grid">
+                <div class="recently-viewed-item" onclick="viewProduct('product-detail.html')">
+                    <img src="https://images.unsplash.com/photo-1567306301408-9b74de22a9cd?w=200" alt="ทุเรียนมอนทอง">
+                    <h4>ทุเรียนมอนทอง</h4>
+                    <div class="price">฿299</div>
+                </div>
+                <div class="recently-viewed-item" onclick="viewProduct('product-detail.html')">
+                    <img src="https://images.unsplash.com/photo-1571782742478-0816a4773a10?w=200" alt="เงาะโรงเรียน">
+                    <h4>เงาะโรงเรียน</h4>
+                    <div class="price">฿89</div>
+                </div>
+                <div class="recently-viewed-item" onclick="viewProduct('product-detail.html')">
+                    <img src="https://images.unsplash.com/photo-1619357882499-9cb06b10c91e?w=200" alt="ลิ้นจี่สด">
+                    <h4>ลิ้นจี่สด</h4>
+                    <div class="price">฿125</div>
+                </div>
+                <div class="recently-viewed-item" onclick="viewProduct('product-detail.html')">
+                    <img src="https://images.unsplash.com/photo-1630034925635-9129f2b6da11?w=200" alt="แอปเปิ้ลแดง">
+                    <h4>แอปเปิ้ลแดง</h4>
+                    <div class="price">฿159</div>
+                </div>
+                <div class="recently-viewed-item" onclick="viewProduct('product-detail.html')">
+                    <img src="https://images.unsplash.com/photo-1508826481103-36caaeade8c6?w=200" alt="องุ่นเขียว">
+                    <h4>องุ่นเขียว</h4>
+                    <div class="price">฿199</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nisakorn Garden</h3>
+                    <p>สวนผลไม้สดใหม่ คุณภาพพรีเมียม ส่งตรงถึงมือคุณ</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>เมนูหลัก</h4>
+                    <ul>
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="contact.html">ติดต่อ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>บัญชีผู้ใช้</h4>
+                    <ul>
+                        <li><a href="my-account.html">บัญชีของฉัน</a></li>
+                        <li><a href="order-tracking.html">ติดตามคำสั่งซื้อ</a></li>
+                        <li><a href="wishlist.html">รายการที่ชื่นชอบ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ติดต่อเรา</h4>
+                    <p><i class="fas fa-phone"></i> 02-xxx-xxxx</p>
+                    <p><i class="fas fa-envelope"></i> info@nisakorngarden.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> กรุงเทพมหานคร</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Remove from wishlist
+        function removeFromWishlist(button) {
+            if (confirm('คุณต้องการลบสินค้านี้จากรายการโปรดหรือไม่?')) {
+                const item = button.closest('.wishlist-item');
+                item.style.animation = 'fadeOut 0.3s ease forwards';
+
+                setTimeout(() => {
+                    item.remove();
+                    updateWishlistCount();
+
+                    // Update wishlist badge
+                    const badge = document.querySelector('.wishlist-icon .badge');
+                    const currentCount = parseInt(badge.textContent);
+                    badge.textContent = Math.max(0, currentCount - 1);
+
+                    // Show empty state if no items left
+                    checkEmptyWishlist();
+                }, 300);
+            }
+        }
+
+        // Clear entire wishlist
+        function clearWishlist() {
+            if (confirm('คุณต้องการลบสินค้าทั้งหมดจากรายการโปรดหรือไม่?')) {
+                const grid = document.getElementById('wishlistGrid');
+                const items = grid.querySelectorAll('.wishlist-item');
+
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.animation = 'fadeOut 0.3s ease forwards';
+                        setTimeout(() => {
+                            item.remove();
+                            if (index === items.length - 1) {
+                                updateWishlistCount();
+                                document.querySelector('.wishlist-icon .badge').textContent = '0';
+                                showEmptyWishlist();
+                            }
+                        }, 300);
+                    }, index * 100);
+                });
+            }
+        }
+
+        // Add to cart
+        function addToCart(productName) {
+            alert(`เพิ่ม "${productName}" ลงตะกร้าแล้ว!`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-icon .badge');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + 1;
+        }
+
+        // View product
+        function viewProduct(url) {
+            window.location.href = url;
+        }
+
+        // Update wishlist count
+        function updateWishlistCount() {
+            const count = document.querySelectorAll('.wishlist-item').length;
+            const countElement = document.querySelector('.wishlist-count');
+            countElement.textContent = `รายการทั้งหมด ${count} รายการ`;
+        }
+
+        // Check if wishlist is empty
+        function checkEmptyWishlist() {
+            const itemCount = document.querySelectorAll('.wishlist-item').length;
+            if (itemCount === 0) {
+                showEmptyWishlist();
+            }
+        }
+
+        // Show empty wishlist state
+        function showEmptyWishlist() {
+            document.getElementById('wishlistGrid').style.display = 'none';
+            document.querySelector('.wishlist-controls').style.display = 'none';
+            document.getElementById('emptyWishlist').style.display = 'block';
+        }
+
+        // Share wishlist
+        document.querySelector('.btn-share').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'รายการที่ชื่นชอบของฉัน - Nisakorn Garden',
+                    text: 'ดูรายการผลไม้ที่ฉันชื่นชอบ',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('คัดลอกลิงก์รายการโปรดแล้ว!');
+                });
+            }
+        });
+
+        // Add fade out animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

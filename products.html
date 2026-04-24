@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สินค้า - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Products Page Specific Styles */
+        .products-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .products-hero h1 {
+            color: var(--white);
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .products-hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--font-size-lg);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-main {
+            padding: var(--spacing-16) 0;
+        }
+
+        .products-filters {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: var(--spacing-4);
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-3) var(--spacing-4) var(--spacing-3) 40px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--spacing-3);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+        }
+
+        .filter-select,
+        .sort-select {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: 4px;
+        }
+
+        .view-btn {
+            padding: var(--spacing-2) var(--spacing-3);
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            color: var(--gray-600);
+            transition: var(--transition-fast);
+        }
+
+        .view-btn.active {
+            background: var(--white);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .products-count {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-6);
+        }
+
+        .products-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .product-card.list-view {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: var(--spacing-4);
+            align-items: center;
+        }
+
+        .product-card.list-view .product-image {
+            height: 150px;
+        }
+
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .category-tag {
+            padding: var(--spacing-1) var(--spacing-3);
+            background: var(--gray-100);
+            color: var(--gray-600);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-top: var(--spacing-12);
+        }
+
+        .page-btn {
+            padding: var(--spacing-2) var(--spacing-3);
+            border: 1px solid var(--gray-300);
+            background: var(--white);
+            color: var(--gray-600);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .filter-row {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+            }
+
+            .filter-mobile {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-3);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: var(--spacing-4);
+            }
+
+            .product-card.list-view {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+            }
+
+            .category-tags {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: var(--spacing-2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link active">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Products Hero Section -->
+    <section class="products-hero">
+        <div class="container">
+            <h1>สินค้าของเรา</h1>
+            <p>ผลไม้สดใหม่คัดพิเศษ จากธรรมชาติ ส่งตรงถึงบ้านคุณ</p>
+        </div>
+    </section>
+
+    <!-- Products Main Content -->
+    <main class="products-main">
+        <div class="container">
+            <!-- Category Tags -->
+            <div class="category-tags">
+                <a href="#" class="category-tag active" data-category="all">ทั้งหมด</a>
+                <a href="#" class="category-tag" data-category="citrus">ส้ม-เขียวหวาน</a>
+                <a href="#" class="category-tag" data-category="tropical">ผลไม้เมืองร้อน</a>
+                <a href="#" class="category-tag" data-category="berry">เบอร์รี่</a>
+                <a href="#" class="category-tag" data-category="mixed">ผลไม้รวม</a>
+                <a href="#" class="category-tag" data-category="premium">พรีเมียม</a>
+                <a href="#" class="category-tag" data-category="organic">ออร์แกนิค</a>
+            </div>
+
+            <!-- Filters -->
+            <div class="products-filters">
+                <div class="filter-row">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="ค้นหาสินค้า..." id="searchInput">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">หมวดหมู่ทั้งหมด</option>
+                        <option value="citrus">ส้ม-เขียวหวาน</option>
+                        <option value="tropical">ผลไม้เมืองร้อน</option>
+                        <option value="berry">เบอร์รี่</option>
+                        <option value="mixed">ผลไม้รวม</option>
+                    </select>
+
+                    <select class="sort-select" id="sortSelect">
+                        <option value="name">เรียงตามชื่อ</option>
+                        <option value="price-low">ราคาต่ำ-สูง</option>
+                        <option value="price-high">ราคาสูง-ต่ำ</option>
+                        <option value="popular">ยอดนิยม</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Count -->
+            <div class="products-count">
+                แสดง <span id="currentCount">12</span> จาก <span id="totalCount">24</span> รายการ
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Product Cards -->
+                <div class="product-card" data-category="mixed" data-price="350" data-name="Mixed Fruit Box Premium">
+                    <div class="product-image">
+                        <a href="product-mixed-fruit-premium.html">
+                            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                        </a>
+                        <div class="product-badge">ขายดี</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-mixed-fruit-premium.html">Mixed Fruit Box Premium</a></h3>
+                        <p class="product-description">ผลไม้รวมคัดพิเศษ สำหรับ 2-3 คน</p>
+                        <div class="product-price">
+                            <span class="current-price">฿350</span>
+                            <span class="original-price">฿450</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="mixed-fruit-premium" data-price="350">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="citrus" data-price="280" data-name="ส้มโชกุน คัดพิเศษ">
+                    <div class="product-image">
+                        <a href="product-orange-shogun.html">
+                            <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                        </a>
+                        <div class="product-badge new">ใหม่</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-orange-shogun.html">ส้มโชกุน คัดพิเศษ</a></h3>
+                        <p class="product-description">ส้มหวานจากญี่ปุ่น 1 กิโลกรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿280</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="orange-shogun" data-price="280">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="berry" data-price="420" data-name="Berry Mix Organic">
+                    <div class="product-image">
+                        <a href="product-berry-mix-organic.html">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Berry Mix">
+                        </a>
+                        <div class="product-badge organic">ออร์แกนิค</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-berry-mix-organic.html">Berry Mix Organic</a></h3>
+                        <p class="product-description">เบอร์รี่รวมออร์แกนิค 500 กรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿420</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="berry-mix" data-price="420">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="tropical" data-price="450" data-name="Tropical Paradise Box">
+                    <div class="product-image">
+                        <a href="product-tropical-paradise.html">
+                            <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tropical Fruits">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-tropical-paradise.html">Tropical Paradise Box</a></h3>
+                        <p class="product-description">ผลไม้เมืองร้อน มะม่วง มะขาม ทุเรียน</p>
+                        <div class="product-price">
+                            <span class="current-price">฿450</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="tropical-box" data-price="450">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="citrus" data-price="220" data-name="มะนาวเขียวหวาน">
+                    <div class="product-image">
+                        <a href="product-green-lime.html">
+                            <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Green Lime">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-green-lime.html">มะนาวเขียวหวาน</a></h3>
+                        <p class="product-description">มะนาวสดใหม่ 500 กรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿220</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="green-lime" data-price="220">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="tropical" data-price="380" data-name="มะม่วงน้ำดอกไม้">
+                    <div class="product-image">
+                        <a href="product-mango-sweet.html">
+                            <img src="https://images.unsplash.com/photo-1553279531-a4d27ba6e392?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mango">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-mango-sweet.html">มะม่วงน้ำดอกไม้</a></h3>
+                        <p class="product-description">มะม่วงสุกหวาน 1 กิโลกรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿380</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="mango-sweet" data-price="380">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="berry" data-price="350" data-name="สตรอเบอร์รี่ญี่ปุ่น">
+                    <div class="product-image">
+                        <a href="product-strawberry-japan.html">
+                            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Strawberry">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-strawberry-japan.html">สตรอเบอร์รี่ญี่ปุ่น</a></h3>
+                        <p class="product-description">สตรอเบอร์รี่หวาน 250 กรัม</p>
+                        <div class="product-price">
+                            <span class="current-price">฿350</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="strawberry-japan" data-price="350">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="mixed" data-price="480" data-name="Healthy Mix Box">
+                    <div class="product-image">
+                        <a href="product-healthy-mix.html">
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Healthy Mix">
+                        </a>
+                        <div class="product-badge organic">ออร์แกนิค</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><a href="product-healthy-mix.html">Healthy Mix Box</a></h3>
+                        <p class="product-description">ผลไม้เพื่อสุขภาพ 5 ชนิด</p>
+                        <div class="product-price">
+                            <span class="current-price">฿480</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="healthy-mix" data-price="480">
+                            <i class="fas fa-cart-plus"></i> เพิ่มในตะกร้า
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-btn">&laquo;</a>
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <a href="#" class="page-btn">&raquo;</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Products Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsGrid = document.getElementById('productsGrid');
+            const productCards = document.querySelectorAll('.product-card');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortSelect = document.getElementById('sortSelect');
+            const searchInput = document.getElementById('searchInput');
+            const categoryTags = document.querySelectorAll('.category-tag');
+            const viewButtons = document.querySelectorAll('.view-btn');
+            const currentCount = document.getElementById('currentCount');
+            const totalCount = document.getElementById('totalCount');
+
+            // View Toggle
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    viewButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const view = this.dataset.view;
+                    if (view === 'list') {
+                        productsGrid.classList.add('list-view');
+                        productCards.forEach(card => card.classList.add('list-view'));
+                    } else {
+                        productsGrid.classList.remove('list-view');
+                        productCards.forEach(card => card.classList.remove('list-view'));
+                    }
+                });
+            });
+
+            // Category Filter
+            function filterProducts() {
+                const selectedCategory = categoryFilter.value;
+                const searchTerm = searchInput.value.toLowerCase();
+                let visibleCount = 0;
+
+                productCards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    const cardName = card.dataset.name.toLowerCase();
+
+                    const categoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
+                    const searchMatch = cardName.includes(searchTerm);
+
+                    if (categoryMatch && searchMatch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                currentCount.textContent = visibleCount;
+            }
+
+            // Sort Products
+            function sortProducts() {
+                const sortValue = sortSelect.value;
+                const cardsArray = Array.from(productCards);
+
+                cardsArray.sort((a, b) => {
+                    switch(sortValue) {
+                        case 'name':
+                            return a.dataset.name.localeCompare(b.dataset.name);
+                        case 'price-low':
+                            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                        case 'price-high':
+                            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                        default:
+                            return 0;
+                    }
+                });
+
+                cardsArray.forEach(card => {
+                    productsGrid.appendChild(card);
+                });
+            }
+
+            // Event Listeners
+            categoryFilter.addEventListener('change', filterProducts);
+            searchInput.addEventListener('input', filterProducts);
+            sortSelect.addEventListener('change', sortProducts);
+
+            // Category Tags
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    categoryTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const category = this.dataset.category;
+                    categoryFilter.value = category;
+                    filterProducts();
+                });
+            });
+
+            // Initialize
+            totalCount.textContent = productCards.length;
+            filterProducts();
+        });
+
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            const navLinks = nav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

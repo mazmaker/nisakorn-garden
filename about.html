@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link active">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="hero" style="min-height: 80vh;">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1 class="hero-title">เกี่ยวกับ <span class="highlight">Nisakorn Garden</span></h1>
+                    <p class="hero-description">เราคือผู้นำด้านผลไม้สดใหม่คุณภาพพรีเมียม ด้วยประสบการณ์มากกว่า 10 ปี ในการคัดสรรผลไม้สดจากธรรมชาติ</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fresh Fruits Farm" class="hero-img">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section style="padding: var(--spacing-20) 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-12); align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: var(--spacing-6);">เรื่องราวของเรา</h2>
+                    <p style="margin-bottom: var(--spacing-4); color: var(--gray-600); line-height: 1.7;">
+                        Nisakorn Garden ก่อตั้งขึ้นในปี 2014 ด้วยความมุ่งมั่นที่จะนำผลไม้สดใหม่คุณภาพสูงส่งตรงถึงมือผู้บริโภค เราเริ่มต้นจากสวนผลไม้เล็กๆ ในจังหวัดเชียงใหม่
+                    </p>
+                    <p style="margin-bottom: var(--spacing-4); color: var(--gray-600); line-height: 1.7;">
+                        ด้วยความใส่ใจในทุกรายละเอียด ตั้งแต่การปลูก การเก็บเกี่ยว ไปจนถึงการจัดส่ง เราได้สร้างความเชื่อมั่นให้กับลูกค้ามากกว่า 10,000 ครอบครัวทั่วประเทศไทย
+                    </p>
+                    <div style="display: flex; gap: var(--spacing-4); margin-top: var(--spacing-6);">
+                        <div style="text-align: center;">
+                            <div style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--primary-color);">10+</div>
+                            <div style="color: var(--gray-600); font-size: var(--font-size-sm);">ปีประสบการณ์</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--primary-color);">50+</div>
+                            <div style="color: var(--gray-600); font-size: var(--font-size-sm);">ชนิดผลไม้</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--primary-color);">10K+</div>
+                            <div style="color: var(--gray-600); font-size: var(--font-size-sm);">ลูกค้าพอใจ</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Farm Story" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section style="padding: var(--spacing-20) 0; background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">พันธกิจและวิสัยทัศน์</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-8);">
+                <div style="background: var(--white); padding: var(--spacing-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--primary-light); color: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-6); font-size: var(--font-size-3xl);">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-xl); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-4);">พันธกิจ</h3>
+                    <p style="color: var(--gray-600); line-height: 1.7;">
+                        มุ่งมั่นที่จะส่งมอบผลไม้สดใหม่คุณภาพสูงให้กับทุกครอบครัว ด้วยความปลอดภัย ความสะอาด และความหวานธรรมชาติ
+                    </p>
+                </div>
+
+                <div style="background: var(--white); padding: var(--spacing-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--secondary-color); color: var(--white); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-6); font-size: var(--font-size-3xl);">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-xl); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-4);">วิสัยทัศน์</h3>
+                    <p style="color: var(--gray-600); line-height: 1.7;">
+                        เป็นผู้นำด้านผลไม้สดออนไลน์ในประเทศไทย และขยายสู่ตลาดอาเซียน ภายในปี 2030
+                    </p>
+                </div>
+
+                <div style="background: var(--white); padding: var(--spacing-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--accent-color); color: var(--white); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-6); font-size: var(--font-size-3xl);">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-xl); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-4);">ค่านิยม</h3>
+                    <p style="color: var(--gray-600); line-height: 1.7;">
+                        ความใส่ใจ ความจริงใจ และความรับผิดชอบต่อสังคมและสิ่งแวดล้อม เป็นหัวใจของการทำงาน
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Process Section -->
+    <section style="padding: var(--spacing-20) 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">กระบวนการคุณภาพ</h2>
+                <p class="section-subtitle">ทุกขั้นตอนได้รับการดูแลอย่างใส่ใจเพื่อความสดใหม่และปลอดภัยสูงสุด</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6);">
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--primary-light); color: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-4); font-size: var(--font-size-4xl);">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-3);">การปลูก</h3>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">ปลูกด้วยวิธีธรรมชาติ ไม่ใช้สารเคมี ดูแลด้วยใจรัก</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--primary-light); color: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-4); font-size: var(--font-size-4xl);">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-3);">การเก็บเกี่ยว</h3>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">เก็บในช่วงที่สุกพอดี เก็บด้วยมือเพื่อความนุ่มนวล</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--primary-light); color: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-4); font-size: var(--font-size-4xl);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-3);">การคัดสรร</h3>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">คัดสรรทีละผล ตรวจสอบคุณภาพด้วยมาตรฐาน ISO</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--primary-light); color: var(--primary-color); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-4); font-size: var(--font-size-4xl);">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-3);">การจัดส่ง</h3>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">บรรจุภัณฑ์พิเศษ จัดส่งเร็วทั่วประเทศ รักษาความสด</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section style="padding: var(--spacing-20) 0; background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">มาตรฐานและใบรับรอง</h2>
+                <p class="section-subtitle">เราได้รับการรับรองคุณภาพและความปลอดภัยจากหน่วยงานที่เชื่อถือได้</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-6); align-items: center;">
+                <div style="text-align: center; padding: var(--spacing-6);">
+                    <img src="https://via.placeholder.com/120x120/48bb78/ffffff?text=HACCP" alt="HACCP Certificate" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: var(--spacing-3);">
+                    <h4 style="font-weight: 600; color: var(--gray-700);">HACCP</h4>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">ระบบควบคุมอันตราย</p>
+                </div>
+
+                <div style="text-align: center; padding: var(--spacing-6);">
+                    <img src="https://via.placeholder.com/120x120/4299e1/ffffff?text=GMP" alt="GMP Certificate" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: var(--spacing-3);">
+                    <h4 style="font-weight: 600; color: var(--gray-700);">GMP</h4>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">การปฏิบัติที่ดี</p>
+                </div>
+
+                <div style="text-align: center; padding: var(--spacing-6);">
+                    <img src="https://via.placeholder.com/120x120/ed8936/ffffff?text=ORGANIC" alt="Organic Certificate" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: var(--spacing-3);">
+                    <h4 style="font-weight: 600; color: var(--gray-700);">ORGANIC</h4>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">ผลิตภัณฑ์ออร์แกนิค</p>
+                </div>
+
+                <div style="text-align: center; padding: var(--spacing-6);">
+                    <img src="https://via.placeholder.com/120x120/e53e3e/ffffff?text=ISO" alt="ISO Certificate" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: var(--spacing-3);">
+                    <h4 style="font-weight: 600; color: var(--gray-700);">ISO 22000</h4>
+                    <p style="font-size: var(--font-size-sm); color: var(--gray-600);">ระบบจัดการความปลอดภัย</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section style="padding: var(--spacing-20) 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ทีมงานของเรา</h2>
+                <p class="section-subtitle">ทีมผู้เชี่ยวชาญที่มีประสบการณ์และใส่ใจในทุกรายละเอียด</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6);">
+                <div style="text-align: center; background: var(--white); padding: var(--spacing-6); border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="CEO" style="width: 120px; height: 120px; border-radius: var(--radius-full); object-fit: cover; margin-bottom: var(--spacing-4);">
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-1);">คุณนิสากรณ์ ใจดี</h3>
+                    <p style="color: var(--primary-color); font-weight: 500; margin-bottom: var(--spacing-3);">ผู้ก่อตั้งและกรรมการผู้จัดการ</p>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">ประสบการณ์ 15 ปีในธุรกิจผลไม้ มุ่งมั่นสร้างสรรค์ผลไม้คุณภาพสู่ผู้บริโภค</p>
+                </div>
+
+                <div style="text-align: center; background: var(--white); padding: var(--spacing-6); border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Quality Manager" style="width: 120px; height: 120px; border-radius: var(--radius-full); object-fit: cover; margin-bottom: var(--spacing-4);">
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-1);">คุณสุดา คุณภาพ</h3>
+                    <p style="color: var(--primary-color); font-weight: 500; margin-bottom: var(--spacing-3);">ผู้จัดการฝ่ายคุณภาพ</p>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">ผู้เชี่ยวชาญด้านมาตรฐานอาหาร ดูแลคุณภาพผลิตภัณฑ์ทุกขั้นตอน</p>
+                </div>
+
+                <div style="text-align: center; background: var(--white); padding: var(--spacing-6); border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Farm Manager" style="width: 120px; height: 120px; border-radius: var(--radius-full); object-fit: cover; margin-bottom: var(--spacing-4);">
+                    <h3 style="font-size: var(--font-size-lg); font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-1);">คุณวิชัย เกษตรกรรม</h3>
+                    <p style="color: var(--primary-color); font-weight: 500; margin-bottom: var(--spacing-3);">ผู้จัดการฝ่ายเกษตร</p>
+                    <p style="color: var(--gray-600); font-size: var(--font-size-sm);">เกษตรกรมือโปร ผู้ดูแลการปลูกและเก็บเกี่ยวผลไม้ด้วยความประณีต</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                const navLinks = nav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

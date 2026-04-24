@@ -1,0 +1,32 @@
+{
+  "name": "nisakorn-garden",
+  "version": "1.0.0",
+  "description": "🌿 Nisakorn Garden E-Commerce Platform Demo",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "dev-node": "npx http-server -p 8000",
+    "deploy": "vercel",
+    "deploy-prod": "vercel --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mazmaker/nisakorn-garden.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "b2b",
+    "b2c",
+    "fruit",
+    "dashboard",
+    "html",
+    "css",
+    "javascript",
+    "thai"
+  ],
+  "author": "MAZ Brand & Marketing",
+  "license": "MIT",
+  "homepage": "https://github.com/mazmaker/nisakorn-garden#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}

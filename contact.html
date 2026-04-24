@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="home.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="my-account.html" class="search-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="search-btn">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h1 class="hero-title">ติดต่อเรา</h1>
+                    <p class="hero-description">พร้อมให้บริการและตอบคำถามทุกข้อสงสัย ทีมงานมืออาชีพยินดีให้คำปรึกษา</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Contact Information -->
+    <section style="padding: var(--spacing-16) 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-12); align-items: start;">
+                <!-- Contact Form -->
+                <div>
+                    <h2 style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--gray-800); margin-bottom: var(--spacing-6);">ส่งข้อความถึงเรา</h2>
+
+                    <form style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                            <div>
+                                <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">ชื่อ</label>
+                                <input type="text" required style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base); transition: var(--transition-fast);" placeholder="กรอกชื่อของคุณ">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">นามสกุล</label>
+                                <input type="text" required style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base); transition: var(--transition-fast);" placeholder="กรอกนามสกุลของคุณ">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">อีเมล</label>
+                            <input type="email" required style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base); transition: var(--transition-fast);" placeholder="กรอกอีเมลของคุณ">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">เบอร์โทรศัพท์</label>
+                            <input type="tel" style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base); transition: var(--transition-fast);" placeholder="กรอกเบอร์โทรศัพท์">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">หัวข้อ</label>
+                            <select style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base);">
+                                <option value="">เลือกหัวข้อที่ต้องการติดต่อ</option>
+                                <option value="general">สอบถามทั่วไป</option>
+                                <option value="order">เกี่ยวกับการสั่งซื้อ</option>
+                                <option value="delivery">เกี่ยวกับการจัดส่ง</option>
+                                <option value="quality">เกี่ยวกับคุณภาพสินค้า</option>
+                                <option value="b2b">ติดต่อธุรกิจ B2B</option>
+                                <option value="complaint">ร้องเรียน</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: var(--spacing-2); color: var(--gray-700); font-weight: 500;">ข้อความ</label>
+                            <textarea rows="6" required style="width: 100%; padding: var(--spacing-3) var(--spacing-4); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-size: var(--font-size-base); resize: vertical; transition: var(--transition-fast);" placeholder="กรอกข้อความที่ต้องการสอบถาม..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="padding: var(--spacing-4) var(--spacing-6); font-size: var(--font-size-lg);">
+                            <i class="fas fa-paper-plane"></i> ส่งข้อความ
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h2 style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--gray-800); margin-bottom: var(--spacing-6);">ข้อมูลติดต่อ</h2>
+
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-6);">
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--primary-color); color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-2);">ที่อยู่</h3>
+                                <p style="color: var(--gray-600); line-height: 1.6;">123 ถนนผลไม้ แขวงสวนส้ม<br>เขตวังผลไม้ กรุงเทพมหานคร 10200</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--secondary-color); color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-2);">เบอร์โทรศัพท์</h3>
+                                <p style="color: var(--gray-600);"><strong>สายหลัก:</strong> 02-123-4567</p>
+                                <p style="color: var(--gray-600);"><strong>มือถือ:</strong> 089-123-4567</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--accent-color); color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-2);">อีเมล</h3>
+                                <p style="color: var(--gray-600);"><strong>ทั่วไป:</strong> hello@nisakorngarden.com</p>
+                                <p style="color: var(--gray-600);"><strong>การขาย:</strong> sales@nisakorngarden.com</p>
+                                <p style="color: var(--gray-600);"><strong>ธุรกิจ B2B:</strong> b2b@nisakorngarden.com</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--primary-dark); color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-2);">เวลาทำการ</h3>
+                                <p style="color: var(--gray-600);"><strong>จันทร์ - ศุกร์:</strong> 08:00 - 18:00 น.</p>
+                                <p style="color: var(--gray-600);"><strong>เสาร์ - อาทิตย์:</strong> 09:00 - 17:00 น.</p>
+                                <p style="color: var(--gray-600); margin-top: var(--spacing-2); font-size: var(--font-size-sm);">
+                                    <i class="fas fa-info-circle"></i> รับคำสั่งซื้อออนไลน์ 24 ชั่วโมง
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div style="margin-top: var(--spacing-8);">
+                        <h3 style="font-weight: 600; color: var(--gray-800); margin-bottom: var(--spacing-4);">ติดตามเราได้ที่</h3>
+                        <div style="display: flex; gap: var(--spacing-3);">
+                            <a href="#" style="width: 50px; height: 50px; background: #1877f2; color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition-fast);">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" style="width: 50px; height: 50px; background: #E4405F; color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition-fast);">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" style="width: 50px; height: 50px; background: #00B900; color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition-fast);">
+                                <i class="fab fa-line"></i>
+                            </a>
+                            <a href="#" style="width: 50px; height: 50px; background: #1DA1F2; color: var(--white); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition-fast);">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section style="padding: var(--spacing-16) 0; background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">แผนที่ที่ตั้ง</h2>
+                <p class="section-subtitle">เลข 123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กรุงเทพมหานคร</p>
+            </div>
+
+            <div style="height: 400px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg);">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5069892634653!2d100.5376!3d13.7463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2991b87ce7d51%3A0x4ac6d52f1d8ec01!2sCentralWorld!5e0!3m2!1sen!2sth!4v1635000000000!5m2!1sen!2sth"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: var(--spacing-16) 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คำถามที่พบบ่อย</h2>
+                <p class="section-subtitle">คำตอบสำหรับคำถามที่ลูกค้าสงสัยบ่อยที่สุด</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                    <details style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--spacing-6);">
+                        <summary style="font-weight: 600; color: var(--gray-800); cursor: pointer; margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-question-circle" style="color: var(--primary-color); margin-right: var(--spacing-2);"></i>
+                            จัดส่งฟรีตั้งแต่เท่าไหร่?
+                        </summary>
+                        <p style="color: var(--gray-600); line-height: 1.6; margin-left: var(--spacing-6);">
+                            เราให้บริการจัดส่งฟรีสำหรับคำสั่งซื้อตั้งแต่ 500 บาทขึ้นไป ในเขตกรุงเทพมหานครและปริมณฑล สำหรับต่างจังหวัดจัดส่งฟรีตั้งแต่ 1,000 บาท
+                        </p>
+                    </details>
+
+                    <details style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--spacing-6);">
+                        <summary style="font-weight: 600; color: var(--gray-800); cursor: pointer; margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-question-circle" style="color: var(--primary-color); margin-right: var(--spacing-2);"></i>
+                            ผลไม้สามารถเก็บได้นานแค่ไหน?
+                        </summary>
+                        <p style="color: var(--gray-600); line-height: 1.6; margin-left: var(--spacing-6);">
+                            ผลไม้ของเราสามารถเก็บไว้ในตู้เย็นได้ 3-7 วัน ขึ้นอยู่กับชนิดของผลไม้ เราแนะนำให้รับประทานภายใน 2-3 วันเพื่อความสดใหม่ที่ดีที่สุด
+                        </p>
+                    </details>
+
+                    <details style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--spacing-6);">
+                        <summary style="font-weight: 600; color: var(--gray-800); cursor: pointer; margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-question-circle" style="color: var(--primary-color); margin-right: var(--spacing-2);"></i>
+                            สามารถเปลี่ยน/คืนสินค้าได้หรือไม่?
+                        </summary>
+                        <p style="color: var(--gray-600); line-height: 1.6; margin-left: var(--spacing-6);">
+                            เราให้การรับประกันคุณภาพ 100% หากได้รับสินค้าไม่ตรงตามคุณภาพที่คาดหวัง สามารถติดต่อเราภายใน 24 ชั่วโมงหลังรับของ เราจะดำเนินการแก้ไขให้ทันที
+                        </p>
+                    </details>
+
+                    <details style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--spacing-6);">
+                        <summary style="font-weight: 600; color: var(--gray-800); cursor: pointer; margin-bottom: var(--spacing-3);">
+                            <i class="fas fa-question-circle" style="color: var(--primary-color); margin-right: var(--spacing-2);"></i>
+                            มีการจัดส่งแบบเร่งด่วนหรือไม่?
+                        </summary>
+                        <p style="color: var(--gray-600); line-height: 1.6; margin-left: var(--spacing-6);">
+                            มีครับ เราให้บริการจัดส่งด่วนภายใน 2-4 ชั่วโมงในเขตกรุงเทพมหานคร โดยมีค่าบริการเพิ่มเติม 100 บาท สามารถเลือกบริการนี้ได้เมื่อชำระเงิน
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <style>
+        /* Contact Form Focus Styles */
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary-color) !important;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+        }
+
+        /* FAQ Styles */
+        details[open] summary {
+            margin-bottom: var(--spacing-4);
+            color: var(--primary-color);
+        }
+
+        details summary:hover {
+            color: var(--primary-color);
+        }
+
+        /* Social Links Hover */
+        .social-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-content .container > div {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-8) !important;
+            }
+
+            .contact-form-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                const navLinks = nav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

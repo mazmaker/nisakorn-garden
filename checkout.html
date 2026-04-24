@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระเงิน - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Checkout Page Styles */
+        .checkout-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .checkout-hero h1 {
+            color: var(--white);
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-8);
+            margin-top: var(--spacing-6);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .step.active {
+            color: var(--white);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .checkout-main {
+            padding: var(--spacing-16) 0;
+            background: var(--gray-50);
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .checkout-form {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-section {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .section-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-6);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .form-label.required::after {
+            content: '*';
+            color: var(--primary-color);
+            margin-left: 4px;
+        }
+
+        .form-input {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-input:invalid {
+            border-color: #ef4444;
+        }
+
+        .form-select {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .delivery-options {
+            display: grid;
+            gap: var(--spacing-3);
+        }
+
+        .delivery-option {
+            padding: var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delivery-option:hover,
+        .delivery-option.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .delivery-info h4 {
+            margin-bottom: var(--spacing-1);
+        }
+
+        .delivery-info p {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        .delivery-price {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+        }
+
+        .payment-methods {
+            display: grid;
+            gap: var(--spacing-3);
+        }
+
+        .payment-method {
+            padding: var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--primary-color);
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            background: var(--gray-100);
+        }
+
+        .payment-method.selected .payment-icon {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .credit-card-form {
+            display: none;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-4);
+            padding: var(--spacing-4);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+        }
+
+        .credit-card-form.active {
+            display: grid;
+        }
+
+        .order-summary {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            box-shadow: var(--shadow-lg);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .summary-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .item-quantity {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .summary-totals {
+            padding-top: var(--spacing-4);
+            margin-top: var(--spacing-4);
+            border-top: 2px solid var(--gray-200);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .total-row.grand-total {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--primary-color);
+            border-top: 1px solid var(--gray-200);
+            padding-top: var(--spacing-3);
+            margin-top: var(--spacing-3);
+        }
+
+        .promo-code {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .promo-input-group {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+        }
+
+        .apply-promo-btn {
+            padding: var(--spacing-3) var(--spacing-4);
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: var(--spacing-4) var(--spacing-6);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+
+        .place-order-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .place-order-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+        }
+
+        .security-info {
+            margin-top: var(--spacing-4);
+            padding: var(--spacing-3);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 4px;
+        }
+
+        .checkbox-group label {
+            font-size: var(--font-size-sm);
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-1);
+        }
+
+        .success-message {
+            color: var(--secondary-color);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-1);
+        }
+
+        @media (max-width: 968px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .checkout-steps {
+                flex-direction: column;
+                gap: var(--spacing-3);
+                text-align: left;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkout-form,
+            .order-summary {
+                padding: var(--spacing-4);
+            }
+
+            .credit-card-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: var(--spacing-3); text-decoration: none; color: var(--gray-900);">
+                        <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                        <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--gray-900);">Nisakorn Garden</span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">สินค้า</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">แกลเลอรี่</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+                    <li class="nav-item"><a href="b2b.html" class="nav-link">B2B</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <div class="user-menu">
+                        <span class="user-name">สวัสดี, สุดา</span>
+                        <div class="user-dropdown">
+                            <a href="my-account.html">บัญชีของฉัน</a>
+                            <a href="orders.html">คำสั่งซื้อ</a>
+                            <a href="profile.html">โปรไฟล์</a>
+                            <a href="wishlist.html">สินค้าที่ถูกใจ</a>
+                            <a href="#" onclick="logout()">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Checkout Hero -->
+    <section class="checkout-hero">
+        <div class="container">
+            <h1>ชำระเงิน</h1>
+            <div class="checkout-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <span>ตะกร้าสินค้า</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>ข้อมูลการจัดส่ง</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>การชำระเงิน</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>เสร็จสิ้น</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Main -->
+    <section class="checkout-main">
+        <div class="container">
+            <div class="checkout-container">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <form id="checkoutForm">
+                        <!-- Customer Information -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-user section-icon"></i>
+                                ข้อมูลลูกค้า
+                            </h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label required">ชื่อ</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input" value="สุดา" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label required">นามสกุล</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input" value="ใจดี" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label required">อีเมล</label>
+                                    <input type="email" id="email" name="email" class="form-input" value="suda@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="form-label required">เบอร์โทรศัพท์</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" value="081-234-5678" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Information -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-truck section-icon"></i>
+                                ที่อยู่จัดส่ง
+                            </h2>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="address" class="form-label required">ที่อยู่</label>
+                                    <input type="text" id="address" name="address" class="form-input" placeholder="บ้านเลขที่ ซอย ถนน" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="district" class="form-label required">แขวง/ตำบล</label>
+                                    <input type="text" id="district" name="district" class="form-input" placeholder="แขวง/ตำบล" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subdistrict" class="form-label required">เขต/อำเภอ</label>
+                                    <input type="text" id="subdistrict" name="subdistrict" class="form-input" placeholder="เขต/อำเภอ" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="province" class="form-label required">จังหวัด</label>
+                                    <select id="province" name="province" class="form-select" required>
+                                        <option value="">เลือกจังหวัด</option>
+                                        <option value="กรุงเทพฯ" selected>กรุงเทพมหานคร</option>
+                                        <option value="นนทบุรี">นนทบุรี</option>
+                                        <option value="ปทุมธานี">ปทุมธานี</option>
+                                        <option value="สมุทรปราการ">สมุทรปราการ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postalCode" class="form-label required">รหัสไปรษณีย์</label>
+                                    <input type="text" id="postalCode" name="postalCode" class="form-input" placeholder="12345" maxlength="5" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="specialInstructions" class="form-label">คำแนะนำพิเศษ (ไม่บังคับ)</label>
+                                    <textarea id="specialInstructions" name="specialInstructions" class="form-textarea" placeholder="เช่น อาคาร ชั้น คำแนะนำการจัดส่ง"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Options -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-clock section-icon"></i>
+                                ตัวเลือกการจัดส่ง
+                            </h2>
+                            <div class="delivery-options">
+                                <div class="delivery-option selected" data-price="0">
+                                    <div class="delivery-info">
+                                        <h4>จัดส่งมาตรฐาน</h4>
+                                        <p>ภายใน 2-4 ชั่วโมง (8:00-18:00 น.)</p>
+                                    </div>
+                                    <div class="delivery-price">ฟรี</div>
+                                </div>
+                                <div class="delivery-option" data-price="50">
+                                    <div class="delivery-info">
+                                        <h4>จัดส่งด่วน</h4>
+                                        <p>ภายใน 1-2 ชั่วโมง (8:00-20:00 น.)</p>
+                                    </div>
+                                    <div class="delivery-price">฿50</div>
+                                </div>
+                                <div class="delivery-option" data-price="30">
+                                    <div class="delivery-info">
+                                        <h4>นัดหมายเวลา</h4>
+                                        <p>เลือกวันและเวลาที่สะดวก</p>
+                                    </div>
+                                    <div class="delivery-price">฿30</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-credit-card section-icon"></i>
+                                วิธีการชำระเงิน
+                            </h2>
+                            <div class="payment-methods">
+                                <div class="payment-method selected" data-method="credit-card">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div>
+                                        <h4>บัตรเครดิต/เดบิต</h4>
+                                        <p style="font-size: var(--font-size-sm); color: var(--gray-600);">Visa, MasterCard, JCB</p>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="promptpay">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                    <div>
+                                        <h4>PromptPay QR Code</h4>
+                                        <p style="font-size: var(--font-size-sm); color: var(--gray-600);">สแกนจ่ายผ่าน Mobile Banking</p>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="bank-transfer">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div>
+                                        <h4>โอนเงินผ่านธนาคาร</h4>
+                                        <p style="font-size: var(--font-size-sm); color: var(--gray-600);">โอนเงินและแจ้งหลักฐาน</p>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="cod">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div>
+                                        <h4>เก็บเงินปลายทาง</h4>
+                                        <p style="font-size: var(--font-size-sm); color: var(--gray-600);">จ่ายเงินสดเมื่อได้รับสินค้า</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Credit Card Form -->
+                            <div id="creditCardForm" class="credit-card-form active">
+                                <div class="form-group">
+                                    <label for="cardNumber" class="form-label required">หมายเลขบัตร</label>
+                                    <input type="text" id="cardNumber" name="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expiryDate" class="form-label required">วันหมดอายุ</label>
+                                    <input type="text" id="expiryDate" name="expiryDate" class="form-input" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv" class="form-label required">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" maxlength="4">
+                                </div>
+                                <div class="form-group full-width" style="grid-column: 1 / -1;">
+                                    <label for="cardName" class="form-label required">ชื่อบนบัตร</label>
+                                    <input type="text" id="cardName" name="cardName" class="form-input" placeholder="ชื่อที่ปรากฏบนบัตร">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                            <label for="acceptTerms">ฉันยอมรับ <a href="#" style="color: var(--primary-color);">ข้อกำหนดและเงื่อนไข</a> และ <a href="#" style="color: var(--primary-color);">นโยบายความเป็นส่วนตัว</a></label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="subscribeNews" name="subscribeNews">
+                            <label for="subscribeNews">รับข่าวสารและโปรโมชันจาก Nisakorn Garden</label>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3 class="summary-title">สรุปคำสั่งซื้อ</h3>
+
+                    <!-- Order Items -->
+                    <div class="summary-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mixed Fruit Box">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Mixed Fruit Box Premium</div>
+                            <div class="item-quantity">จำนวน: 2</div>
+                        </div>
+                        <div class="item-price">฿700</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Orange Box">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">ส้มโชกุน คัดพิเศษ</div>
+                            <div class="item-quantity">จำนวน: 1</div>
+                        </div>
+                        <div class="item-price">฿280</div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-code">
+                        <div class="promo-input-group">
+                            <input type="text" class="promo-input" placeholder="รหัสส่วนลด" id="promoCode">
+                            <button type="button" class="apply-promo-btn" onclick="applyPromoCode()">ใช้รหัส</button>
+                        </div>
+                        <div id="promoMessage"></div>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="summary-totals">
+                        <div class="total-row">
+                            <span>ยอดรวมสินค้า:</span>
+                            <span id="subtotal">฿980</span>
+                        </div>
+                        <div class="total-row">
+                            <span>ค่าจัดส่ง:</span>
+                            <span id="shippingCost">ฟรี</span>
+                        </div>
+                        <div class="total-row" id="discountRow" style="display: none;">
+                            <span>ส่วนลด:</span>
+                            <span id="discountAmount">-฿0</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>ยอดรวมทั้งหมด:</span>
+                            <span id="grandTotal">฿980</span>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button type="button" class="place-order-btn" onclick="placeOrder()">
+                        <i class="fas fa-lock"></i>
+                        สั่งซื้อและชำระเงิน
+                    </button>
+
+                    <!-- Security Info -->
+                    <div class="security-info">
+                        <i class="fas fa-shield-check" style="color: var(--secondary-color); margin-right: var(--spacing-1);"></i>
+                        การสั่งซื้อของคุณได้รับการป้องกันด้วย SSL Encryption
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-4);">
+                            <i class="fas fa-leaf" style="font-size: var(--font-size-2xl); color: var(--secondary-color);"></i>
+                            <span style="font-size: var(--font-size-xl); font-weight: 700; color: var(--white);">Nisakorn Garden</span>
+                        </div>
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Checkout page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Delivery option selection
+            const deliveryOptions = document.querySelectorAll('.delivery-option');
+            deliveryOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    deliveryOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateShippingCost();
+                });
+            });
+
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const creditCardForm = document.getElementById('creditCardForm');
+
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    const selectedMethod = this.dataset.method;
+                    if (selectedMethod === 'credit-card') {
+                        creditCardForm.classList.add('active');
+                    } else {
+                        creditCardForm.classList.remove('active');
+                    }
+                });
+            });
+
+            // Credit card formatting
+            const cardNumberInput = document.getElementById('cardNumber');
+            const expiryDateInput = document.getElementById('expiryDate');
+            const cvvInput = document.getElementById('cvv');
+
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    if (formattedValue.length > 19) formattedValue = formattedValue.substr(0, 19);
+                    e.target.value = formattedValue;
+                });
+            }
+
+            if (expiryDateInput) {
+                expiryDateInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+
+            if (cvvInput) {
+                cvvInput.addEventListener('input', function(e) {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                });
+            }
+
+            // Postal code validation
+            const postalCodeInput = document.getElementById('postalCode');
+            if (postalCodeInput) {
+                postalCodeInput.addEventListener('input', function(e) {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                });
+            }
+        });
+
+        function updateShippingCost() {
+            const selectedDelivery = document.querySelector('.delivery-option.selected');
+            const shippingPrice = parseInt(selectedDelivery.dataset.price) || 0;
+            const shippingCostElement = document.getElementById('shippingCost');
+
+            if (shippingPrice === 0) {
+                shippingCostElement.textContent = 'ฟรี';
+            } else {
+                shippingCostElement.textContent = `฿${shippingPrice}`;
+            }
+
+            updateGrandTotal();
+        }
+
+        function applyPromoCode() {
+            const promoCode = document.getElementById('promoCode').value;
+            const promoMessage = document.getElementById('promoMessage');
+            const discountRow = document.getElementById('discountRow');
+            const discountAmount = document.getElementById('discountAmount');
+
+            // Simulate promo code validation
+            const promoCodes = {
+                'WELCOME10': { discount: 98, message: 'ส่วนลด 10% สำหรับลูกค้าใหม่!' },
+                'FRUIT20': { discount: 196, message: 'ส่วนลด 20% สำหรับผลไม้!' },
+                'SAVE50': { discount: 50, message: 'ส่วนลด ฿50!' }
+            };
+
+            if (promoCodes[promoCode]) {
+                const discount = promoCodes[promoCode].discount;
+                discountAmount.textContent = `-฿${discount}`;
+                discountRow.style.display = 'flex';
+                promoMessage.innerHTML = `<div class="success-message">${promoCodes[promoCode].message}</div>`;
+            } else if (promoCode) {
+                promoMessage.innerHTML = '<div class="error-message">รหัสส่วนลดไม่ถูกต้อง</div>';
+                discountRow.style.display = 'none';
+            }
+
+            updateGrandTotal();
+        }
+
+        function updateGrandTotal() {
+            const subtotal = 980;
+            const selectedDelivery = document.querySelector('.delivery-option.selected');
+            const shippingCost = parseInt(selectedDelivery.dataset.price) || 0;
+            const discountElement = document.getElementById('discountAmount');
+            const discount = discountElement ? parseInt(discountElement.textContent.replace(/[^0-9]/g, '')) || 0 : 0;
+
+            const grandTotal = subtotal + shippingCost - discount;
+            document.getElementById('grandTotal').textContent = `฿${grandTotal.toLocaleString()}`;
+        }
+
+        function validateForm() {
+            const form = document.getElementById('checkoutForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--gray-200)';
+                }
+            });
+
+            return isValid;
+        }
+
+        function placeOrder() {
+            if (!validateForm()) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            if (!acceptTerms) {
+                alert('กรุณายอมรับข้อกำหนดและเงื่อนไข');
+                return;
+            }
+
+            // Simulate order processing
+            const placeOrderBtn = document.querySelector('.place-order-btn');
+            placeOrderBtn.disabled = true;
+            placeOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังประมวลผล...';
+
+            setTimeout(() => {
+                // Redirect to order confirmation
+                window.location.href = 'order-confirmation.html?order=NG' + Date.now();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

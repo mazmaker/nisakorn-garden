@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Mix Box - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        <span>Nisakorn Garden</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                    <a href="b2b.html">B2B</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="home.html"><i class="fas fa-home"></i> หน้าแรก</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">สินค้า</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html?category=mixed">ผลไม้รวม</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Healthy Mix Box</span>
+        </nav>
+
+        <!-- Product Detail Header -->
+        <div class="product-detail-header">
+            <div class="product-images">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Healthy Mix Box" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Healthy Mix 1" class="thumbnail active" onclick="changeMainImage('https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="เบอร์รี่" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้รวม" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1506906506198-2a3c67e7befc?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผักใบเขียว" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1506906506198-2a3c67e7befc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">Healthy Mix Box</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-text">(4.8 จาก 143 รีวิว)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">฿480</span>
+                </div>
+
+                <div class="product-description">
+                    <p>กล่องผลไม้เพื่อสุขภาพ 100% ออร์แกนิค รวมผลไม้ 5 ชนิด ที่คัดสรรมาเป็นพิเศษเพื่อผู้ที่ใส่ใจสุขภาพ อุดมด้วยวิตามิน แร่ธาตุ และสารต้านอนุมูลอิสระ เหมาะสำหรับคนรักสุขภาพและผู้ที่ต้องการควบคุมน้ำหนัก</p>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">ขนาด:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn" data-price="320">เล็ก (3 ชนิด) - ฿320</button>
+                            <button class="option-btn active" data-price="480">กลาง (5 ชนิด) - ฿480</button>
+                            <button class="option-btn" data-price="720">ใหญ่ (7 ชนิด) - ฿720</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">โปรแกรม:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">Detox & Cleanse</button>
+                            <button class="option-btn">Weight Control</button>
+                            <button class="option-btn">Energy Boost</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label class="option-label">จำนวน:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="wishlist-btn" onclick="toggleWishlist()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features" style="margin-top: 1.5rem;">
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-leaf" style="color: var(--secondary-color);"></i>
+                        <span>100% ออร์แกนิค รับรองมาตรฐาน</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-heart" style="color: var(--secondary-color);"></i>
+                        <span>เพื่อสุขภาพที่ดี โภชนาการครบ</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-shipping-fast" style="color: var(--secondary-color);"></i>
+                        <span>จัดส่งฟรี สำหรับการสั่งซื้อขั้นต่ำ ฿500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('description')">รายละเอียด</button>
+                <button class="tab-btn" onclick="showTab('nutrition')">คุณค่าทางโภชนาการ</button>
+                <button class="tab-btn" onclick="showTab('reviews')">รีวิว (143)</button>
+                <button class="tab-btn" onclick="showTab('shipping')">การจัดส่ง</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>รายละเอียดสินค้า</h3>
+                <p>Healthy Mix Box เป็นกล่องผลไม้เพื่อสุขภาพที่คัดสรรมาเป็นพิเศษสำหรับผู้ที่ใส่ใจสุขภาพ อุดมไปด้วยสารอาหารที่จำเป็นต่อร่างกาย ช่วยเสริมสร้างภูมิคุ้มกัน ดีท็อกซ์ร่างกาย และควบคุมน้ำหนัก</p>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">ประกอบด้วยผลไม้ 5 ชนิด:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>บลูเบอร์รี่ออร์แกนิค - อุดมด้วยแอนโธไซยานิน ต้านอนุมูลอิสระ</li>
+                    <li>สตรอเบอร์รี่ออร์แกนิค - วิตามิน C สูง เสริมภูมิคุ้มกัน</li>
+                    <li>กีวีออร์แกนิค - วิตามิน C และ E ช่วยบำรุงผิว</li>
+                    <li>แอปเปิ้ลเขียวออร์แกนิค - ใยอาหารสูง ช่วยระบบย่อย</li>
+                    <li>อะโวคาโดออร์แกนิค - ไขมันดี ช่วยดูดซึมวิตามิน</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">จุดเด่น:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>คัดสรรผลไม้ที่มีประโยชน์สูงต่อสุขภาพ</li>
+                    <li>100% ออร์แกนิค ปลอดสารเคมี</li>
+                    <li>อุดมด้วยสารต้านอนุมูลอิสระ</li>
+                    <li>เหมาะสำหรับผู้ที่ต้องการดีท็อกซ์</li>
+                    <li>ช่วยเสริมสร้างภูมิคุ้มกันในยุค New Normal</li>
+                    <li>แคลอรี่ต่ำ เหมาะสำหรับคนควบคุมน้ำหนัก</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">คำแนะนำการบริโภค:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>รับประทานเป็นมื้อเช้าแทนข้าว หรือเป็นของว่างเพื่อสุขภาพ</li>
+                    <li>สามารถทำเป็นสมูทตี้ หรือโยเกิร์ตโบว์ล</li>
+                    <li>แนะนำรับประทาน 1-2 กล่องต่อสัปดาห์</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีการเก็บรักษา:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>เก็บในตู้เย็น อุณหภูมิ 4-8 องศาเซลเซียส</li>
+                    <li>ล้างให้สะอาดก่อนรับประทาน</li>
+                    <li>บริโภคภายใน 5-7 วันหลังได้รับสินค้า</li>
+                </ul>
+            </div>
+
+            <div id="nutrition" class="tab-content">
+                <h3>คุณค่าทางโภชนาการ (ต่อกล่อง)</h3>
+                <table class="nutrition-table">
+                    <tr>
+                        <th>สารอาหาร</th>
+                        <th>ปริมาณ</th>
+                        <th>% DV</th>
+                    </tr>
+                    <tr>
+                        <td>พลังงาน</td>
+                        <td>320 kcal</td>
+                        <td>16%</td>
+                    </tr>
+                    <tr>
+                        <td>คาร์โบไหเดรต</td>
+                        <td>72 g</td>
+                        <td>24%</td>
+                    </tr>
+                    <tr>
+                        <td>น้ำตาล</td>
+                        <td>52 g</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>โปรตีน</td>
+                        <td>6 g</td>
+                        <td>12%</td>
+                    </tr>
+                    <tr>
+                        <td>ไขมัน</td>
+                        <td>12 g</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td>ใยอาหาร</td>
+                        <td>24 g</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน C</td>
+                        <td>380 mg</td>
+                        <td>422%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน E</td>
+                        <td>18 mg</td>
+                        <td>120%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน K</td>
+                        <td>85 µg</td>
+                        <td>71%</td>
+                    </tr>
+                    <tr>
+                        <td>โฟลิค แอซิด</td>
+                        <td>160 µg</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td>โพแทสเซียม</td>
+                        <td>1,420 mg</td>
+                        <td>41%</td>
+                    </tr>
+                    <tr>
+                        <td>แมกนีเซียม</td>
+                        <td>85 mg</td>
+                        <td>21%</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+                    <h4 style="color: #2d5a27; margin-bottom: 0.5rem;">ประโยชน์ต่อสุขภาพ:</h4>
+                    <ul style="color: #2d5a27; margin-left: 1.5rem;">
+                        <li>เสริมสร้างภูมิคุ้มกันขั้นสูง ด้วยวิตามิน C เกือบ 5 เท่าความต้องการ</li>
+                        <li>ต้านอนุมูลอิสระ ชะลอความชรา ด้วยแอนโทไซยานิน</li>
+                        <li>ส่งเสริมระบบย่อยอาหาร ด้วยใยอาหารสูงเกือบ 100%</li>
+                        <li>บำรุงสายตาและสมอง ด้วยวิตามิน E</li>
+                        <li>ช่วยในการดีท็อกซ์และล้างพิษ</li>
+                        <li>ควบคุมน้ำหนัก แคลอรี่ต่ำ อิ่มนาน</li>
+                        <li>บำรุงผิวพรรณให้สดใส</li>
+                        <li>ช่วยควบคุมระดับคอเลสเตอรอล</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <h3>สรุปคะแนนรีวิว</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+                        <span style="font-size: 2rem; font-weight: bold;">4.8</span>
+                        <div>
+                            <div class="stars" style="margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>จาก 143 รีวิว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณสุขใส เฮลตี้เลิฟเวอร์</div>
+                        <div class="review-date">1 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ชอบมากค่ะ กินแล้วรู้สึกสดชื่น มีพลังมากขึ้น ได้ผลไม้หลากหลายชนิดในกล่องเดียว เหมาะมากสำหรับคนที่ไม่มีเวลาจัดผลไม้เอง คุ้มค่ามาก</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณฟิตเนส เดอลุกซ์</div>
+                        <div class="review-date">3 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>เป็นแฟนกล่องนี้มาก เพราะเป็นคนออกกำลังกาย ต้องการโปรตีนและวิตามินเยอะ กินแทนของว่าง อร่อยและดีต่อสุขภาพ จะสั่งเป็นประจำครับ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณดีท็อกซ์ ไลฟ์สไตล์</div>
+                        <div class="review-date">1 สัปดาห์ที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>ชอบแนวคิดของกล่องนี้มาก ได้ผลไม้เพื่อสุขภาพ แต่ราคาค่อนข้างสูง ถ้ามีโปรโมชั่นจะดีมาก โดยรวมพอใจครับ กินแล้วรู้สึกดี</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>ข้อมูลการจัดส่ง</h3>
+                <div style="margin-top: 1rem;">
+                    <h4>วิธีการจัดส่ง:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li><strong>แบบปกติ (2-3 วัน):</strong> ฟรี (ครบ ฿500 อัตโนมัติ)</li>
+                        <li><strong>แบบเร่งด่วน (1 วัน):</strong> ฿150 (รวมค่าแช่เย็น)</li>
+                        <li><strong>รับสินค้าที่ร้าน:</strong> ฟรี</li>
+                    </ul>
+
+                    <h4>เขตการจัดส่ง:</h4>
+                    <p>กรุงเทพมหานคร และปริมณฑล รัศมี 40 กิโลเมตร</p>
+
+                    <h4>การบรรจุภัณฑ์:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>กล่องออร์แกนิคพิเศษ ย่อยสลายได้</li>
+                        <li>ถุงแช่เย็นเพื่อรักษาความสด</li>
+                        <li>แยกบรรจุแต่ละชนิดในถาด</li>
+                        <li>รวมคู่มือการรับประทานเพื่อสุขภาพ</li>
+                        <li>ใบรับรองออร์แกนิค</li>
+                    </ul>
+
+                    <h4>การรับประกัน:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>รับประกันความสด 7 วัน</li>
+                        <li>สามารถเปลี่ยนสินค้าได้ภายใน 3 วัน (หากสินค้าไม่สด)</li>
+                        <li>คืนเงิน 100% หากสินค้าไม่ตรงตามคำสั่งซื้อ</li>
+                        <li>มีใบรับรองออร์แกนิคจากฟาร์ม</li>
+                        <li>รับประกันคุณภาพโภชนาการ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>สินค้าที่เกี่ยวข้อง</h2>
+            <div class="related-grid">
+                <div class="related-product" onclick="window.location.href='product-berry-mix-organic.html'">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Berry Mix Organic">
+                    <h3>Berry Mix Organic</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿420</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mixed-fruit-premium.html'">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Mixed Fruit Box Premium">
+                    <h3>Mixed Fruit Box Premium</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿350</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-strawberry-japan.html'">
+                    <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="สตรอเบอร์รี่ญี่ปุ่น">
+                    <h3>สตรอเบอร์รี่ญี่ปุ่น</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿350</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-orange-shogun.html'">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="ส้มโชกุน คัดพิเศษ">
+                    <h3>ส้มโชกุน คัดพิเศษ</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿280</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quantity Controls
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + delta);
+            input.value = newValue;
+        }
+
+        // Product Options
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.closest('.option-group');
+                group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update price if size option
+                const priceData = button.getAttribute('data-price');
+                if (priceData) {
+                    document.querySelector('.current-price').textContent = `฿${priceData}`;
+                }
+            });
+        });
+
+        // Tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const size = document.querySelector('.option-group:first-child .option-btn.active').textContent;
+            const program = document.querySelector('.option-group:last-child .option-btn.active').textContent;
+            const price = document.querySelector('.current-price').textContent;
+
+            // Simulate cart addition
+            alert(`เพิ่มสินค้าลงตะกร้าแล้ว!\n\nHealthy Mix Box\nจำนวน: ${quantity} กล่อง\nขนาด: ${size}\nโปรแกรม: ${program}\nราคา: ${price}`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-btn .cart-count');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + parseInt(quantity);
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            const wishlistBadge = document.querySelector('.search-btn .cart-count');
+
+            if (wishlistBtn.classList.contains('far')) {
+                wishlistBtn.classList.remove('far');
+                wishlistBtn.classList.add('fas');
+                wishlistBtn.style.color = 'var(--primary-color)';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = currentCount + 1;
+
+                alert('เพิ่ม Healthy Mix Box ลงรายการที่ชื่นชอบแล้ว!');
+            } else {
+                wishlistBtn.classList.remove('fas');
+                wishlistBtn.classList.add('far');
+                wishlistBtn.style.color = '';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = Math.max(0, currentCount - 1);
+
+                alert('ลบออกจากรายการที่ชื่นชอบแล้ว!');
+            }
+        }
+    </script>
+</body>
+</html>

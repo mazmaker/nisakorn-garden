@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tropical Paradise Box - Nisakorn Garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-leaf"></i>
+                        <span>Nisakorn Garden</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="home.html">หน้าแรก</a>
+                    <a href="products.html">สินค้า</a>
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อ</a>
+                    <a href="b2b.html">B2B</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="my-account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="home.html"><i class="fas fa-home"></i> หน้าแรก</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">สินค้า</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html?category=tropical">ผลไม้เมืองร้อน</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Tropical Paradise Box</span>
+        </nav>
+
+        <!-- Product Detail Header -->
+        <div class="product-detail-header">
+            <div class="product-images">
+                <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tropical Paradise Box" class="main-image" id="mainImage">
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ผลไม้เมืองร้อน 1" class="thumbnail active" onclick="changeMainImage('https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=100" alt="มะม่วง" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1553279768-865429fa0078?w=600')">
+                    <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="ทุเรียน" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="สับปะรด" class="thumbnail" onclick="changeMainImage('https://images.unsplash.com/photo-1615484477778-ca3b77940c25?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">Tropical Paradise Box</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-text">(4.6 จาก 128 รีวิว)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">฿450</span>
+                </div>
+
+                <div class="product-description">
+                    <p>กล่องผลไม้เมืองร้อนสุดพิเศษ รวมผลไม้เมืองร้อนคัดพิเศษ มะม่วงน้ำดอกไม้ มะขามหวาน ทุเรียนหมอนทอง และสับปะรด เหมาะสำหรับผู้ที่ต้องการสัมผัสรสชาติผลไม้เมืองร้อนแท้</p>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">ขนาด:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn" data-price="320">เล็ก (2-3 ชิ้น) - ฿320</button>
+                            <button class="option-btn active" data-price="450">กลาง (4-5 ชิ้น) - ฿450</button>
+                            <button class="option-btn" data-price="680">ใหญ่ (6-8 ชิ้น) - ฿680</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">ประเภท:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">ผลไม้เมืองร้อนคลาสสิค</button>
+                            <button class="option-btn">ผลไม้เมืองร้อนพรีเมียม</button>
+                            <button class="option-btn">ไม่รวมทุเรียน</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label class="option-label">จำนวน:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มลงตะกร้า
+                    </button>
+                    <button class="wishlist-btn" onclick="toggleWishlist()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features" style="margin-top: 1.5rem;">
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-award" style="color: var(--secondary-color);"></i>
+                        <span>ผลไม้เมืองร้อนชั้นเลิศ</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shipping-fast" style="color: var(--secondary-color);"></i>
+                        <span>จัดส่งฟรี สำหรับการสั่งซื้อขั้นต่ำ ฿500</span>
+                    </div>
+                    <div class="feature-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-undo" style="color: var(--secondary-color);"></i>
+                        <span>รับประกันความสุกงาม</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('description')">รายละเอียด</button>
+                <button class="tab-btn" onclick="showTab('nutrition')">คุณค่าทางโภชนาการ</button>
+                <button class="tab-btn" onclick="showTab('reviews')">รีวิว (128)</button>
+                <button class="tab-btn" onclick="showTab('shipping')">การจัดส่ง</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>รายละเอียดสินค้า</h3>
+                <p>Tropical Paradise Box คือกล่องผลไม้เมืองร้อนคัดพิเศษที่รวบรวมผลไม้เมืองร้อนคุณภาพสูง เพื่อให้คุณได้สัมผัสรสชาติและกลิ่นหอมของผลไม้เมืองร้อนแท้ๆ ที่เป็นเอกลักษณ์ของประเทศไทย</p>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">ประกอบด้วยผลไม้:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>มะม่วงน้ำดอกไม้สุกงาม 2 ลูก</li>
+                    <li>มะขามหวานปอกเปลือกพร้อมทาน 200g</li>
+                    <li>ทุเรียนหมอนทองคัดพิเศษ 500g</li>
+                    <li>สับปะรดหอมหวาน 1 ลูก (หั่นพร้อมทาน)</li>
+                    <li>ลำไยสดใหม่ 200g</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">จุดเด่น:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>ผลไม้เมืองร้อนแท้ คัดพิเศษจากสวนคุณภาพ</li>
+                    <li>ได้สัมผัสรสชาติหลากหลายในกล่องเดียว</li>
+                    <li>ส่งตรงจากสวน รับประกันความสดและคุณภาพ</li>
+                    <li>เหมาะสำหรับเป็นของขวัญหรือเลี้ยงแขก</li>
+                    <li>บรรจุภัณฑ์พรีเมียม สวยงาม น่าประทับใจ</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">วิธีการเก็บรักษา:</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>เก็บในที่เย็น หลีกเลี่ยงแสงแดดโดยตรง</li>
+                    <li>ทุเรียนควรรับประทานทันทีหลังเปิดกล่อง</li>
+                    <li>ผลไม้อื่นๆ สามารถเก็บในตู้เย็นได้ 3-5 วัน</li>
+                </ul>
+            </div>
+
+            <div id="nutrition" class="tab-content">
+                <h3>คุณค่าทางโภชนาการ (ต่อกล่อง)</h3>
+                <table class="nutrition-table">
+                    <tr>
+                        <th>สารอาหาร</th>
+                        <th>ปริมาณ</th>
+                        <th>% DV</th>
+                    </tr>
+                    <tr>
+                        <td>พลังงาน</td>
+                        <td>680 kcal</td>
+                        <td>34%</td>
+                    </tr>
+                    <tr>
+                        <td>คาร์โบไหเดรต</td>
+                        <td>165 g</td>
+                        <td>55%</td>
+                    </tr>
+                    <tr>
+                        <td>น้ำตาล</td>
+                        <td>142 g</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>โปรตีน</td>
+                        <td>12 g</td>
+                        <td>24%</td>
+                    </tr>
+                    <tr>
+                        <td>ไขมัน</td>
+                        <td>8 g</td>
+                        <td>12%</td>
+                    </tr>
+                    <tr>
+                        <td>ใยอาหาร</td>
+                        <td>28 g</td>
+                        <td>112%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน C</td>
+                        <td>420 mg</td>
+                        <td>467%</td>
+                    </tr>
+                    <tr>
+                        <td>วิตามิน A</td>
+                        <td>680 µg</td>
+                        <td>76%</td>
+                    </tr>
+                    <tr>
+                        <td>โพแทสเซียม</td>
+                        <td>1,850 mg</td>
+                        <td>53%</td>
+                    </tr>
+                    <tr>
+                        <td>แมกนีเซียม</td>
+                        <td>145 mg</td>
+                        <td>36%</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+                    <h4 style="color: #2d5a27; margin-bottom: 0.5rem;">ประโยชน์ต่อสุขภาพ:</h4>
+                    <ul style="color: #2d5a27; margin-left: 1.5rem;">
+                        <li>เสริมสร้างภูมิคุ้มกันด้วยวิตามิน C สูงมาก</li>
+                        <li>บำรุงสายตาด้วยวิตามิน A และเบต้าแคโรทีน</li>
+                        <li>ส่งเสริมระบบย่อยอาหารด้วยเอนไซม์และใยอาหาร</li>
+                        <li>ช่วยเสริมพลังงานธรรมชาติจากน้ำตาล</li>
+                        <li>อุดมด้วยแร่ธาตุที่ร่างกายต้องการ</li>
+                        <li>ต้านอนุมูลอิสระ ช่วยชะลอความชรา</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-summary">
+                    <h3>สรุปคะแนนรีวิว</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+                        <span style="font-size: 2rem; font-weight: bold;">4.6</span>
+                        <div>
+                            <div class="stars" style="margin-bottom: 0.5rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>จาก 128 รีวิว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณสมพงษ์ ทุเรียนแฟน</div>
+                        <div class="review-date">2 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ได้ผลไม้เมืองร้อนหลายชนิดในกล่องเดียว คุ้มค่ามาก ทุเรียนหอมมากครับ มะม่วงหวาน สับปะรดฉ่ำ ของขวัญสุดพิเศษ จะแนะนำให้เพื่อนๆ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณรัตนา เมืองร้อน</div>
+                        <div class="review-date">5 วันที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>สั่งเป็นของฝากไปต่างจังหวัด ผู้รับประทับใจมาก ผลไม้สดใหม่ หวานอร่อย บรรจุภัณฑ์สวย ดูแพงมาก ราคาเหมาะสมค่ะ</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">คุณวิชัย รสดี</div>
+                        <div class="review-date">1 สัปดาห์ที่แล้ว</div>
+                    </div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>ผลไม้อร่อยครับ แต่ทุเรียนมาไม่ค่อยหอม อาจจะยังไม่สุกพอ ส่วนผลไม้อื่นดีมาก โดยรวมพอใจครับ แต่หวังให้เช็คความสุกให้ดีกว่านี้</p>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>ข้อมูลการจัดส่ง</h3>
+                <div style="margin-top: 1rem;">
+                    <h4>วิธีการจัดส่ง:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li><strong>แบบปกติ (2-3 วัน):</strong> ฿50 (ฟรี เมื่อซื้อครับ ฿500)</li>
+                        <li><strong>แบบเร่งด่วน (1 วัน):</strong> ฿150</li>
+                        <li><strong>รับสินค้าที่ร้าน:</strong> ฟรี</li>
+                    </ul>
+
+                    <h4>เขตการจัดส่ง:</h4>
+                    <p>กรุงเทพมหานคร และปริมณฑล รัศมี 40 กิโลเมตร</p>
+
+                    <h4>การบรรจุภัณฑ์:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>กล่องกระดาษพรีเมียม แข็งแรง ป้องกันการกระแทก</li>
+                        <li>ถุงแช่เย็นพิเศษเพื่อรักษาความสด</li>
+                        <li>แยกบรรจุแต่ละชนิดอย่างเหมาะสม</li>
+                        <li>ใส่น้ำแข็งแห้งสำหรับทุเรียน</li>
+                        <li>คู่มือการรับประทานและเก็บรักษา</li>
+                    </ul>
+
+                    <h4>การรับประกัน:</h4>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>รับประกันความสด 5-7 วัน (แต่ละชนิด)</li>
+                        <li>สามารถเปลี่ยนสินค้าได้ภายใน 3 วัน (หากสินค้าไม่สด)</li>
+                        <li>คืนเงิน 100% หากสินค้าไม่ตรงตามคำสั่งซื้อ</li>
+                        <li>มีใบรับรองคุณภาพจากสวนผู้ผลิต</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>สินค้าที่เกี่ยวข้อง</h2>
+            <div class="related-grid">
+                <div class="related-product" onclick="window.location.href='product-mango-sweet.html'">
+                    <img src="https://images.unsplash.com/photo-1553279531-a4d27ba6e392?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="มะม่วงน้ำดอกไม้">
+                    <h3>มะม่วงน้ำดอกไม้</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿380</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mixed-fruit-premium.html'">
+                    <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Mixed Fruit Box Premium">
+                    <h3>Mixed Fruit Box Premium</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿350</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-healthy-mix.html'">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Healthy Mix Box">
+                    <h3>Healthy Mix Box</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿480</span>
+                    </div>
+                </div>
+                <div class="related-product" onclick="window.location.href='product-mango-namdokmai.html'">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=250" alt="มะม่วงน้ำดอกไม้สด">
+                    <h3>มะม่วงน้ำดอกไม้สด</h3>
+                    <div class="product-price">
+                        <span class="current-price">฿89</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="https://via.placeholder.com/150x50/e53e3e/ffffff?text=Nisakorn+Garden" alt="Nisakorn Garden" class="footer-logo">
+                        <p class="footer-tagline">Fresh-Cut Fruit You Can Trust</p>
+                        <p class="footer-description">ผลไม้สดใหม่คัดสรร เพื่อสุขภาพที่ดีของคุณและครอบครัว</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">เมนู</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">หน้าแรก</a></li>
+                        <li><a href="products.html">สินค้า</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="gallery.html">แกลเลอรี่</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">บริการ</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">สินค้าปลีก (B2C)</a></li>
+                        <li><a href="b2b.html">สินค้าขายส่ง (B2B)</a></li>
+                        <li><a href="#">จัดส่งสินค้า</a></li>
+                        <li><a href="#">คำถามที่พบบ่อย</a></li>
+                        <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">ติดต่อเรา</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 ถนนผลไม้ แขวงสวนส้ม เขตวังผลไม้ กทม. 10200</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>02-123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nisakorngarden.com</span>
+                        </li>
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nisakorn Garden. สงวนลิขสิทธิ์</p>
+                <p>Powered by <strong>MAZ Brand & Marketing</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quantity Controls
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, currentValue + delta);
+            input.value = newValue;
+        }
+
+        // Product Options
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.closest('.option-group');
+                group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update price if size option
+                const priceData = button.getAttribute('data-price');
+                if (priceData) {
+                    document.querySelector('.current-price').textContent = `฿${priceData}`;
+                }
+            });
+        });
+
+        // Tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const size = document.querySelector('.option-group:first-child .option-btn.active').textContent;
+            const type = document.querySelector('.option-group:last-child .option-btn.active').textContent;
+            const price = document.querySelector('.current-price').textContent;
+
+            // Simulate cart addition
+            alert(`เพิ่มสินค้าลงตะกร้าแล้ว!\n\nTropical Paradise Box\nจำนวน: ${quantity} กล่อง\nขนาด: ${size}\nประเภท: ${type}\nราคา: ${price}`);
+
+            // Update cart badge
+            const cartBadge = document.querySelector('.cart-btn .cart-count');
+            const currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + parseInt(quantity);
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            const wishlistBadge = document.querySelector('.search-btn .cart-count');
+
+            if (wishlistBtn.classList.contains('far')) {
+                wishlistBtn.classList.remove('far');
+                wishlistBtn.classList.add('fas');
+                wishlistBtn.style.color = 'var(--primary-color)';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = currentCount + 1;
+
+                alert('เพิ่ม Tropical Paradise Box ลงรายการที่ชื่นชอบแล้ว!');
+            } else {
+                wishlistBtn.classList.remove('fas');
+                wishlistBtn.classList.add('far');
+                wishlistBtn.style.color = '';
+
+                const currentCount = parseInt(wishlistBadge.textContent);
+                wishlistBadge.textContent = Math.max(0, currentCount - 1);
+
+                alert('ลบออกจากรายการที่ชื่นชอบแล้ว!');
+            }
+        }
+    </script>
+</body>
+</html>
